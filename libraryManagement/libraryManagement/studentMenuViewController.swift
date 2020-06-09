@@ -9,10 +9,19 @@
 import UIKit
 
 class studentMenuViewController: UIViewController {
+    //---Outlet
+    @IBOutlet weak var addButton: UIButton!
+    @IBOutlet weak var manageButton: UIButton!
+    @IBOutlet weak var statisticButton: UIButton!
+    
+    //---Action
+    //---Variable
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        addButton.customMenuButton()
+        manageButton.customMenuButton()
+        statisticButton.customMenuButton()
         // Do any additional setup after loading the view.
     }
     
@@ -27,4 +36,10 @@ class studentMenuViewController: UIViewController {
     }
     */
 
+}
+
+extension UIButton{
+    func customMenuButton(){
+        layer.cornerRadius = 30
+    }
 }

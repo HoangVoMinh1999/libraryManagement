@@ -15,6 +15,7 @@
 		5C3E690C248FC7FB00202CEF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C3E690A248FC7FB00202CEF /* LaunchScreen.storyboard */; };
 		5C3E6914248FCAF300202CEF /* loginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3E6913248FCAF300202CEF /* loginViewController.swift */; };
 		5C3E6916248FCB0600202CEF /* registerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3E6915248FCB0600202CEF /* registerViewController.swift */; };
+		5C3E691C248FDDCD00202CEF /* studentMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3E691B248FDDCD00202CEF /* studentMenuViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		5C3E690D248FC7FB00202CEF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5C3E6913248FCAF300202CEF /* loginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loginViewController.swift; sourceTree = "<group>"; };
 		5C3E6915248FCB0600202CEF /* registerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = registerViewController.swift; sourceTree = "<group>"; };
+		5C3E691B248FDDCD00202CEF /* studentMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = studentMenuViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 				5C3E6905248FC7D900202CEF /* Main.storyboard */,
 				5C3E6913248FCAF300202CEF /* loginViewController.swift */,
 				5C3E6915248FCB0600202CEF /* registerViewController.swift */,
+				5C3E691B248FDDCD00202CEF /* studentMenuViewController.swift */,
 				5C3E6908248FC7FB00202CEF /* Assets.xcassets */,
 				5C3E690A248FC7FB00202CEF /* LaunchScreen.storyboard */,
 				5C3E690D248FC7FB00202CEF /* Info.plist */,
@@ -147,6 +150,7 @@
 				5C3E6914248FCAF300202CEF /* loginViewController.swift in Sources */,
 				5C3E6904248FC7D900202CEF /* ViewController.swift in Sources */,
 				5C3E6900248FC7D900202CEF /* AppDelegate.swift in Sources */,
+				5C3E691C248FDDCD00202CEF /* studentMenuViewController.swift in Sources */,
 				5C3E6916248FCB0600202CEF /* registerViewController.swift in Sources */,
 				5C3E6902248FC7D900202CEF /* SceneDelegate.swift in Sources */,
 			);

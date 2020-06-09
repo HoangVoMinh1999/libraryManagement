@@ -226,6 +226,15 @@
                         <viewLayoutGuide key="safeArea" id="hXA-Pa-cfD"/>
                     </view>
                     <navigationItem key="navigationItem" id="HP1-Pb-euB"/>
+                    <connections>
+                        <outlet property="avatarImage" destination="ruD-wl-pTF" id="Vow-go-UX6"/>
+                        <outlet property="birthdayTextField" destination="mW7-5t-GUH" id="LAH-fy-h2J"/>
+                        <outlet property="genderTextField" destination="j0W-ow-NKb" id="rQV-Np-iPr"/>
+                        <outlet property="nameTextField" destination="tLD-44-oJZ" id="cao-Sx-9Lf"/>
+                        <outlet property="password_1TextField" destination="gtL-xp-PcX" id="QfD-YQ-758"/>
+                        <outlet property="password_2TextField" destination="Jyw-m1-Gbo" id="p6Z-ON-5JW"/>
+                        <outlet property="usernameTextField" destination="tsg-5c-rrY" id="DJn-zN-qwI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nvf-VB-RbV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -234,7 +243,7 @@
         <!--STUDENT-->
         <scene sceneID="BFy-2T-LU8">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="UeR-eE-nU5" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="studentMenuViewController" modalPresentationStyle="fullScreen" id="UeR-eE-nU5" customClass="studentMenuViewController" customModule="libraryManagement" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ApQ-pw-8dN">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -271,6 +280,11 @@
                         <viewLayoutGuide key="safeArea" id="CDQ-Mm-95C"/>
                     </view>
                     <navigationItem key="navigationItem" title="STUDENT" id="kkW-tT-Ur9"/>
+                    <connections>
+                        <outlet property="addButton" destination="ums-r4-h84" id="BX5-26-9mv"/>
+                        <outlet property="manageButton" destination="Or4-7r-x4F" id="1eW-rX-9wQ"/>
+                        <outlet property="statisticButton" destination="Sfk-cr-HwU" id="jFM-We-x5V"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uiu-FT-3FI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
