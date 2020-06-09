@@ -1,5 +1,5 @@
 //
-//  registerViewController.swift
+//  studentMenuViewController.swift
 //  libraryManagement
 //
 //  Created by Hoàng Võ Minh on 6/9/20.
@@ -8,22 +8,11 @@
 
 import UIKit
 
-class registerViewController: UIViewController {
-    //---Outlet
-    @IBOutlet weak var nameTextField: UITextField!
-    @IBOutlet weak var birthdayTextField: UITextField!
-    @IBOutlet weak var genderTextField: UITextField!
-    @IBOutlet weak var usernameTextField: UITextField!
-    @IBOutlet weak var password_1TextField: UITextField!
-    @IBOutlet weak var password_2TextField: UITextField!
-    @IBOutlet weak var avatarImage: UIImageView!
-    
-    //---Action
-    //---Variable
+class studentMenuViewController: UIViewController {
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        password_1TextField.isSecureTextEntry  = true
-        password_2TextField.isSecureTextEntry  = true
+
         // Do any additional setup after loading the view.
     }
     

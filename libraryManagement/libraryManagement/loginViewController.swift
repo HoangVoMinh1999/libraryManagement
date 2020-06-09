@@ -31,7 +31,7 @@ class loginViewController: UIViewController {
     var Password:String = "123456"
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        passwordTextField.isSecureTextEntry = true
         // Do any additional setup after loading the view.
     }
     
