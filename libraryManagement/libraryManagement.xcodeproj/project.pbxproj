@@ -27,6 +27,7 @@
 		5C3E69262490ED2C00202CEF /* addStudentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3E69252490ED2C00202CEF /* addStudentsViewController.swift */; };
 		5C3E69282490F3F400202CEF /* statisticStudentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3E69272490F3F400202CEF /* statisticStudentsViewController.swift */; };
 		5C3E692A2490F52300202CEF /* listBorrowingCardsStudentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3E69292490F52300202CEF /* listBorrowingCardsStudentTableViewCell.swift */; };
+		5C3E692E249125FA00202CEF /* Class in Resources */ = {isa = PBXBuildFile; fileRef = 5C3E692D249125FA00202CEF /* Class */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,7 @@
 		5C3E69252490ED2C00202CEF /* addStudentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addStudentsViewController.swift; sourceTree = "<group>"; };
 		5C3E69272490F3F400202CEF /* statisticStudentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = statisticStudentsViewController.swift; sourceTree = "<group>"; };
 		5C3E69292490F52300202CEF /* listBorrowingCardsStudentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = listBorrowingCardsStudentTableViewCell.swift; sourceTree = "<group>"; };
+		5C3E692D249125FA00202CEF /* Class */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Class; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +70,7 @@
 		5C3E68F3248FC7D900202CEF = {
 			isa = PBXGroup;
 			children = (
+				5C3E692D249125FA00202CEF /* Class */,
 				5C3E68FE248FC7D900202CEF /* libraryManagement */,
 				5C3E68FD248FC7D900202CEF /* Products */,
 			);
@@ -170,6 +173,7 @@
 				5C3E690C248FC7FB00202CEF /* LaunchScreen.storyboard in Resources */,
 				5C3E6909248FC7FB00202CEF /* Assets.xcassets in Resources */,
 				5C3E6907248FC7D900202CEF /* Main.storyboard in Resources */,
+				5C3E692E249125FA00202CEF /* Class in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
