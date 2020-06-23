@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2CE04E4024A223C700123629 /* addBooksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE04E3F24A223C700123629 /* addBooksViewController.swift */; };
+		2CE04E4224A23D5000123629 /* manageBooksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE04E4124A23D5000123629 /* manageBooksViewController.swift */; };
+		2CE04E4424A23E5600123629 /* statisticBooksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE04E4324A23E5600123629 /* statisticBooksViewController.swift */; };
 		5C3E6900248FC7D900202CEF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3E68FF248FC7D900202CEF /* AppDelegate.swift */; };
 		5C3E6902248FC7D900202CEF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3E6901248FC7D900202CEF /* SceneDelegate.swift */; };
 		5C3E6904248FC7D900202CEF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3E6903248FC7D900202CEF /* ViewController.swift */; };
@@ -26,6 +29,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2CE04E3F24A223C700123629 /* addBooksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addBooksViewController.swift; sourceTree = "<group>"; };
+		2CE04E4124A23D5000123629 /* manageBooksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = manageBooksViewController.swift; sourceTree = "<group>"; };
+		2CE04E4324A23E5600123629 /* statisticBooksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = statisticBooksViewController.swift; sourceTree = "<group>"; };
 		5C3E68FC248FC7D900202CEF /* libraryManagement.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = libraryManagement.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C3E68FF248FC7D900202CEF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5C3E6901248FC7D900202CEF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -93,6 +99,9 @@
 				5C3E6908248FC7FB00202CEF /* Assets.xcassets */,
 				5C3E690A248FC7FB00202CEF /* LaunchScreen.storyboard */,
 				5C3E690D248FC7FB00202CEF /* Info.plist */,
+				2CE04E3F24A223C700123629 /* addBooksViewController.swift */,
+				2CE04E4124A23D5000123629 /* manageBooksViewController.swift */,
+				2CE04E4324A23E5600123629 /* statisticBooksViewController.swift */,
 			);
 			path = libraryManagement;
 			sourceTree = "<group>";
@@ -177,10 +186,13 @@
 				5C3E69282490F3F400202CEF /* statisticStudentsViewController.swift in Sources */,
 				5C3E69262490ED2C00202CEF /* addStudentsViewController.swift in Sources */,
 				5C3E691E2490B74C00202CEF /* manageStudentsViewController.swift in Sources */,
+				2CE04E4224A23D5000123629 /* manageBooksViewController.swift in Sources */,
+				2CE04E4424A23E5600123629 /* statisticBooksViewController.swift in Sources */,
 				5C3E6916248FCB0600202CEF /* registerViewController.swift in Sources */,
 				5C3E69222490D7A000202CEF /* editInfoStudentViewController.swift in Sources */,
 				5C3E69242490E2DF00202CEF /* listBorrowingCardStudentViewController.swift in Sources */,
 				5C3E6902248FC7D900202CEF /* SceneDelegate.swift in Sources */,
+				2CE04E4024A223C700123629 /* addBooksViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
