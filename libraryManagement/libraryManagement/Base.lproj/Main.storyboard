@@ -807,6 +807,10 @@
                                     <action selector="cancelButton:" destination="EgE-0y-0Uy" eventType="touchUpInside" id="Lka-Jh-g6Y"/>
                                 </connections>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hml-em-Tge">
+                                <rect key="frame" x="157" y="88" width="100" height="100"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="lnf-Li-IwR"/>
@@ -1147,6 +1151,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="oUx-xJ-LwR"/>
     </inferredMetricsTieBreakers>
+    <color key="tintColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
     <resources>
         <image name="book" catalog="system" width="128" height="101"/>
         <image name="book.fill" catalog="system" width="128" height="100"/>
