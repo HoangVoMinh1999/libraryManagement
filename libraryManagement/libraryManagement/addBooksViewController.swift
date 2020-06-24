@@ -24,7 +24,7 @@ class addBooksViewController: UIViewController {
     }
     
     @IBAction func cancelButton(_ sender: Any) {
-        let src = (storyboard?.instantiateViewController(identifier: "addBooksViewController"))! as addBooksViewController
+        let src = (storyboard?.instantiateViewController(identifier: "bookMenuViewController"))! as bookMenuViewController
     present(src, animated: true,completion: nil)
     }
     

@@ -302,7 +302,7 @@
         <!--BOOK-->
         <scene sceneID="kt5-uf-uSg">
             <objects>
-                <viewController title="BOOK" id="J1Z-EU-99q" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="bookMenuViewController" title="BOOK" modalPresentationStyle="currentContext" id="J1Z-EU-99q" customClass="bookMenuViewController" customModule="libraryManagement" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3qp-tF-m6Q">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
