@@ -10,13 +10,19 @@ import UIKit
 
 class addBooksViewController: UIViewController {
     //---Outlet---
+    @IBOutlet weak var bookIDTextField: UITextField!
+    
     @IBOutlet weak var booknameTextField: UITextField!
     
     @IBOutlet weak var categoryTextField: UITextField!
     
     @IBOutlet weak var authorTextField: UITextField!
     
+    @IBOutlet weak var publishingyearTextField: UITextField!
+    
     @IBOutlet weak var publishingcompanyTextField: UITextField!
+    
+    @IBOutlet weak var dateaddedTextField: UITextField!
     
     //---Action---
     @IBAction func confirmButton(_ sender: Any) {
