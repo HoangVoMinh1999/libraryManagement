@@ -7,8 +7,10 @@
 //
 
 import UIKit
+import Firebase
 
 class addStudentsViewController: UIViewController {
+    var ref: DatabaseReference!
     //---Outlet
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var birthdayTextField: UITextField!
@@ -18,7 +20,18 @@ class addStudentsViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var starteddayTextField: UITextField!
     //---Variable
+
     //---Action
+    @IBAction func confirmButton(_ sender: Any) {
+        
+
+        ref = Database.database().reference()
+        self.ref.child("users").child("VMH").setValue(["username": "Vo Minh Hoang"])
+        
+        
+    }
+    
+    
     @IBAction func cancelButton(_ sender: Any) {
         let src = (storyboard?.instantiateViewController(identifier: "addStudentsViewController"))! as addStudentsViewController
         present(src, animated: true,completion: nil)
