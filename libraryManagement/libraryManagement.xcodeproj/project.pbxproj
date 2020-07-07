@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -29,6 +29,8 @@
 		5C3E692A2490F52300202CEF /* listBorrowingCardsStudentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3E69292490F52300202CEF /* listBorrowingCardsStudentTableViewCell.swift */; };
 		5C3E692E249125FA00202CEF /* Class in Resources */ = {isa = PBXBuildFile; fileRef = 5C3E692D249125FA00202CEF /* Class */; };
 		5C3E693024AEDC4800202CEF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5C3E692F24AEDC4800202CEF /* GoogleService-Info.plist */; };
+		5CF10B4424B4D49600D01663 /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF10B4324B4D49600D01663 /* Student.swift */; };
+		5CF10B4624B4D4BB00D01663 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF10B4524B4D4BB00D01663 /* Book.swift */; };
 		FFBF45C10977D3C77A8DACE7 /* Pods_libraryManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FF1FE8A742619AA755155A1 /* Pods_libraryManagement.framework */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +60,8 @@
 		5C3E69292490F52300202CEF /* listBorrowingCardsStudentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = listBorrowingCardsStudentTableViewCell.swift; sourceTree = "<group>"; };
 		5C3E692D249125FA00202CEF /* Class */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Class; sourceTree = "<group>"; };
 		5C3E692F24AEDC4800202CEF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		5CF10B4324B4D49600D01663 /* Student.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
+		5CF10B4524B4D4BB00D01663 /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		8FF1FE8A742619AA755155A1 /* Pods_libraryManagement.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_libraryManagement.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF797A93798CA147B82445E8 /* Pods-libraryManagement.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-libraryManagement.debug.xcconfig"; path = "Target Support Files/Pods-libraryManagement/Pods-libraryManagement.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -77,6 +81,7 @@
 		5C3E68F3248FC7D900202CEF = {
 			isa = PBXGroup;
 			children = (
+				5CF10B4224B4D47300D01663 /* New Group */,
 				5C3E692D249125FA00202CEF /* Class */,
 				5C3E68FE248FC7D900202CEF /* libraryManagement */,
 				5C3E68FD248FC7D900202CEF /* Products */,
@@ -122,13 +127,21 @@
 			path = libraryManagement;
 			sourceTree = "<group>";
 		};
+		5CF10B4224B4D47300D01663 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+				5CF10B4324B4D49600D01663 /* Student.swift */,
+				5CF10B4524B4D4BB00D01663 /* Book.swift */,
+			);
+			path = "New Group";
+			sourceTree = "<group>";
+		};
 		C3D363BEBEE813E91E47CEAC /* Pods */ = {
 			isa = PBXGroup;
 			children = (
 				BF797A93798CA147B82445E8 /* Pods-libraryManagement.debug.xcconfig */,
 				13C6C4CE323954601BA6C248 /* Pods-libraryManagement.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -268,8 +281,10 @@
 				5C3E691E2490B74C00202CEF /* manageStudentsViewController.swift in Sources */,
 				2CE04E4224A23D5000123629 /* manageBooksViewController.swift in Sources */,
 				2CE04E4424A23E5600123629 /* statisticBooksViewController.swift in Sources */,
+				5CF10B4624B4D4BB00D01663 /* Book.swift in Sources */,
 				5C3E6916248FCB0600202CEF /* registerViewController.swift in Sources */,
 				5C3E69222490D7A000202CEF /* editInfoStudentViewController.swift in Sources */,
+				5CF10B4424B4D49600D01663 /* Student.swift in Sources */,
 				5C3E69242490E2DF00202CEF /* listBorrowingCardStudentViewController.swift in Sources */,
 				5C3E6902248FC7D900202CEF /* SceneDelegate.swift in Sources */,
 				2C4D4D0324A2F73300C031B9 /* bookMenuViewController.swift in Sources */,
