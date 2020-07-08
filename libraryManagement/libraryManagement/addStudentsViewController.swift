@@ -46,7 +46,23 @@ class addStudentsViewController: UIViewController, UIImagePickerControllerDelega
         present(alert,animated: true,completion: nil)
     }
     
-    @IBAction func birthdayValue(_ sender: Any) {
+    
+    
+    
+    @IBAction func startedDayAction(_ sender: Any) {
+        let alert=UIAlertController(title: "\n\n\n\n\n\n\n\n\n", message: nil, preferredStyle: .actionSheet)
+        let datePicker = UIDatePicker(frame: CGRect(x: 20, y:0, width: 400, height: 300))
+        datePicker.sizeToFit()
+        datePicker.datePickerMode = .date
+        alert.view.addSubview(datePicker)
+        let okButton:UIAlertAction=UIAlertAction(title: "OK", style: .default) { (UIAlertAction) in
+            self.starteddayTextField.text = datePicker.date.dateToString()
+                }
+                alert.addAction(okButton)
+        let cancelButton:UIAlertAction=UIAlertAction(title: "Cancel", style: .destructive, handler: nil)
+        alert.addAction(cancelButton)
+        //        alert.show()
+        self.present(alert,animated:true,completion: nil)
     }
     
     
@@ -114,5 +130,14 @@ extension addStudentsViewController{
         //---ImageItem= imgChosen
         imgItem.image=UIImage(data: imgItemData)
         dismiss(animated: true, completion: nil)
+    }
+}
+
+extension Date{
+    func dateToString() -> String{
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat="dd-MM-yyyy"
+        let str = dateFormatter.string(from: self)
+        return str
     }
 }

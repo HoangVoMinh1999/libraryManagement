@@ -456,15 +456,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DhF-kb-fCw">
-                                <rect key="frame" x="20" y="405" width="260" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <action selector="birthdayValue:" destination="TYU-Zd-nr2" eventType="editingDidEnd" id="7hJ-T5-0J5"/>
-                                </connections>
-                            </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Gender:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UPi-RG-lgE">
                                 <rect key="frame" x="294" y="372" width="74" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -503,6 +494,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="startedDayAction:" destination="TYU-Zd-nr2" eventType="editingDidEnd" id="VhF-I4-DQ0"/>
+                                </connections>
                             </textField>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="person.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="qlb-Ik-uGf">
                                 <rect key="frame" x="132" y="114.5" width="150" height="150"/>
@@ -512,6 +506,12 @@
                                     <outletCollection property="gestureRecognizers" destination="lBl-MG-Rvx" appends="YES" id="Gdy-0r-LjB"/>
                                 </connections>
                             </imageView>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="v84-Bq-XiB">
+                                <rect key="frame" x="20" y="405" width="249" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="Ot8-OO-Yq7"/>
@@ -520,7 +520,7 @@
                     <connections>
                         <outlet property="IDTextField" destination="jSP-93-4Wz" id="aCx-aE-GbO"/>
                         <outlet property="addressTextField" destination="5dU-Qa-7a1" id="54G-g2-Whv"/>
-                        <outlet property="birthdayTextField" destination="DhF-kb-fCw" id="5XS-SG-HxV"/>
+                        <outlet property="birthdayTextField" destination="v84-Bq-XiB" id="3cc-JK-Cf2"/>
                         <outlet property="emailTextField" destination="CTc-0R-6W3" id="NAp-do-5RW"/>
                         <outlet property="genderTextField" destination="Nyv-WN-071" id="aVW-HG-OF1"/>
                         <outlet property="imgItem" destination="qlb-Ik-uGf" id="kkW-Hu-oLV"/>
