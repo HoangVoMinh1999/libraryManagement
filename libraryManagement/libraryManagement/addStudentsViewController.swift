@@ -48,7 +48,24 @@ class addStudentsViewController: UIViewController, UIImagePickerControllerDelega
     
     
     
+    @IBAction func birthdayAction(_ sender: UITextField) {
+        let alert=UIAlertController(title: "\n\n\n\n\n\n\n\n\n", message: nil, preferredStyle: .actionSheet)
+        let datePicker = UIDatePicker(frame: CGRect(x: 20, y:0, width: 400, height: 300))
+        datePicker.sizeToFit()
+        datePicker.datePickerMode = .date
+        alert.view.addSubview(datePicker)
+        let okButton:UIAlertAction=UIAlertAction(title: "OK", style: .default) { (UIAlertAction) in
+            self.birthdayTextField.text = datePicker.date.dateToString()
+        }
+        alert.addAction(okButton)
+        let cancelButton:UIAlertAction=UIAlertAction(title: "Cancel", style: .destructive, handler: nil)
+        alert.addAction(cancelButton)
+        //        alert.show()
+        self.present(alert,animated:true,completion: nil)
+    }
     
+    
+
     @IBAction func startedDayAction(_ sender: Any) {
         let alert=UIAlertController(title: "\n\n\n\n\n\n\n\n\n", message: nil, preferredStyle: .actionSheet)
         let datePicker = UIDatePicker(frame: CGRect(x: 20, y:0, width: 400, height: 300))
@@ -57,8 +74,8 @@ class addStudentsViewController: UIViewController, UIImagePickerControllerDelega
         alert.view.addSubview(datePicker)
         let okButton:UIAlertAction=UIAlertAction(title: "OK", style: .default) { (UIAlertAction) in
             self.starteddayTextField.text = datePicker.date.dateToString()
-                }
-                alert.addAction(okButton)
+        }
+        alert.addAction(okButton)
         let cancelButton:UIAlertAction=UIAlertAction(title: "Cancel", style: .destructive, handler: nil)
         alert.addAction(cancelButton)
         //        alert.show()
@@ -66,6 +83,8 @@ class addStudentsViewController: UIViewController, UIImagePickerControllerDelega
     }
     
     
+    @IBAction func genderAction(_ sender: Any) {
+    }
     
 
     @IBAction func confirmButton(_ sender: Any) {
