@@ -11,20 +11,31 @@ import Firebase
 
 class manageStudentsViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return list.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let db = Firestore.firestore()
+        var count = 0;
         db.collection("Students").getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
             }
             else {
-                let count = 0;
                 for document in querySnapshot!.documents {
-        //          print("\(document.documentID) => \(document.data())")
-                    list[count] = document.data()
+                    count+=1
+                }
+            }
+        }
+        return count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let db = Firestore.firestore()
+        var list_items:Array<Dictionary<String,String>>=[]
+        db.collection("Students").getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            }
+            else {
+                for document in querySnapshot!.documents {
+                    list_items.p
                 }
             }
         }
@@ -57,8 +68,6 @@ class manageStudentsViewController: UIViewController,UITableViewDataSource,UITab
     @IBOutlet weak var searchIDButton: UIButton!
     @IBOutlet weak var listStudentsTable: UITableView!
     //---Variable
-    var list:Array<Dictionary<String,String>> = [:]
-    var MSSV:[String] = ["1712041","1712016","69"]
     //---Action
     @IBAction func searchNameButton(_ sender: UIButton) {
         if (sender.isSelected){
