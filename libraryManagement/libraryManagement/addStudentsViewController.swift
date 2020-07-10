@@ -121,19 +121,21 @@ class addStudentsViewController: UIViewController, UIImagePickerControllerDelega
     
 
     @IBAction func confirmButton(_ sender: Any) {
-        var ref: DatabaseReference!
 
-        ref = Database.database().reference()
         //---Collect data new student
         let new_student:Student =  Student(name: nameTextField.text!, ID: IDTextField.text!, birthday: birthdayTextField.text!, address: addressTextField.text!, email: emailTextField.text!, startedDay: starteddayTextField.text!, status: true)
-        //---Create dir path in Firebase
-        let students = ref.child("students")
-        let detail_student = students.child("detail")
-        let detail = detail_student.childByAutoId()
         
-        //---Make data to save in Firebase
-        let n_student: Dictionary<String,Any> = ["name":"\(new_student.name)","ID":"\(new_student.ID)","birthday":"\(new_student.birthday)","address":"\(new_student.address)","email":"\(new_student.email)","startedDay":"\(new_student.startedDay)","status":"\(new_student.status)"]
-        detail.setValue(n_student)
+        // Add a new document with a generated ID
+        let db = Firestore.firestore()
+        var ref: DocumentReference? = nil
+        ref = db.collection("Students").addDocument(data: ["name":"\(new_student.name)","ID":"\(new_student.ID)","birthday":"\(new_student.birthday)","address":"\(new_student.address)","email":"\(new_student.email)","startedDay":"\(new_student.startedDay)","status":"\(new_student.status)"]) { err in
+            if let err = err {
+                print("Error adding document: \(err)")
+            } else {
+                print("Document added with ID: \(ref!.documentID)")
+            }
+        }
+        
         //---Change view to manageStudent view
         let src = (storyboard?.instantiateViewController(identifier: "manageStudentsViewController"))! as manageStudentsViewController
         present(src, animated: true,completion: nil)

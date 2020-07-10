@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class manageStudentsViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -14,8 +15,23 @@ class manageStudentsViewController: UIViewController,UITableViewDataSource,UITab
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let db = Firestore.firestore()
+        db.collection("Students").getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            }
+            else {
+                let count = 0;
+                for document in querySnapshot!.documents {
+        //          print("\(document.documentID) => \(document.data())")
+                    list[count] = document.data()
+                }
+            }
+        }
+
+        
         let cell:listStudentsTableViewCell = listStudentsTable.dequeueReusableCell(withIdentifier: "listStudentsTableViewCell") as! listStudentsTableViewCell
-        cell.studentNameLabel.text = list[indexPath.row]
+        cell.studentNameLabel.text = list[indexPath.row]["name"]
         cell.MSSVLabel.text = MSSV[indexPath.row]
         return cell
     }
@@ -41,7 +57,7 @@ class manageStudentsViewController: UIViewController,UITableViewDataSource,UITab
     @IBOutlet weak var searchIDButton: UIButton!
     @IBOutlet weak var listStudentsTable: UITableView!
     //---Variable
-    var list:[String] = ["Vo Minh Hoang","Ha Cao Duy","VM Hoang"]
+    var list:Array<Dictionary<String,String>> = [:]
     var MSSV:[String] = ["1712041","1712016","69"]
     //---Action
     @IBAction func searchNameButton(_ sender: UIButton) {
@@ -67,9 +83,11 @@ class manageStudentsViewController: UIViewController,UITableViewDataSource,UITab
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         searchNameButton.isSelected = true
         listStudentsTable.dataSource = self
         listStudentsTable.delegate = self
+    
         listStudentsTable.reloadData()  
         // Do any additional setup after loading the view.
     }

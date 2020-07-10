@@ -547,7 +547,7 @@
         <!--Manage Students-->
         <scene sceneID="N7T-Lt-9co">
             <objects>
-                <viewController restorationIdentifier="manageStudentsViewController" storyboardIdentifier="manageStudentsViewController" id="XK9-ZQ-cXI" customClass="manageStudentsViewController" customModule="libraryManagement" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="manageStudentsViewController" storyboardIdentifier="manageStudentsViewController" modalPresentationStyle="fullScreen" id="XK9-ZQ-cXI" customClass="manageStudentsViewController" customModule="libraryManagement" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WpI-9M-nbr">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -659,7 +659,7 @@
         <!--STATISTIC-->
         <scene sceneID="gM8-Tt-EUL">
             <objects>
-                <viewController storyboardIdentifier="statisticStudentsViewController" id="jh8-Rr-F42" customClass="statisticStudentsViewController" customModule="libraryManagement" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="statisticStudentsViewController" modalPresentationStyle="fullScreen" id="jh8-Rr-F42" customClass="statisticStudentsViewController" customModule="libraryManagement" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="OUz-93-F5y">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -714,7 +714,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="isZ-Lt-rkQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-468" y="2288"/>
+            <point key="canvasLocation" x="-535" y="2288"/>
         </scene>
         <!--Add New Book-->
         <scene sceneID="Wxl-ao-aSf">
