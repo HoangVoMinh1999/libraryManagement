@@ -9,7 +9,23 @@
 import UIKit
 import Firebase
 
-class addStudentsViewController: UIViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
+class addStudentsViewController: UIViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate,UIPickerViewDelegate,UIPickerViewDataSource {
+    public func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        
+        return 1
+    }
+    
+    public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        
+        return list.count
+    }
+    public func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return list[row]
+    }
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        self.genderTextField.text = self.list[row]
+    }
+
     //---Outlet
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var birthdayTextField: UITextField!
@@ -21,6 +37,7 @@ class addStudentsViewController: UIViewController, UIImagePickerControllerDelega
     @IBOutlet weak var imgItem: UIImageView!
     //---Variable
     var imgItemData:Data!
+    var list = ["Male","Female","Other"]
     //---Action
     @IBAction func avatarTapGesture(_ sender: UITapGestureRecognizer) {
         let alert:UIAlertController=UIAlertController(title: "Notice !!!", message: "Choose your photo in camera or gallery", preferredStyle: .alert)
@@ -80,11 +97,27 @@ class addStudentsViewController: UIViewController, UIImagePickerControllerDelega
         alert.addAction(cancelButton)
         //        alert.show()
         self.present(alert,animated:true,completion: nil)
+        
     }
-    
     
     @IBAction func genderAction(_ sender: Any) {
+        let alert=UIAlertController(title: "\n\n\n\n\n\n\n\n\n", message: nil, preferredStyle: .actionSheet)
+        let picker = UIPickerView(frame: CGRect(x: 30, y:0, width: 300, height: 400))
+        picker.dataSource=self
+        picker.delegate=self
+        picker.sizeToFit()
+        alert.view.addSubview(picker)
+        let okButton:UIAlertAction = UIAlertAction(title: "OK", style: .destructive, handler: nil)
+        alert.addAction(okButton)
+        let cancelButton:UIAlertAction=UIAlertAction(title: "Cancel", style: .cancel) { (UIAlertAction) in
+            self.genderTextField.text=""
+        }
+        alert.addAction(cancelButton)
+        
+        present(alert,animated: true,completion: nil)
     }
+    
+    
     
 
     @IBAction func confirmButton(_ sender: Any) {
@@ -109,6 +142,7 @@ class addStudentsViewController: UIViewController, UIImagePickerControllerDelega
     
     
     @IBAction func cancelButton(_ sender: Any) {
+        //--- Bugs in change view
         let src = (storyboard?.instantiateViewController(identifier: "manageStudentsViewController"))! as manageStudentsViewController
         present(src, animated: true,completion: nil)
     }
@@ -160,3 +194,4 @@ extension Date{
         return str
     }
 }
+
