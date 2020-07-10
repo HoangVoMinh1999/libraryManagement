@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class loginViewController: UIViewController {
     //---Outlet
@@ -35,7 +36,6 @@ class loginViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-
     /*
     // MARK: - Navigation
 
@@ -46,4 +46,19 @@ class loginViewController: UIViewController {
     }
     */
 
+}
+
+extension UIViewController {
+    func loggedIn(){
+        Auth.auth().addStateDidChangeListener { (auth, user) in
+            if (user != nil){
+                print("Logged in")
+                let viewController=self.storyboard?.instantiateViewController(identifier: "ViewController") as! ViewController
+                self.present(viewController, animated: true, completion: nil)
+            }
+            else{
+                print("Not login")
+            }
+        }
+    }
 }
