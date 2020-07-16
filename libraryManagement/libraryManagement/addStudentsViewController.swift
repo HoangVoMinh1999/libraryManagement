@@ -123,12 +123,12 @@ class addStudentsViewController: UIViewController, UIImagePickerControllerDelega
     @IBAction func confirmButton(_ sender: Any) {
 
         //---Collect data new student
-        let new_student:Student =  Student(name: nameTextField.text!, ID: IDTextField.text!, birthday: birthdayTextField.text!, address: addressTextField.text!, email: emailTextField.text!, startedDay: starteddayTextField.text!, status: true)
+        let new_student:Student =  Student(name: nameTextField.text!, ID: IDTextField.text!, birthday: birthdayTextField.text!,gender:genderTextField.text!, address: addressTextField.text!, email: emailTextField.text!, startedDay: starteddayTextField.text!, status: true)
         
         // Add a new document with a generated ID
         let db = Firestore.firestore()
         var ref: DocumentReference? = nil
-        ref = db.collection("Students").addDocument(data: ["name":"\(new_student.name)","ID":"\(new_student.ID)","birthday":"\(new_student.birthday)","address":"\(new_student.address)","email":"\(new_student.email)","startedDay":"\(new_student.startedDay)","status":"\(new_student.status)"]) { err in
+        ref = db.collection("Students").addDocument(data: ["name":"\(new_student.name)","ID":"\(new_student.ID)","birthday":"\(new_student.birthday)","gender":"\(new_student.gender)","address":"\(new_student.address)","email":"\(new_student.email)","startedDay":"\(new_student.startedDay)","status":"\(new_student.status)"]) { err in
             if let err = err {
                 print("Error adding document: \(err)")
             } else {
@@ -137,7 +137,7 @@ class addStudentsViewController: UIViewController, UIImagePickerControllerDelega
         }
         
         //---Change view to manageStudent view
-        let src = (storyboard?.instantiateViewController(identifier: "manageStudentsViewController"))! as manageStudentsViewController
+        let src = (storyboard?.instantiateViewController(identifier: "studentMenuViewController"))! as studentMenuViewController
         present(src, animated: true,completion: nil)
         
     }
@@ -145,7 +145,7 @@ class addStudentsViewController: UIViewController, UIImagePickerControllerDelega
     
     @IBAction func cancelButton(_ sender: Any) {
         //--- Bugs in change view
-        let src = (storyboard?.instantiateViewController(identifier: "manageStudentsViewController"))! as manageStudentsViewController
+        let src = (storyboard?.instantiateViewController(identifier: "studentMenuViewController"))! as studentMenuViewController
         present(src, animated: true,completion: nil)
     }
     

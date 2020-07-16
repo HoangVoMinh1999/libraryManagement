@@ -11,39 +11,19 @@ import Firebase
 
 class manageStudentsViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let db = Firestore.firestore()
-        var count = 0;
-        db.collection("Students").getDocuments() { (querySnapshot, err) in
-            if let err = err {
-                print("Error getting documents: \(err)")
-            }
-            else {
-                for document in querySnapshot!.documents {
-                    count+=1
-                }
-            }
-        }
-        return count
+        return temp.value(forKey: "amount_of_students") as! Int
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let db = Firestore.firestore()
-        var list_items:Array<Dictionary<String,String>>=[]
-        db.collection("Students").getDocuments() { (querySnapshot, err) in
-            if let err = err {
-                print("Error getting documents: \(err)")
-            }
-            else {
-                for document in querySnapshot!.documents {
-                    list_items.p
-                }
-            }
-        }
-
+        let data:Array<Dictionary<String,Any>> = temp.value(forKey: "data_students") as! Array<Dictionary<String, Any>>
+        
+        let ID:Array<String> = temp.value(forKey: "ID_students") as! Array<String>
         
         let cell:listStudentsTableViewCell = listStudentsTable.dequeueReusableCell(withIdentifier: "listStudentsTableViewCell") as! listStudentsTableViewCell
-        cell.studentNameLabel.text = list[indexPath.row]["name"]
-        cell.MSSVLabel.text = MSSV[indexPath.row]
+        cell.studentNameLabel.text = data[indexPath.row]["name"] as? String
+        cell.MSSVLabel.text = data[indexPath.row]["ID"] as? String
+        temp.set(data[indexPath.row], forKey: "student")
+        temp.set(ID[indexPath.row], forKey: "ID")
         return cell
     }
     
@@ -51,8 +31,6 @@ class manageStudentsViewController: UIViewController,UITableViewDataSource,UITab
         if editingStyle == .delete {
             let alert:UIAlertController = UIAlertController(title: "Warning", message: "Do you want to delete this student?", preferredStyle: .alert)
             let okButton:UIAlertAction = UIAlertAction(title: "OK", style: .default) { (UIAlertAction) in
-                self.list.remove(at: indexPath.row)
-                self.MSSV.remove(at: indexPath.row)
                 
                 self.listStudentsTable.deleteRows(at: [indexPath], with: .fade)
             }
@@ -68,6 +46,9 @@ class manageStudentsViewController: UIViewController,UITableViewDataSource,UITab
     @IBOutlet weak var searchIDButton: UIButton!
     @IBOutlet weak var listStudentsTable: UITableView!
     //---Variable
+    var temp:UserDefaults = UserDefaults()
+    
+
     //---Action
     @IBAction func searchNameButton(_ sender: UIButton) {
         if (sender.isSelected){
@@ -97,10 +78,12 @@ class manageStudentsViewController: UIViewController,UITableViewDataSource,UITab
         listStudentsTable.dataSource = self
         listStudentsTable.delegate = self
     
-        listStudentsTable.reloadData()  
+        listStudentsTable.reloadData()
+
+
+        
         // Do any additional setup after loading the view.
     }
-    
 
     /*
     // MARK: - Navigation
