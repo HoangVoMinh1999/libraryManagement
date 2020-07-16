@@ -27,7 +27,7 @@ class statisticStudentsViewController: UIViewController {
     func availableStudents(data:Array<Dictionary<String,Any>>) -> Int {
         var count = 0
         for i in data {
-            if (i["status"] as! Bool){
+            if (i["status"] as! String == "true"){
                 count += 1
             }
         }

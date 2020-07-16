@@ -1114,6 +1114,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="bookIDAction:" destination="TE0-22-Uw4" eventType="editingDidEnd" id="Hf1-GU-oYr"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Ended Day:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dCx-Gb-UDa">
                                 <rect key="frame" x="20" y="554" width="105" height="24"/>
@@ -1128,6 +1131,13 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="* No available book in library" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GR2-XU-5Ph">
+                                <rect key="frame" x="20" y="675" width="374" height="39"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="italicSystem" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="YOf-92-3uj"/>
@@ -1136,6 +1146,7 @@
                     <connections>
                         <outlet property="idTextField" destination="M8B-cO-US9" id="FbS-d8-qV2"/>
                         <outlet property="nameTextField" destination="r8j-St-VB3" id="1vM-kp-MML"/>
+                        <outlet property="noticeLabel" destination="GR2-XU-5Ph" id="3dR-Gy-LLh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rM4-OE-b0h" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
