@@ -93,14 +93,10 @@ class editInfoStudentViewController: UIViewController,UIPickerViewDelegate,UIPic
     
     
     @IBAction func confirmAction(_ sender: Any) {
+        let currentStudent:Student =  Student(name: nameTextField.text!, ID: idTextField.text!, birthday: birthdayTextField.text!,gender:genderTextField.text!, address: addressTextField.text!, email: emailTextField.text!, startedDay: starteddayTextField.text!, status: statusSwitch.isOn)
         
-        let db = Firestore.firestore()
-        // Update one field, creating the document if it does not exist.
-        if (statusSwitch.isOn){
-            db.collection("Students").document("\(temp.value(forKey: "ID")!)").setData([ "name": nameTextField.text!, "ID": idTextField.text!, "birthday": birthdayTextField.text!,"gender":genderTextField.text!, "address": addressTextField.text!, "email": emailTextField.text!, "startedDay": starteddayTextField.text!, "status": true ], merge: true)
-        } else {
-            db.collection("Students").document("\(temp.value(forKey: "ID")!)").setData([ "name": nameTextField.text!, "ID": idTextField.text!, "birthday": birthdayTextField.text!,"gender":genderTextField.text!, "address": addressTextField.text!, "email": emailTextField.text!, "startedDay": starteddayTextField.text!, "status": false ], merge: true)
-        }
+        currentStudent.updateDetail(currentStudent: currentStudent, ID: temp.value(forKey: "ID")! as! String)
+        
         
         let src = (storyboard?.instantiateViewController(identifier: "studentMenuViewController"))! as studentMenuViewController
         present(src, animated: true,completion: nil)
@@ -116,23 +112,22 @@ class editInfoStudentViewController: UIViewController,UIPickerViewDelegate,UIPic
         }
     }
     @IBAction func cancelButton(_ sender: Any) {
-        let src = (storyboard?.instantiateViewController(identifier: "studentMenuViewController"))! as studentMenuViewController
-        present(src, animated: true,completion: nil)
-        
+        self.performSegue(withIdentifier: "unwindToMenuStudent", sender: self)
     }
     //---Function
     override func viewDidLoad() {
         super.viewDidLoad()
-        var t:Dictionary<String,Any> = temp.value(forKey: "student") as! Dictionary<String, Any>
-        let new_student:Student =  Student(name: t["name"] as! String, ID: t["ID"] as! String, birthday: t["birthday"] as! String,gender: t["gender"] as! String ,address: t["address"] as! String, email: t["email"] as! String, startedDay: t["startedDay"] as! String, status: ((t["status"]) as! Bool))
-        nameTextField.text = new_student.name
-        birthdayTextField.text = new_student.birthday
-        genderTextField.text = new_student.gender
-        idTextField.text = new_student.ID
-        addressTextField.text = new_student.address
-        emailTextField.text = new_student.email
-        starteddayTextField.text = new_student.startedDay
-        if (new_student.status){
+        let t:Dictionary<String,Any> = temp.value(forKey: "student") as! Dictionary<String, Any>
+        print(t)
+
+        nameTextField.text = t["name"] as? String
+        birthdayTextField.text = t["birthday"] as? String
+        genderTextField.text = t["gender"] as? String
+        idTextField.text = t["ID"] as? String
+        addressTextField.text = t["address"] as? String
+        emailTextField.text = t["email"] as? String
+        starteddayTextField.text = t["startedDay"] as? String
+        if (t["status"] as! String == "true"){
             statusSwitch.isOn = true
             statusLabel.text="Active"
         } else {

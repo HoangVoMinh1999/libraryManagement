@@ -16,6 +16,8 @@ class studentMenuViewController: UIViewController {
     @IBOutlet weak var statisticButton: UIButton!
     
     //---Action
+    @IBAction func unwindToMenuStudent(segue:UIStoryboardSegue){
+    }
     //---Variable
     var temp = UserDefaults()
 

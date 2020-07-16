@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Firebase
 
 class Student{
     var name:String;
@@ -38,5 +39,23 @@ class Student{
         self.email=email
         self.startedDay = startedDay
         self.status = status
+    }
+    
+    func insertNewStudent(newStudent:Student){
+        let db = Firestore.firestore()
+        var ref: DocumentReference? = nil
+        ref = db.collection("Students").addDocument(data: ["name":"\(newStudent.name)","ID":"\(newStudent.ID)","birthday":"\(newStudent.birthday)","gender":"\(newStudent.gender)","address":"\(newStudent.address)","email":"\(newStudent.email)","startedDay":"\(newStudent.startedDay)","status":"\(newStudent.status)"]) { err in
+            if let err = err {
+                print("Error adding document: \(err)")
+            } else {
+                print("Document added with ID: \(ref!.documentID)")
+            }
+        }
+    }
+    
+    func updateDetail(currentStudent:Student,ID:String){
+        let db = Firestore.firestore()
+        var ref: DocumentReference? = nil
+        db.collection("Students").document("\(ID)").setData(["name":"\(currentStudent.name)","ID":"\(currentStudent.ID)","birthday":"\(currentStudent.birthday)","gender":"\(currentStudent.gender)","address":"\(currentStudent.address)","email":"\(currentStudent.email)","startedDay":"\(currentStudent.startedDay)","status":"\(currentStudent.status)"], merge: true)
     }
 }

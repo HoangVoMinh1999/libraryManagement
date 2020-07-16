@@ -17,14 +17,20 @@ class manageStudentsViewController: UIViewController,UITableViewDataSource,UITab
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let data:Array<Dictionary<String,Any>> = temp.value(forKey: "data_students") as! Array<Dictionary<String, Any>>
         print(data)
-        let ID:Array<String> = temp.value(forKey: "ID_students") as! Array<String>
         
         let cell:listStudentsTableViewCell = listStudentsTable.dequeueReusableCell(withIdentifier: "listStudentsTableViewCell") as! listStudentsTableViewCell
         cell.studentNameLabel.text = data[indexPath.row]["name"] as? String
         cell.MSSVLabel.text = data[indexPath.row]["ID"] as? String
+        return cell
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let data:Array<Dictionary<String,Any>> = temp.value(forKey: "data_students") as! Array<Dictionary<String, Any>>
+        print(data)
+        let ID:Array<String> = temp.value(forKey: "ID_students") as! Array<String>
+        
         temp.set(data[indexPath.row], forKey: "student")
         temp.set(ID[indexPath.row], forKey: "ID")
-        return cell
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {

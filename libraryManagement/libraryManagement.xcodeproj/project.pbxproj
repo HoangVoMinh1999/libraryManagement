@@ -11,6 +11,7 @@
 		2CE04E4024A223C700123629 /* addBooksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE04E3F24A223C700123629 /* addBooksViewController.swift */; };
 		2CE04E4224A23D5000123629 /* manageBooksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE04E4124A23D5000123629 /* manageBooksViewController.swift */; };
 		2CE04E4424A23E5600123629 /* statisticBooksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE04E4324A23E5600123629 /* statisticBooksViewController.swift */; };
+		5C38F3BB24C03B6000AE3D1D /* addNewBorrowingCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C38F3BA24C03B6000AE3D1D /* addNewBorrowingCardViewController.swift */; };
 		5C3E6900248FC7D900202CEF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3E68FF248FC7D900202CEF /* AppDelegate.swift */; };
 		5C3E6902248FC7D900202CEF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3E6901248FC7D900202CEF /* SceneDelegate.swift */; };
 		5C3E6904248FC7D900202CEF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3E6903248FC7D900202CEF /* ViewController.swift */; };
@@ -40,6 +41,7 @@
 		2CE04E3F24A223C700123629 /* addBooksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addBooksViewController.swift; sourceTree = "<group>"; };
 		2CE04E4124A23D5000123629 /* manageBooksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = manageBooksViewController.swift; sourceTree = "<group>"; };
 		2CE04E4324A23E5600123629 /* statisticBooksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = statisticBooksViewController.swift; sourceTree = "<group>"; };
+		5C38F3BA24C03B6000AE3D1D /* addNewBorrowingCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addNewBorrowingCardViewController.swift; sourceTree = "<group>"; };
 		5C3E68FC248FC7D900202CEF /* libraryManagement.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = libraryManagement.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C3E68FF248FC7D900202CEF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5C3E6901248FC7D900202CEF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 				5C3E691F2490BF3D00202CEF /* listStudentsTableViewCell.swift */,
 				5C3E69232490E2DF00202CEF /* listBorrowingCardStudentViewController.swift */,
 				5C3E69292490F52300202CEF /* listBorrowingCardsStudentTableViewCell.swift */,
+				5C38F3BA24C03B6000AE3D1D /* addNewBorrowingCardViewController.swift */,
 				5C3E69272490F3F400202CEF /* statisticStudentsViewController.swift */,
 				5C3E6908248FC7FB00202CEF /* Assets.xcassets */,
 				5C3E690A248FC7FB00202CEF /* LaunchScreen.storyboard */,
@@ -273,6 +276,7 @@
 				5C3E6914248FCAF300202CEF /* loginViewController.swift in Sources */,
 				5C3E692A2490F52300202CEF /* listBorrowingCardsStudentTableViewCell.swift in Sources */,
 				5C3E6904248FC7D900202CEF /* ViewController.swift in Sources */,
+				5C38F3BB24C03B6000AE3D1D /* addNewBorrowingCardViewController.swift in Sources */,
 				5C3E6900248FC7D900202CEF /* AppDelegate.swift in Sources */,
 				5C3E69202490BF3D00202CEF /* listStudentsTableViewCell.swift in Sources */,
 				5C3E691C248FDDCD00202CEF /* studentMenuViewController.swift in Sources */,
