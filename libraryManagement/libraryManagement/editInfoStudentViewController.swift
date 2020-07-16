@@ -123,8 +123,8 @@ class editInfoStudentViewController: UIViewController,UIPickerViewDelegate,UIPic
     //---Function
     override func viewDidLoad() {
         super.viewDidLoad()
-        let t:Dictionary<String,Any> = temp.value(forKey: "student") as! Dictionary<String, Any>
-        let new_student:Student =  Student(name: t["name"] as! String, ID: t["ID"] as! String, birthday: t["birthday"] as! String,gender: t["gender"] as! String ,address: t["address"] as! String, email: t["email"] as! String, startedDay: t["startedDay"] as! String, status: (t["status"] != nil))
+        var t:Dictionary<String,Any> = temp.value(forKey: "student") as! Dictionary<String, Any>
+        let new_student:Student =  Student(name: t["name"] as! String, ID: t["ID"] as! String, birthday: t["birthday"] as! String,gender: t["gender"] as! String ,address: t["address"] as! String, email: t["email"] as! String, startedDay: t["startedDay"] as! String, status: ((t["status"]) as! Bool))
         nameTextField.text = new_student.name
         birthdayTextField.text = new_student.birthday
         genderTextField.text = new_student.gender
@@ -132,10 +132,12 @@ class editInfoStudentViewController: UIViewController,UIPickerViewDelegate,UIPic
         addressTextField.text = new_student.address
         emailTextField.text = new_student.email
         starteddayTextField.text = new_student.startedDay
-        if (new_student.status == true){
+        if (new_student.status){
             statusSwitch.isOn = true
+            statusLabel.text="Active"
         } else {
             statusSwitch.isOn = false
+            statusLabel.text = "Deact"
         }
         
         // Do any additional setup after loading the view.

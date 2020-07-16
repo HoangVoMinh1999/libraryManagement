@@ -16,7 +16,7 @@ class manageStudentsViewController: UIViewController,UITableViewDataSource,UITab
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let data:Array<Dictionary<String,Any>> = temp.value(forKey: "data_students") as! Array<Dictionary<String, Any>>
-        
+        print(data)
         let ID:Array<String> = temp.value(forKey: "ID_students") as! Array<String>
         
         let cell:listStudentsTableViewCell = listStudentsTable.dequeueReusableCell(withIdentifier: "listStudentsTableViewCell") as! listStudentsTableViewCell
@@ -77,6 +77,8 @@ class manageStudentsViewController: UIViewController,UITableViewDataSource,UITab
         searchNameButton.isSelected = true
         listStudentsTable.dataSource = self
         listStudentsTable.delegate = self
+        
+        
     
         listStudentsTable.reloadData()
 
