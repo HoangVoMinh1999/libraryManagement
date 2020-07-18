@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2C4D4D0324A2F73300C031B9 /* bookMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4D4D0224A2F73300C031B9 /* bookMenuViewController.swift */; };
+		2C88292824C2C86F00B74446 /* resetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C88292724C2C86F00B74446 /* resetPasswordViewController.swift */; };
 		2CE04E4024A223C700123629 /* addBooksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE04E3F24A223C700123629 /* addBooksViewController.swift */; };
 		2CE04E4224A23D5000123629 /* manageBooksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE04E4124A23D5000123629 /* manageBooksViewController.swift */; };
 		2CE04E4424A23E5600123629 /* statisticBooksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE04E4324A23E5600123629 /* statisticBooksViewController.swift */; };
@@ -38,6 +39,7 @@
 /* Begin PBXFileReference section */
 		13C6C4CE323954601BA6C248 /* Pods-libraryManagement.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-libraryManagement.release.xcconfig"; path = "Target Support Files/Pods-libraryManagement/Pods-libraryManagement.release.xcconfig"; sourceTree = "<group>"; };
 		2C4D4D0224A2F73300C031B9 /* bookMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bookMenuViewController.swift; sourceTree = "<group>"; };
+		2C88292724C2C86F00B74446 /* resetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = resetPasswordViewController.swift; sourceTree = "<group>"; };
 		2CE04E3F24A223C700123629 /* addBooksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addBooksViewController.swift; sourceTree = "<group>"; };
 		2CE04E4124A23D5000123629 /* manageBooksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = manageBooksViewController.swift; sourceTree = "<group>"; };
 		2CE04E4324A23E5600123629 /* statisticBooksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = statisticBooksViewController.swift; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 				2CE04E3F24A223C700123629 /* addBooksViewController.swift */,
 				2CE04E4124A23D5000123629 /* manageBooksViewController.swift */,
 				2CE04E4324A23E5600123629 /* statisticBooksViewController.swift */,
+				2C88292724C2C86F00B74446 /* resetPasswordViewController.swift */,
 			);
 			path = libraryManagement;
 			sourceTree = "<group>";
@@ -279,6 +282,7 @@
 				5C38F3BB24C03B6000AE3D1D /* addNewBorrowingCardViewController.swift in Sources */,
 				5C3E6900248FC7D900202CEF /* AppDelegate.swift in Sources */,
 				5C3E69202490BF3D00202CEF /* listStudentsTableViewCell.swift in Sources */,
+				2C88292824C2C86F00B74446 /* resetPasswordViewController.swift in Sources */,
 				5C3E691C248FDDCD00202CEF /* studentMenuViewController.swift in Sources */,
 				5C3E69282490F3F400202CEF /* statisticStudentsViewController.swift in Sources */,
 				5C3E69262490ED2C00202CEF /* addStudentsViewController.swift in Sources */,

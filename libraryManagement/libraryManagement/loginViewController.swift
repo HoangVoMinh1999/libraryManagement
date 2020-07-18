@@ -36,8 +36,8 @@ class loginViewController: UIViewController {
     @IBAction func forgetButton(_ sender: Any) {
     }
     //---Variable
-    var Username:String = "hoang"
-    var Password:String = "123456"
+    //var Username:String = "hoang"
+    //var Password:String = "123456"
     
     
     override func viewDidLoad() {
