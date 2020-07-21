@@ -73,7 +73,7 @@ extension UIViewController {
         Auth.auth().addStateDidChangeListener { (auth, user) in
             if (user != nil){
                 print("Logged in")
-                let viewController=self.storyboard?.instantiateViewController(identifier: "ViewController") as! ViewController
+                let viewController=self.storyboard?.instantiateViewController(identifier: "studentMenuViewController") as! studentMenuViewController
                 self.present(viewController, animated: true, completion: nil)
             }
             else{

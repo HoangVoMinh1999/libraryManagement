@@ -7,30 +7,58 @@
 //
 
 import Foundation
+import Firebase
 
 class Book{
+    var ID:String
     var name:String
-    var type:String
+    var category:String
     var author:String
-    var releaseDay:String
-    var publisher:String
-    var startedDay:String
+    var publishingyear:String
+    var publishingcompany:String
+    var dateadded:String
+    var status:Bool
     
     init() {
+        ID = ""
         name = ""
-        type = ""
+        category = ""
         author = ""
-        releaseDay = ""
-        publisher = ""
-        startedDay = ""
+        publishingyear = ""
+        publishingcompany = ""
+        dateadded = ""
+        status = true
     }
     
-    init(name:String,type:String,author:String,releaseDay:String,publisher:String,startedDay:String) {
+    init(ID:String,name:String,category:String,author:String,publishingyear:String,publishingcompany:String,dateadded:String,status:Bool) {
+        self.ID=ID
         self.name=name
-        self.type=type
+        self.category=category
         self.author=author
-        self.releaseDay=releaseDay
-        self.publisher=publisher
-        self.startedDay=startedDay
+        self.publishingyear=publishingyear
+        self.publishingcompany=publishingcompany
+        self.dateadded=dateadded
+        self.status=status
+    }
+    
+    func insertNewBook(newBook:Book){
+        let db = Firestore.firestore()
+        var ref: DocumentReference? = nil
+        ref = db.collection("Books").addDocument(data: [
+            "ID":"\(newBook.ID)",
+            "name":"\(newBook.name)",
+            "category":"\(newBook.category)",
+            "author":"\(newBook.author)",
+            "publishingyear":"\(newBook.publishingyear)",
+            "publishingcompany":"\(newBook.publishingcompany)",
+            "dateadded":"\(newBook.dateadded)",
+            "status":"true"
+        ]) { err in
+            if let err = err {
+                print("Error adding document: \(err)")
+            } else {
+                print("Document added with ID: \(ref!.documentID)")
+            }
+        }
     }
 }

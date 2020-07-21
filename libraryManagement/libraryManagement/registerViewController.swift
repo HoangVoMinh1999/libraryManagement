@@ -117,6 +117,10 @@ class registerViewController: UIViewController, UIImagePickerControllerDelegate 
         super.viewDidLoad()
         password_1TextField.isSecureTextEntry  = true
         password_2TextField.isSecureTextEntry  = true
+        password_1TextField.textContentType = .newPassword
+        password_2TextField.textContentType = .newPassword
+        
+        avatarImage.image = UIImage(contentsOfFile: "avatar")
         // Do any additional setup after loading the view.
     }
     

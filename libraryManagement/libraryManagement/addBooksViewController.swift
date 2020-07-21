@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class addBooksViewController: UIViewController {
     //---Outlet---
@@ -26,12 +27,23 @@ class addBooksViewController: UIViewController {
     
     //---Action---
     @IBAction func confirmButton(_ sender: Any) {
-
+        let new_book = Book(ID: bookIDTextField.text! ,name: booknameTextField.text!, category: categoryTextField.text!, author: authorTextField.text!, publishingyear: publishingyearTextField.text!, publishingcompany: publishingcompanyTextField.text!, dateadded: dateaddedTextField.text!, status: true)
+        
+        
+        if (new_book.ID == "" || new_book.name == "" || new_book.category == "" || new_book.author == "" || new_book.publishingyear == "" || new_book.publishingcompany == "" || new_book.dateadded == ""){
+            let alert:UIAlertController=UIAlertController(title: "Warning!", message: "You need to fill all information", preferredStyle: .alert)
+            let okButton:UIAlertAction=UIAlertAction(title: "OK", style: .default, handler: nil)
+            alert.addAction(okButton)
+            present(alert, animated: true, completion: nil)
+        } else {
+            new_book.insertNewBook(newBook: new_book)
+            self.performSegue(withIdentifier: "unwindToMenuBookWithSegue", sender: self)
+        }
     }
+
     
     @IBAction func cancelButton(_ sender: Any) {
-        let src = (storyboard?.instantiateViewController(identifier: "bookMenuViewController"))! as bookMenuViewController
-    present(src, animated: true,completion: nil)
+        self.performSegue(withIdentifier: "unwindToMenuBookWithSegue", sender: self)
     }
     
     
