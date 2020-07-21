@@ -18,6 +18,7 @@ class Book{
     var publishingcompany:String
     var dateadded:String
     var status:Bool
+    var quantity:Int
     
     init() {
         ID = ""
@@ -28,9 +29,10 @@ class Book{
         publishingcompany = ""
         dateadded = ""
         status = true
+        quantity = 0
     }
     
-    init(ID:String,name:String,category:String,author:String,publishingyear:String,publishingcompany:String,dateadded:String,status:Bool) {
+    init(ID:String,name:String,category:String,author:String,publishingyear:String,publishingcompany:String,dateadded:String,status:Bool,quantity:Int) {
         self.ID=ID
         self.name=name
         self.category=category
@@ -39,11 +41,17 @@ class Book{
         self.publishingcompany=publishingcompany
         self.dateadded=dateadded
         self.status=status
+        self.quantity=quantity
+    }
+    
+    func setQuantity(quantity:Int) -> Void {
+        self.quantity = quantity
     }
     
     func insertNewBook(newBook:Book){
         let db = Firestore.firestore()
         var ref: DocumentReference? = nil
+
         ref = db.collection("Books").addDocument(data: [
             "ID":"\(newBook.ID)",
             "name":"\(newBook.name)",
@@ -52,7 +60,8 @@ class Book{
             "publishingyear":"\(newBook.publishingyear)",
             "publishingcompany":"\(newBook.publishingcompany)",
             "dateadded":"\(newBook.dateadded)",
-            "status":"true"
+            "status":"true",
+            "quantity":"\(newBook.quantity)"
         ]) { err in
             if let err = err {
                 print("Error adding document: \(err)")
@@ -61,4 +70,20 @@ class Book{
             }
         }
     }
+    
+    func updateDetail(currentBook:Book,ID:String){
+        let db = Firestore.firestore()
+        var ref: DocumentReference? = nil
+        db.collection("Books").document("\(ID)").setData([
+        "ID":"\(currentBook.ID)",
+        "name":"\(currentBook.name)",
+        "category":"\(currentBook.category)",
+        "author":"\(currentBook.author)",
+        "publishingyear":"\(currentBook.publishingyear)",
+        "publishingcompany":"\(currentBook.publishingcompany)",
+        "dateadded":"\(currentBook.dateadded)",
+        "status":"\(currentBook.status)",
+        "quantity":"\(currentBook.quantity)"], merge: true)
+    }
+    
 }

@@ -8,10 +8,32 @@
 
 import UIKit
 
-class manageBooksViewController: UIViewController {
 
+class manageBooksViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
+    var tmp = UserDefaults()
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return tmp.value(forKey: "amount_of_books") as! Int
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let data_books: Array<Dictionary<String,Any>> = tmp.value(forKey: "data_books") as! Array<Dictionary<String, Any>>
+        let ID_books: Array<String> = tmp.value(forKey: "ID_books") as! Array<String>
+        let cell: listBooksTableViewCell = booksTableView.dequeueReusableCell(withIdentifier: "listBooksTableViewCell") as! listBooksTableViewCell
+        cell.bookIDLabel.text = data_books[indexPath.row]["ID"] as! String
+        cell.booknameLabel.text = data_books[indexPath.row]["name"] as! String
+        return cell
+    }
+    
+    @IBOutlet weak var booksTableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        booksTableView.delegate = self
+        booksTableView.dataSource = self
+        booksTableView.reloadData()
+
 
         // Do any additional setup after loading the view.
     }
