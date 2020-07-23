@@ -26,6 +26,9 @@ class addBooksViewController: UIViewController {
     @IBOutlet weak var dateaddedTextField: UITextField!
     
     @IBOutlet weak var quantityTextField: UITextField!
+    
+    @IBOutlet weak var imgBook: UIImageView!
+    
     //---Variable
     var temp = UserDefaults()
     //---Action---
@@ -58,12 +61,26 @@ class addBooksViewController: UIViewController {
 
     }
     
-
-    
     @IBAction func cancelButton(_ sender: Any) {
         self.performSegue(withIdentifier: "unwindToMenuBookWithSegue", sender: self)
     }
     
+    
+    @IBAction func dateaddedAction(_ sender: Any) {
+        let alert = UIAlertController(title: "\n\n\n\n\n\n\n\n\n", message: nil, preferredStyle: .actionSheet)
+        let datePicker = UIDatePicker(frame: CGRect(x: 20, y:0, width: 400, height: 300))
+        datePicker.sizeToFit()
+        datePicker.datePickerMode = .date
+        alert.view.addSubview(datePicker)
+        let okButton:UIAlertAction=UIAlertAction(title: "OK", style: .default) { (UIAlertAction) in
+            self.dateaddedTextField.text = datePicker.date.dateToString()
+        }
+        alert.addAction(okButton)
+        let cancelButton:UIAlertAction=UIAlertAction(title: "Cancel", style: .destructive, handler: nil)
+        alert.addAction(cancelButton)
+        //        alert.show()
+        self.present(alert,animated:true,completion: nil)
+    }
     
     
     override func viewDidLoad() {
