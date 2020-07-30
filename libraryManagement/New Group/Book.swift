@@ -86,4 +86,23 @@ class Book{
         "quantity":"\(currentBook.quantity)"], merge: true)
     }
     
+//    func findAll() -> Array<Dictionary<String, Any>> {
+//        let db = Firestore.firestore()
+//        var data_books: Array<Dictionary<String,Any>> = []
+//        db.collection("Books").getDocuments() { (querySnapshot, err) in
+//            if let err = err {
+//                print("Error getting documents: \(err)")
+//            } else {
+//
+//                var ID_books: Array<String> = []
+//                for document in querySnapshot!.documents {
+//                    data_books.append(document.data())
+//                    ID_books.append(document.documentID)
+//                }
+//                print(data_books)
+////                return data_books
+//            }
+//        }
+//        return data_books
+//    }
 }
