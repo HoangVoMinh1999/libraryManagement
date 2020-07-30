@@ -55,8 +55,10 @@ class addBooksViewController: UIViewController {
             }
             let new_book = Book(ID: bookIDTextField.text! ,name: booknameTextField.text!.uppercased(), category: categoryTextField.text!, author: authorTextField.text!, publishingyear: publishingyearTextField.text!, publishingcompany: publishingcompanyTextField.text!, dateadded: dateaddedTextField.text!, status: true, quantity: Int(quantityTextField.text!)!)
             new_book.insertNewBook(newBook: new_book)
-            let src = (storyboard?.instantiateViewController(identifier: "bookMenuViewController"))! as bookMenuViewController
-            present(src, animated: true,completion: nil)
+//            let src = (storyboard?.instantiateViewController(identifier: "bookMenuViewController"))! as bookMenuViewController
+//            present(src, animated: true,completion: nil)
+            
+            self.performSegue(withIdentifier: "unwindToMenuBookWithSegue", sender: self)
         }
 
     }

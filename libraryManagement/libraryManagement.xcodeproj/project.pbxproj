@@ -11,6 +11,8 @@
 		2C88292824C2C86F00B74446 /* resetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C88292724C2C86F00B74446 /* resetPasswordViewController.swift */; };
 		2C88292A24C6B80B00B74446 /* listBooksTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C88292924C6B80B00B74446 /* listBooksTableViewCell.swift */; };
 		2C88292E24C9CEA900B74446 /* editInfoBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C88292D24C9CEA900B74446 /* editInfoBookViewController.swift */; };
+		2C88293024D2DEED00B74446 /* accountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C88292F24D2DEED00B74446 /* accountViewController.swift */; };
+		2C88293224D2E30500B74446 /* editAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C88293124D2E30500B74446 /* editAccountViewController.swift */; };
 		2CE04E4024A223C700123629 /* addBooksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE04E3F24A223C700123629 /* addBooksViewController.swift */; };
 		2CE04E4224A23D5000123629 /* manageBooksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE04E4124A23D5000123629 /* manageBooksViewController.swift */; };
 		2CE04E4424A23E5600123629 /* statisticBooksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE04E4324A23E5600123629 /* statisticBooksViewController.swift */; };
@@ -44,6 +46,8 @@
 		2C88292724C2C86F00B74446 /* resetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = resetPasswordViewController.swift; sourceTree = "<group>"; };
 		2C88292924C6B80B00B74446 /* listBooksTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = listBooksTableViewCell.swift; sourceTree = "<group>"; };
 		2C88292D24C9CEA900B74446 /* editInfoBookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = editInfoBookViewController.swift; sourceTree = "<group>"; };
+		2C88292F24D2DEED00B74446 /* accountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = accountViewController.swift; sourceTree = "<group>"; };
+		2C88293124D2E30500B74446 /* editAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = editAccountViewController.swift; sourceTree = "<group>"; };
 		2CE04E3F24A223C700123629 /* addBooksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addBooksViewController.swift; sourceTree = "<group>"; };
 		2CE04E4124A23D5000123629 /* manageBooksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = manageBooksViewController.swift; sourceTree = "<group>"; };
 		2CE04E4324A23E5600123629 /* statisticBooksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = statisticBooksViewController.swift; sourceTree = "<group>"; };
@@ -135,6 +139,8 @@
 				2CE04E4324A23E5600123629 /* statisticBooksViewController.swift */,
 				2C88292724C2C86F00B74446 /* resetPasswordViewController.swift */,
 				2C88292D24C9CEA900B74446 /* editInfoBookViewController.swift */,
+				2C88292F24D2DEED00B74446 /* accountViewController.swift */,
+				2C88293124D2E30500B74446 /* editAccountViewController.swift */,
 			);
 			path = libraryManagement;
 			sourceTree = "<group>";
@@ -284,6 +290,7 @@
 			files = (
 				5C3E6914248FCAF300202CEF /* loginViewController.swift in Sources */,
 				2C88292E24C9CEA900B74446 /* editInfoBookViewController.swift in Sources */,
+				2C88293024D2DEED00B74446 /* accountViewController.swift in Sources */,
 				5C3E692A2490F52300202CEF /* listBorrowingCardsStudentTableViewCell.swift in Sources */,
 				5C3E6904248FC7D900202CEF /* ViewController.swift in Sources */,
 				5C38F3BB24C03B6000AE3D1D /* addNewBorrowingCardViewController.swift in Sources */,
@@ -296,6 +303,7 @@
 				2C88292A24C6B80B00B74446 /* listBooksTableViewCell.swift in Sources */,
 				5C3E691E2490B74C00202CEF /* manageStudentsViewController.swift in Sources */,
 				2CE04E4224A23D5000123629 /* manageBooksViewController.swift in Sources */,
+				2C88293224D2E30500B74446 /* editAccountViewController.swift in Sources */,
 				2CE04E4424A23E5600123629 /* statisticBooksViewController.swift in Sources */,
 				5CF10B4624B4D4BB00D01663 /* Book.swift in Sources */,
 				5C3E6916248FCB0600202CEF /* registerViewController.swift in Sources */,

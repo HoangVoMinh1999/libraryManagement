@@ -33,6 +33,7 @@ class manageBooksViewController: UIViewController, UITableViewDataSource, UITabl
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let data_books: Array<Dictionary<String,Any>> = tmp.value(forKey: "data_books") as! Array<Dictionary<String, Any>>
+        print(data_books)
         let ID_books: Array<String> = tmp.value(forKey: "ID_books") as! Array<String>
         let cell: listBooksTableViewCell = booksTableView.dequeueReusableCell(withIdentifier: "listBooksTableViewCell") as! listBooksTableViewCell
         cell.bookIDLabel.text = data_books[indexPath.row]["ID"] as! String
@@ -42,7 +43,6 @@ class manageBooksViewController: UIViewController, UITableViewDataSource, UITabl
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let data:Array<Dictionary<String,Any>> = tmp.value(forKey: "data_books") as! Array<Dictionary<String, Any>>
-        print(data)
         let ID:Array<String> = tmp.value(forKey: "ID_books") as! Array<String>
         
         tmp.set(data[indexPath.row], forKey: "book")
@@ -82,12 +82,13 @@ class manageBooksViewController: UIViewController, UITableViewDataSource, UITabl
     @IBOutlet weak var booksTableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
 //        data = book.findAll()
 //        print(data)
         
         booksTableView.delegate = self
         booksTableView.dataSource = self
-        booksTableView.reloadData()
+
         
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
@@ -98,6 +99,28 @@ class manageBooksViewController: UIViewController, UITableViewDataSource, UITabl
 
 
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        let db = Firestore.firestore()
+        
+        db.collection("Books").getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                var data_books: Array<Dictionary<String,Any>> = []
+                var ID_books: Array<String> = []
+                for document in querySnapshot!.documents {
+                    data_books.append(document.data())
+                    ID_books.append(document.documentID)
+                }
+                self.tmp.set(data_books, forKey: "data_books")
+                self.tmp.set(ID_books, forKey: "ID_books")
+                self.tmp.set(ID_books.count, forKey: "amount_of_books")
+            }
+        }
+            booksTableView.reloadData()
     }
     
 

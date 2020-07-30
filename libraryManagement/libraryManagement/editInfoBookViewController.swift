@@ -50,8 +50,9 @@ class editInfoBookViewController: UIViewController {
         
         currentBook.updateDetail(currentBook: currentBook, ID: temp.value(forKey: "ID") as! String)
         
-        let src = (storyboard?.instantiateViewController(identifier: "bookMenuViewController")) as! bookMenuViewController
-        present(src, animated: true, completion: nil)
+//        let src = (storyboard?.instantiateViewController(identifier: "bookMenuViewController")) as! bookMenuViewController
+//        present(src, animated: true, completion: nil)
+        self.performSegue(withIdentifier: "unwindToManageBookWithSegue", sender: self)
     }
     
     @IBAction func cancelButton(_ sender: Any) {
@@ -61,8 +62,14 @@ class editInfoBookViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+
+        // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         let t:Dictionary<String,Any> = temp.value(forKey: "book") as! Dictionary<String, Any>
-        print(t)
         
         bookIDTextField.text = t["ID"] as! String
         booknameTextField.text = t["name"] as! String
@@ -73,8 +80,6 @@ class editInfoBookViewController: UIViewController {
         dateaddedTextField.text = t["dateadded"] as! String
         quantityTextField.text = t["quantity"] as! String
         
-
-        // Do any additional setup after loading the view.
     }
     
 
