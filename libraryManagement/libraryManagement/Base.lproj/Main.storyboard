@@ -1641,6 +1641,7 @@
                         <outlet property="statusLabel" destination="uYX-O3-AAR" id="on6-sy-crN"/>
                         <outlet property="statusSwitch" destination="Xgl-CF-8Sd" id="4pz-F5-fvi"/>
                         <segue destination="Zq4-1i-hgD" kind="unwind" identifier="unwindToMenuStudent" unwindAction="unwindToMenuStudentWithSegue:" id="KQf-oP-1i7"/>
+                        <segue destination="Zq4-1i-hgD" kind="unwind" identifier="unwindToManageStudent" unwindAction="unwindToManageStudentWithSegue:" id="mjZ-4U-rvI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gcd-NO-pnJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

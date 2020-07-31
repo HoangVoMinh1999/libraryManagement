@@ -17,7 +17,7 @@ class Student{
     var address:String;
     var email:String;
     var startedDay:String;
-    var status:Bool;
+    var status:Int;
     
     init() {
         name = ""
@@ -27,10 +27,10 @@ class Student{
         address = ""
         email = ""
         startedDay=""
-        status=true
+        status=1
     }
     
-    init(name:String,ID:String,birthday:String,gender:String,address:String,email:String,startedDay:String,status:Bool) {
+    init(name:String,ID:String,birthday:String,gender:String,address:String,email:String,startedDay:String,status:Int) {
         self.name = name
         self.ID = ID
         self.birthday=birthday
@@ -44,7 +44,7 @@ class Student{
     func insertNewStudent(newStudent:Student){
         let db = Firestore.firestore()
         var ref: DocumentReference? = nil
-        ref = db.collection("Students").addDocument(data: ["name":"\(newStudent.name)","ID":"\(newStudent.ID)","birthday":"\(newStudent.birthday)","gender":"\(newStudent.gender)","address":"\(newStudent.address)","email":"\(newStudent.email)","startedDay":"\(newStudent.startedDay)","status":"\(newStudent.status)"]) { err in
+        ref = db.collection("Students").addDocument(data: ["name":"\(newStudent.name)","ID":"\(newStudent.ID)","birthday":"\(newStudent.birthday)","gender":"\(newStudent.gender)","address":"\(newStudent.address)","email":"\(newStudent.email)","startedDay":"\(newStudent.startedDay)","status":"1"]) { err in
             if let err = err {
                 print("Error adding document: \(err)")
             } else {

@@ -129,8 +129,7 @@ class addStudentsViewController: UIViewController, UIImagePickerControllerDelega
         new_student.insertNewStudent(newStudent:new_student)
         
         //---Change view to manageStudent view
-        let src = (storyboard?.instantiateViewController(identifier: "studentMenuViewController"))! as studentMenuViewController
-        present(src, animated: true,completion: nil)
+        self.performSegue(withIdentifier: "unwindToMenuStudent", sender: self)
         
     }
     

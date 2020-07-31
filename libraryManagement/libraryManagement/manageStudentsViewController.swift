@@ -11,34 +11,44 @@ import Firebase
 
 class manageStudentsViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return temp.value(forKey: "amount_of_students") as! Int
+        let ID_students:Array<String> = temp.value(forKey: "ID_students") as! Array<String>
+        return ID_students.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let data:Array<Dictionary<String,Any>> = temp.value(forKey: "data_students") as! Array<Dictionary<String, Any>>
-        print(data)
         
+        let ID_students:Array<String> = temp.value(forKey: "ID_students") as! Array<String>
+
         let cell:listStudentsTableViewCell = listStudentsTable.dequeueReusableCell(withIdentifier: "listStudentsTableViewCell") as! listStudentsTableViewCell
-        cell.studentNameLabel.text = data[indexPath.row]["name"] as? String
-        cell.MSSVLabel.text = data[indexPath.row]["ID"] as? String
+        let db = Firestore.firestore()
+        db.collection("Students").document("\(ID_students[indexPath.row])")
+        .addSnapshotListener { documentSnapshot, error in
+            guard let document = documentSnapshot else {
+                print("Error fetching document: \(error!)")
+                return
+            }
+            let source = document.metadata.hasPendingWrites ? "Local" : "Server"
+            print("\(source) data: \(document.data() ?? [:])")
+            cell.MSSVLabel.text = document.data()!["ID"]! as? String
+            cell.studentNameLabel.text = document.data()!["name"]! as? String
+            self.temp.set(document.data(), forKey: "\(ID_students[indexPath.row])")
+        }
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let data:Array<Dictionary<String,Any>> = temp.value(forKey: "data_students") as! Array<Dictionary<String, Any>>
-        print(data)
-        let ID:Array<String> = temp.value(forKey: "ID_students") as! Array<String>
-        
-        temp.set(data[indexPath.row], forKey: "student")
-        temp.set(ID[indexPath.row], forKey: "ID")
+        let ID_students:Array<String> = temp.value(forKey: "ID_students") as! Array<String>
+        self.temp.setValue(ID_students[indexPath.row], forKey: "ID_current_student")
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        let ID_students:Array<String> = temp.value(forKey: "ID_students") as! Array<String>
         if editingStyle == .delete {
             let alert:UIAlertController = UIAlertController(title: "Warning", message: "Do you want to delete this student?", preferredStyle: .alert)
             let okButton:UIAlertAction = UIAlertAction(title: "OK", style: .default) { (UIAlertAction) in
                 
                 self.listStudentsTable.deleteRows(at: [indexPath], with: .fade)
+                
             }
             alert.addAction(okButton)
             let cancelButton:UIAlertAction = UIAlertAction(title: "CANCEL", style: .destructive, handler: nil)
@@ -73,6 +83,8 @@ class manageStudentsViewController: UIViewController,UITableViewDataSource,UITab
             sender.isSelected = true
             searchNameButton.isSelected = false
         }
+    }
+    @IBAction func unwindToManageStudent(segue:UIStoryboardSegue){
     }
     //---Function
     

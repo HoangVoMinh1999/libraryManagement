@@ -42,7 +42,7 @@ class editInfoStudentViewController: UIViewController,UIPickerViewDelegate,UIPic
     //---Action
     @IBAction func genderAction(_ sender: Any) {
         let alert=UIAlertController(title: "\n\n\n\n\n\n\n\n\n", message: nil, preferredStyle: .actionSheet)
-        let picker = UIPickerView(frame: CGRect(x: 30, y:0, width: 300, height: 400))
+        let picker = UIPickerView(frame: CGRect(x: 30, y:-20, width: 300, height: 400))
         picker.dataSource=self
         picker.delegate=self
         picker.sizeToFit()
@@ -95,11 +95,10 @@ class editInfoStudentViewController: UIViewController,UIPickerViewDelegate,UIPic
     @IBAction func confirmAction(_ sender: Any) {
         let currentStudent:Student =  Student(name: nameTextField.text!, ID: idTextField.text!, birthday: birthdayTextField.text!,gender:genderTextField.text!, address: addressTextField.text!, email: emailTextField.text!, startedDay: starteddayTextField.text!, status: statusSwitch.isOn)
         
-        currentStudent.updateDetail(currentStudent: currentStudent, ID: temp.value(forKey: "ID")! as! String)
+        currentStudent.updateDetail(currentStudent: currentStudent, ID: temp.value(forKey: "ID_current_student")! as! String)
         
         
-        let src = (storyboard?.instantiateViewController(identifier: "studentMenuViewController"))! as studentMenuViewController
-        present(src, animated: true,completion: nil)
+        self.performSegue(withIdentifier: "unwindToManageStudent", sender: self)
     }
     
     
@@ -112,13 +111,12 @@ class editInfoStudentViewController: UIViewController,UIPickerViewDelegate,UIPic
         }
     }
     @IBAction func cancelButton(_ sender: Any) {
-        self.performSegue(withIdentifier: "unwindToMenuStudent", sender: self)
+        self.performSegue(withIdentifier: "unwindToManageStudent", sender: self)
     }
     //---Function
     override func viewDidLoad() {
         super.viewDidLoad()
-        let t:Dictionary<String,Any> = temp.value(forKey: "student") as! Dictionary<String, Any>
-        print(t)
+                let t:Dictionary<String,Any> = temp.value(forKey: "\(temp.value(forKey: "ID_current_student")!)") as! Dictionary<String, Any>
 
         nameTextField.text = t["name"] as? String
         birthdayTextField.text = t["birthday"] as? String

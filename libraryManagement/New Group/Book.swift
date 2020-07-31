@@ -19,6 +19,7 @@ class Book{
     var dateadded:String
     var status:Bool
     var quantity:Int
+    var check:Int
     
     init() {
         ID = ""
@@ -30,9 +31,10 @@ class Book{
         dateadded = ""
         status = true
         quantity = 0
+        check = 0
     }
     
-    init(ID:String,name:String,category:String,author:String,publishingyear:String,publishingcompany:String,dateadded:String,status:Bool,quantity:Int) {
+    init(ID:String,name:String,category:String,author:String,publishingyear:String,publishingcompany:String,dateadded:String,status:Bool,quantity:Int,check:Int) {
         self.ID=ID
         self.name=name
         self.category=category
@@ -42,6 +44,7 @@ class Book{
         self.dateadded=dateadded
         self.status=status
         self.quantity=quantity
+        self.check=check
     }
     
     func setQuantity(quantity:Int) -> Void {
@@ -61,7 +64,8 @@ class Book{
             "publishingcompany":"\(newBook.publishingcompany)",
             "dateadded":"\(newBook.dateadded)",
             "status":"true",
-            "quantity":"\(newBook.quantity)"
+            "quantity":"\(newBook.quantity)",
+            "check":0
         ]) { err in
             if let err = err {
                 print("Error adding document: \(err)")
@@ -73,7 +77,7 @@ class Book{
     
     func updateDetail(currentBook:Book,ID:String){
         let db = Firestore.firestore()
-        var ref: DocumentReference? = nil
+        let ref: DocumentReference? = nil
         db.collection("Books").document("\(ID)").setData([
         "ID":"\(currentBook.ID)",
         "name":"\(currentBook.name)",
@@ -83,7 +87,25 @@ class Book{
         "publishingcompany":"\(currentBook.publishingcompany)",
         "dateadded":"\(currentBook.dateadded)",
         "status":"\(currentBook.status)",
-        "quantity":"\(currentBook.quantity)"], merge: true)
+        "quantity":"\(currentBook.quantity)",
+        "check":"\(currentBook.check)"
+        ], merge: true)
+    }
+    
+    func updateCheck(currentBook:Book,amount:Int){
+        let db = Firestore.firestore()
+        let ref: DocumentReference? = nil
+        db.collection("Books").document("\(ID)").setData([
+        "ID":"\(currentBook.ID)",
+        "name":"\(currentBook.name)",
+        "category":"\(currentBook.category)",
+        "author":"\(currentBook.author)",
+        "publishingyear":"\(currentBook.publishingyear)",
+        "publishingcompany":"\(currentBook.publishingcompany)",
+        "dateadded":"\(currentBook.dateadded)",
+        "status":"\(currentBook.status)",
+        "quantity":"\(currentBook.quantity)",
+        "check":"\(currentBook.check+amount)"], merge: true)
     }
     
 //    func findAll() -> Array<Dictionary<String, Any>> {

@@ -41,8 +41,6 @@ class studentMenuViewController: UIViewController {
                     ID_students.append(document.documentID)
                 }
                 self.temp.set(ID_students, forKey: "ID_students")
-                self.temp.set(data_students, forKey: "data_students")
-                self.temp.set(data_students.count, forKey: "amount_of_students")
             }
         }
         
