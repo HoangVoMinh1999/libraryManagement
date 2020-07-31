@@ -10,7 +10,9 @@ import UIKit
 
 class listRulesTableViewCell: UITableViewCell {
     @IBOutlet weak var ruletitleLabel: UILabel!
-    @IBOutlet weak var rulecontentLabel: UILabel!
+    @IBOutlet weak var contentTextArea: UITextView!
+    @IBOutlet weak var readMoreButton: UIButton!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()

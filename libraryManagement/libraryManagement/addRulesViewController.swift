@@ -28,6 +28,23 @@ class addRulesViewController: UIViewController {
             let new_rule = Rule(title: titleTextField.text!, content: contentTextField.text!)
             new_rule.insertNewRule(newRule: new_rule)
         }
+        
+        let db = Firestore.firestore()
+        
+        db.collection("Rules").getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                var data_rules: Array<Dictionary<String,Any>> = []
+                var ID_rules: Array<String> = []
+                for document in querySnapshot!.documents {
+                    data_rules.append(document.data())
+                    ID_rules.append(document.documentID)
+                }
+                print(ID_rules)
+                self.temp.set(ID_rules, forKey: "ID_rules")
+            }
+        }
 
         self.performSegue(withIdentifier: "unwindToRuleWithSegue", sender: self)
     }
