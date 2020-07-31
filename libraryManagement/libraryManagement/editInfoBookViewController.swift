@@ -48,7 +48,7 @@ class editInfoBookViewController: UIViewController {
     @IBAction func confirmButton(_ sender: Any) {
         let currentBook:Book = Book(ID: bookIDTextField.text!, name: booknameTextField.text!.uppercased(), category: categoryTextField.text!, author: authorTextField.text!, publishingyear: publishingyearTextField.text!, publishingcompany: publishingcompanyTextField.text!, dateadded: dateaddedTextField.text!, status: true, quantity: Int(quantityTextField.text!)!)
         
-        currentBook.updateDetail(currentBook: currentBook, ID: temp.value(forKey: "ID") as! String)
+        currentBook.updateDetail(currentBook: currentBook, ID: temp.value(forKey: "ID_current_book") as! String)
         
 //        let src = (storyboard?.instantiateViewController(identifier: "bookMenuViewController")) as! bookMenuViewController
 //        present(src, animated: true, completion: nil)
@@ -62,24 +62,18 @@ class editInfoBookViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        let t:Dictionary<String,Any> = temp.value(forKey: "\(temp.value(forKey: "ID_current_book")!)") as! Dictionary<String, Any>
         
-
+        print(t)
+        bookIDTextField.text = t["ID"] as? String
+        booknameTextField.text = t["name"] as? String
+        categoryTextField.text = t["category"] as? String
+        authorTextField.text = t["author"] as? String
+        publishingyearTextField.text = t["publishingyear"] as? String
+        publishingcompanyTextField.text = t["publishingcompany"] as? String
+        dateaddedTextField.text = t["dateadded"] as? String
+        quantityTextField.text = t["quantity"] as? String
         // Do any additional setup after loading the view.
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        let t:Dictionary<String,Any> = temp.value(forKey: "book") as! Dictionary<String, Any>
-        
-        bookIDTextField.text = t["ID"] as! String
-        booknameTextField.text = t["name"] as! String
-        categoryTextField.text = t["category"] as! String
-        authorTextField.text = t["author"] as! String
-        publishingyearTextField.text = t["publishingyear"] as! String
-        publishingcompanyTextField.text = t["publishingcompany"] as! String
-        dateaddedTextField.text = t["dateadded"] as! String
-        quantityTextField.text = t["quantity"] as! String
-        
     }
     
 

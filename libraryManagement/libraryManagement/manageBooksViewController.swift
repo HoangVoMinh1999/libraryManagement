@@ -28,25 +28,33 @@ class manageBooksViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tmp.value(forKey: "amount_of_books") as! Int
+        let ID_books:Array<String> = tmp.value(forKey: "ID_books") as! Array<String>
+        return ID_books.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let data_books: Array<Dictionary<String,Any>> = tmp.value(forKey: "data_books") as! Array<Dictionary<String, Any>>
-        print(data_books)
-        let ID_books: Array<String> = tmp.value(forKey: "ID_books") as! Array<String>
+        let ID_books:Array<String> = tmp.value(forKey: "ID_books") as! Array<String>
         let cell: listBooksTableViewCell = booksTableView.dequeueReusableCell(withIdentifier: "listBooksTableViewCell") as! listBooksTableViewCell
-        cell.bookIDLabel.text = data_books[indexPath.row]["ID"] as! String
-        cell.booknameLabel.text = data_books[indexPath.row]["name"] as! String
+        let db = Firestore.firestore()
+        db.collection("Books").document("\(ID_books[indexPath.row])")
+        .addSnapshotListener { documentSnapshot, error in
+            guard let document = documentSnapshot else {
+                print("Error fetching document: \(error!)")
+                return
+            }
+            let source = document.metadata.hasPendingWrites ? "Local" : "Server"
+            print("\(source) data: \(document.data() ?? [:])")
+            cell.bookIDLabel.text = document.data()!["ID"]! as? String
+            cell.booknameLabel.text = document.data()!["name"]! as? String
+            self.tmp.set(document.data(), forKey: "\(ID_books[indexPath.row])")
+        }
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let data:Array<Dictionary<String,Any>> = tmp.value(forKey: "data_books") as! Array<Dictionary<String, Any>>
-        let ID:Array<String> = tmp.value(forKey: "ID_books") as! Array<String>
-        
-        tmp.set(data[indexPath.row], forKey: "book")
-        tmp.set(ID[indexPath.row], forKey: "ID")
+        let ID_books:Array<String> = tmp.value(forKey: "ID_books") as! Array<String>
+        self.tmp.setValue(ID_books[indexPath.row], forKey: "ID_current_book")
+            
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -88,7 +96,7 @@ class manageBooksViewController: UIViewController, UITableViewDataSource, UITabl
         
         booksTableView.delegate = self
         booksTableView.dataSource = self
-
+        booksTableView.reloadData()
         
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
@@ -101,27 +109,6 @@ class manageBooksViewController: UIViewController, UITableViewDataSource, UITabl
         // Do any additional setup after loading the view.
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        let db = Firestore.firestore()
-        
-        db.collection("Books").getDocuments() { (querySnapshot, err) in
-            if let err = err {
-                print("Error getting documents: \(err)")
-            } else {
-                var data_books: Array<Dictionary<String,Any>> = []
-                var ID_books: Array<String> = []
-                for document in querySnapshot!.documents {
-                    data_books.append(document.data())
-                    ID_books.append(document.documentID)
-                }
-                self.tmp.set(data_books, forKey: "data_books")
-                self.tmp.set(ID_books, forKey: "ID_books")
-                self.tmp.set(ID_books.count, forKey: "amount_of_books")
-            }
-        }
-            booksTableView.reloadData()
-    }
     
 
     /*
