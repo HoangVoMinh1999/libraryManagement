@@ -23,6 +23,7 @@ class listBorrowingCardsStudentTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        bookImageView.layer.borderColor = UIColor(red:0 , green:0, blue:0, alpha: 1).cgColor
         // Initialization code
     }
 

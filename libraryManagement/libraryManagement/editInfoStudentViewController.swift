@@ -116,7 +116,7 @@ class editInfoStudentViewController: UIViewController,UIPickerViewDelegate,UIPic
     //---Function
     override func viewDidLoad() {
         super.viewDidLoad()
-                let t:Dictionary<String,Any> = temp.value(forKey: "\(temp.value(forKey: "ID_current_student")!)") as! Dictionary<String, Any>
+        let t:Dictionary<String,Any> = temp.value(forKey: "\(temp.value(forKey: "ID_current_student")!)") as! Dictionary<String, Any>
 
         nameTextField.text = t["name"] as? String
         birthdayTextField.text = t["birthday"] as? String
@@ -139,13 +139,13 @@ class editInfoStudentViewController: UIViewController,UIPickerViewDelegate,UIPic
             if let err = err {
                 print("Error getting documents: \(err)")
             } else {
-                var data_cards: Array<Dictionary<String,Any>> = []
-                var ID_cards: Array<String> = []
+                var data_rules: Array<Dictionary<String,Any>> = []
+                var ID_rules: Array<String> = []
                 for document in querySnapshot!.documents {
-                    data_cards.append(document.data())
-                    ID_cards.append(document.documentID)
+                    data_rules.append(document.data())
+                    ID_rules.append(document.documentID)
                 }
-                self.temp.set(ID_cards, forKey: "ID_cards")
+                self.temp.set(ID_rules, forKey: "ID_cards")
             }
         }
     }

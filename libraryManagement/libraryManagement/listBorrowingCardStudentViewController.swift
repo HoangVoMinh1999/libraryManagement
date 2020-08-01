@@ -11,16 +11,19 @@ import Firebase
 
 class listBorrowingCardStudentViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let ID_cards:Array<String> = temp.value(forKey: "ID_cards") as! Array<String>
+        let ID_cards:Array<String> = temp.value(forKey: "ID_cards")! as! Array<String>
+        print(ID_cards.count)
         return ID_cards.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let ID_cards:Array<String> = temp.value(forKey: "ID_cards")! as! Array<String>
+        print(ID_cards.count)
         let cell:listBorrowingCardsStudentTableViewCell = listBorrowingCardTableView.dequeueReusableCell(withIdentifier: "listBorrowingCardsStudentTableViewCell") as! listBorrowingCardsStudentTableViewCell
-        let ID_cards:Array<String> = temp.value(forKey: "ID_cards") as! Array<String>
         if (ID_cards.count != 0){
             let db = Firestore.firestore()
-            db.collection("BorrowCard").document("\(ID_cards[indexPath.row])")
+            db.collection("Students").document("\(ID_cards[indexPath.row])")
             .addSnapshotListener { documentSnapshot, error in
                 guard let document = documentSnapshot else {
                     print("Error fetching document: \(error!)")
@@ -28,10 +31,8 @@ class listBorrowingCardStudentViewController: UIViewController,UITableViewDataSo
                 }
                 let source = document.metadata.hasPendingWrites ? "Local" : "Server"
                 print("\(source) data: \(document.data() ?? [:])")
-                cell.bookNameLabel.text = document.data()?["ID_books"] as? String
-                cell.startedDayLabel.text = document.data()?["startedDay"] as? String
-                cell.endedDayLabel.text = document.data()?["endedDay"] as? String
-                self.temp.set(document.data(), forKey: "\(ID_cards[indexPath.row])")
+                cell.bookNameLabel.text = document.data()!["ID_book"] as? String
+                cell.startedDayLabel.text = document.data()!["startedDay"] as? String
             }
         }
         return cell
@@ -63,25 +64,28 @@ class listBorrowingCardStudentViewController: UIViewController,UITableViewDataSo
             }
         }
     }
+    @IBAction func unwindToManageCard(segue:UIStoryboardSegue){
+        listBorrowingCardTableView.reloadData()
+    }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         listBorrowingCardTableView.dataSource = self
         listBorrowingCardTableView.delegate = self
-        listBorrowingCardTableView.reloadData() 
+        listBorrowingCardTableView.reloadData()
+        
         // Do any additional setup after loading the view.
+        
+        let t:Dictionary<String,Any> = temp.value(forKey: "\(temp.value(forKey: "ID_current_student")!)") as! Dictionary<String, Any>
+        studentNameLabel.text = t["name"] as? String
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func viewWillAppear(_ animated: Bool) {
+        self.listBorrowingCardTableView.reloadData()
+        print("Loaded")
+        print(temp.value(forKey: "ID_cards")!)
     }
-    */
 
 }

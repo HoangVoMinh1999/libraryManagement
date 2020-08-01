@@ -704,7 +704,18 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="u2Z-dg-VB6"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Manage Students" id="tuO-5G-8AE"/>
+                    <navigationItem key="navigationItem" title="Manage Students" id="tuO-5G-8AE">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="OGX-DB-aRe">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="d9p-gA-P6J">
+                                <rect key="frame" x="368" y="11" width="26" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" backgroundImage="arrow.clockwise" catalog="system"/>
+                            </button>
+                            <connections>
+                                <segue destination="XK9-ZQ-cXI" kind="presentation" id="LYr-Lu-0Hf"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="listStudentsTable" destination="P1Y-v9-GBJ" id="u88-u7-cAg"/>
                         <outlet property="searchIDButton" destination="SAd-vh-ziB" id="P6B-v2-QKU"/>
@@ -1352,9 +1363,11 @@
                         <outlet property="nameTextField" destination="r8j-St-VB3" id="g5m-Rw-3A1"/>
                         <outlet property="noticeLabel" destination="GR2-XU-5Ph" id="3dR-Gy-LLh"/>
                         <outlet property="startedDayTextField" destination="6XN-yl-SZ6" id="4v8-5d-e0C"/>
+                        <segue destination="1Yt-EI-CTI" kind="unwind" identifier="unwindToManageCard" unwindAction="unwindToManageCardWithSegue:" id="osN-gK-N9N"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rM4-OE-b0h" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="1Yt-EI-CTI" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-2039.1304347826087" y="3673.6607142857142"/>
         </scene>
@@ -1471,7 +1484,18 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="qmY-vO-Ot0"/>
                     </view>
-                    <navigationItem key="navigationItem" id="6n2-PO-bvH"/>
+                    <navigationItem key="navigationItem" id="6n2-PO-bvH">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="PCF-zd-mod">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="9CX-8E-JRM">
+                                <rect key="frame" x="362" y="5" width="32" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" backgroundImage="arrow.clockwise" catalog="system"/>
+                            </button>
+                            <connections>
+                                <segue destination="9Wo-cJ-k5I" kind="show" id="aoG-Rg-mXm"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="listBorrowingCardTableView" destination="YPU-ME-Jjw" id="f1i-6H-ogi"/>
                         <outlet property="studentNameLabel" destination="gDc-sf-oGa" id="FRB-wO-CkP"/>
@@ -2200,6 +2224,7 @@
     </scenes>
     <color key="tintColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
     <resources>
+        <image name="arrow.clockwise" catalog="system" width="115" height="128"/>
         <image name="avatar" width="512" height="512"/>
         <image name="book" catalog="system" width="128" height="101"/>
         <image name="book.fill" catalog="system" width="128" height="100"/>

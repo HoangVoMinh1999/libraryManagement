@@ -52,13 +52,43 @@ class addNewBorrowingCardViewController: UIViewController {
                 print("Error updating document: \(err)")
             } else {
                 print("Document successfully updated")
+                let alert:UIAlertController = UIAlertController(title: "Notice !!", message: "Add new card successfully !!!", preferredStyle: .alert)
+                let okButton:UIAlertAction = UIAlertAction(title: "OK", style: .default) { (UIAlertAction) in
+                    
+                    let queue:DispatchQueue = DispatchQueue(label: "LoadData")
+                    
+                    queue.async {
+                        do{
+                            let db = Firestore.firestore()
+                            db.collection("BorrowCard").getDocuments() { (querySnapshot, err) in
+                                if let err = err {
+                                    print("Error getting documents: \(err)")
+                                } else {
+                                    var data_rules: Array<Dictionary<String,Any>> = []
+                                    var ID_rules: Array<String> = []
+                                    for document in querySnapshot!.documents {
+                                        data_rules.append(document.data())
+                                        ID_rules.append(document.documentID)
+                                    }
+                                    self.temp.set(ID_rules, forKey: "ID_cards")
+                                    print(self.temp.value(forKey: "ID_cards"))
+                                }
+                            }
+                            DispatchQueue.main.async {
+                                self.performSegue(withIdentifier: "unwindToManageCard", sender: self)
+                            }
+                        }
+                    }
+                }
+                alert.addAction(okButton)
+                self.present(alert,animated: true,completion: nil)
             }
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let t:Dictionary<String,Any> = temp.value(forKey: "student") as! Dictionary<String, Any>
+        let t:Dictionary<String,Any> = temp.value(forKey: "\(temp.value(forKey: "ID_current_student")!)") as! Dictionary<String, Any>
         nameTextField.isEnabled = false
         idStudentTextField.isEnabled = false
         nameTextField.text = t["name"] as? String
@@ -69,7 +99,6 @@ class addNewBorrowingCardViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-
     /*
     // MARK: - Navigation
 
