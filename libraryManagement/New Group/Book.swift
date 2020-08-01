@@ -91,40 +91,6 @@ class Book{
         "check":"\(currentBook.check)"
         ], merge: true)
     }
+
     
-    func updateCheck(currentBook:Book,amount:Int){
-        let db = Firestore.firestore()
-        let ref: DocumentReference? = nil
-        db.collection("Books").document("\(ID)").setData([
-        "ID":"\(currentBook.ID)",
-        "name":"\(currentBook.name)",
-        "category":"\(currentBook.category)",
-        "author":"\(currentBook.author)",
-        "publishingyear":"\(currentBook.publishingyear)",
-        "publishingcompany":"\(currentBook.publishingcompany)",
-        "dateadded":"\(currentBook.dateadded)",
-        "status":"\(currentBook.status)",
-        "quantity":"\(currentBook.quantity)",
-        "check":"\(currentBook.check+amount)"], merge: true)
-    }
-    
-//    func findAll() -> Array<Dictionary<String, Any>> {
-//        let db = Firestore.firestore()
-//        var data_books: Array<Dictionary<String,Any>> = []
-//        db.collection("Books").getDocuments() { (querySnapshot, err) in
-//            if let err = err {
-//                print("Error getting documents: \(err)")
-//            } else {
-//
-//                var ID_books: Array<String> = []
-//                for document in querySnapshot!.documents {
-//                    data_books.append(document.data())
-//                    ID_books.append(document.documentID)
-//                }
-//                print(data_books)
-////                return data_books
-//            }
-//        }
-//        return data_books
-//    }
 }

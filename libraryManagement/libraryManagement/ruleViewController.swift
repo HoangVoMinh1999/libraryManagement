@@ -43,7 +43,6 @@ class ruleViewController: UIViewController, UITableViewDelegate, UITableViewData
             let source = document.metadata.hasPendingWrites ? "Local" : "Server"
             print("\(source) data: \(document.data() ?? [:])")
             cell.ruletitleLabel.text = document.data()!["title"]! as? String
-            cell.rulecontentLabel.text = document.data()!["content"]! as? String
             self.tmp.set(document.data(), forKey: "\(ID_rules[indexPath.row])")
         }
         return cell

@@ -7,27 +7,64 @@
 //
 
 import UIKit
+import Firebase
 
 class listBorrowingCardStudentViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return ID.count
+        let ID_cards:Array<String> = temp.value(forKey: "ID_cards") as! Array<String>
+        return ID_cards.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:listBorrowingCardsStudentTableViewCell = listBorrowingCardTableView.dequeueReusableCell(withIdentifier: "listBorrowingCardsStudentTableViewCell") as! listBorrowingCardsStudentTableViewCell
-        cell.IDcardLabel.text = ID[indexPath.row]
-        cell.dateLabel.text = date[indexPath.row]
-        cell.statusLabel.text = status[indexPath.row]
+        let ID_cards:Array<String> = temp.value(forKey: "ID_cards") as! Array<String>
+        if (ID_cards.count != 0){
+            let db = Firestore.firestore()
+            db.collection("BorrowCard").document("\(ID_cards[indexPath.row])")
+            .addSnapshotListener { documentSnapshot, error in
+                guard let document = documentSnapshot else {
+                    print("Error fetching document: \(error!)")
+                    return
+                }
+                let source = document.metadata.hasPendingWrites ? "Local" : "Server"
+                print("\(source) data: \(document.data() ?? [:])")
+                cell.bookNameLabel.text = document.data()?["ID_books"] as? String
+                cell.startedDayLabel.text = document.data()?["startedDay"] as? String
+                cell.endedDayLabel.text = document.data()?["endedDay"] as? String
+                self.temp.set(document.data(), forKey: "\(ID_cards[indexPath.row])")
+            }
+        }
         return cell
     }
     
     //---Outlet
     @IBOutlet weak var listBorrowingCardTableView: UITableView!
+    @IBOutlet weak var studentNameLabel: UILabel!
     //---Variable
-    var ID = ["1","2","3"]
-    var date = ["1/1/2020","2/2/2020","3/3/2020"]
-    var status = ["done","fined","Peding"]
+    var temp = UserDefaults()
     //---Action
+    @IBAction func addButton(_ sender: Any) {
+        let newCard = BorrowCard()
+                let db = Firestore.firestore()
+        var ref: DocumentReference? = nil
+        ref = db.collection("BorrowCard").addDocument(data: [
+            "ID_student":"\(newCard.ID_student)",
+            "ID_book":"\(newCard.ID_book)",
+            "startedDay":"\(newCard.endedDay)",
+            "endedDay":"",
+            "status":"\(newCard.status)",
+            "fine":"\(newCard.fine)"
+        ]) { err in
+            if let err = err {
+                print("Error adding document: \(err)")
+            } else {
+                print("Document added with ID: \(ref!.documentID)")
+                self.temp.set("\(ref!.documentID)", forKey: "ID_new_card")
+            }
+        }
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         listBorrowingCardTableView.dataSource = self

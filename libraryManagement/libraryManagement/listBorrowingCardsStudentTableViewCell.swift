@@ -10,9 +10,16 @@ import UIKit
 
 class listBorrowingCardsStudentTableViewCell: UITableViewCell {
     //---Outlet
-    @IBOutlet weak var IDcardLabel: UILabel!
-    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var bookImageView: UIImageView!
+    @IBOutlet weak var bookNameLabel: UILabel!
+    
+    @IBOutlet weak var startedDayLabel: UILabel!
+    
+    @IBOutlet weak var endedDayLabel: UILabel!
+    
     @IBOutlet weak var statusLabel: UILabel!
+    
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()

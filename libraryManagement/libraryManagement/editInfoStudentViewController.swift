@@ -134,6 +134,20 @@ class editInfoStudentViewController: UIViewController,UIPickerViewDelegate,UIPic
         }
         
         // Do any additional setup after loading the view.
+        let db = Firestore.firestore()
+        db.collection("BorrowCard").getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                var data_cards: Array<Dictionary<String,Any>> = []
+                var ID_cards: Array<String> = []
+                for document in querySnapshot!.documents {
+                    data_cards.append(document.data())
+                    ID_cards.append(document.documentID)
+                }
+                self.temp.set(ID_cards, forKey: "ID_cards")
+            }
+        }
     }
     
 
