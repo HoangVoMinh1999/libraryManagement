@@ -13,6 +13,11 @@
 		2C88292E24C9CEA900B74446 /* editInfoBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C88292D24C9CEA900B74446 /* editInfoBookViewController.swift */; };
 		2C88293024D2DEED00B74446 /* accountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C88292F24D2DEED00B74446 /* accountViewController.swift */; };
 		2C88293224D2E30500B74446 /* editAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C88293124D2E30500B74446 /* editAccountViewController.swift */; };
+		2C88293424D50A2900B74446 /* ruleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C88293324D50A2900B74446 /* ruleViewController.swift */; };
+		2C88293624D5184000B74446 /* listRulesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C88293524D5184000B74446 /* listRulesTableViewCell.swift */; };
+		2C88293824D52E9600B74446 /* Rule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C88293724D52E9600B74446 /* Rule.swift */; };
+		2C88293A24D544A400B74446 /* addRulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C88293924D544A400B74446 /* addRulesViewController.swift */; };
+		2C88293C24D5552E00B74446 /* editInfoRuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C88293B24D5552E00B74446 /* editInfoRuleViewController.swift */; };
 		2CE04E4024A223C700123629 /* addBooksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE04E3F24A223C700123629 /* addBooksViewController.swift */; };
 		2CE04E4224A23D5000123629 /* manageBooksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE04E4124A23D5000123629 /* manageBooksViewController.swift */; };
 		2CE04E4424A23E5600123629 /* statisticBooksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE04E4324A23E5600123629 /* statisticBooksViewController.swift */; };
@@ -48,6 +53,11 @@
 		2C88292D24C9CEA900B74446 /* editInfoBookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = editInfoBookViewController.swift; sourceTree = "<group>"; };
 		2C88292F24D2DEED00B74446 /* accountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = accountViewController.swift; sourceTree = "<group>"; };
 		2C88293124D2E30500B74446 /* editAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = editAccountViewController.swift; sourceTree = "<group>"; };
+		2C88293324D50A2900B74446 /* ruleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ruleViewController.swift; sourceTree = "<group>"; };
+		2C88293524D5184000B74446 /* listRulesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = listRulesTableViewCell.swift; sourceTree = "<group>"; };
+		2C88293724D52E9600B74446 /* Rule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rule.swift; sourceTree = "<group>"; };
+		2C88293924D544A400B74446 /* addRulesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addRulesViewController.swift; sourceTree = "<group>"; };
+		2C88293B24D5552E00B74446 /* editInfoRuleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = editInfoRuleViewController.swift; sourceTree = "<group>"; };
 		2CE04E3F24A223C700123629 /* addBooksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addBooksViewController.swift; sourceTree = "<group>"; };
 		2CE04E4124A23D5000123629 /* manageBooksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = manageBooksViewController.swift; sourceTree = "<group>"; };
 		2CE04E4324A23E5600123629 /* statisticBooksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = statisticBooksViewController.swift; sourceTree = "<group>"; };
@@ -141,6 +151,10 @@
 				2C88292D24C9CEA900B74446 /* editInfoBookViewController.swift */,
 				2C88292F24D2DEED00B74446 /* accountViewController.swift */,
 				2C88293124D2E30500B74446 /* editAccountViewController.swift */,
+				2C88293324D50A2900B74446 /* ruleViewController.swift */,
+				2C88293524D5184000B74446 /* listRulesTableViewCell.swift */,
+				2C88293924D544A400B74446 /* addRulesViewController.swift */,
+				2C88293B24D5552E00B74446 /* editInfoRuleViewController.swift */,
 			);
 			path = libraryManagement;
 			sourceTree = "<group>";
@@ -150,6 +164,7 @@
 			children = (
 				5CF10B4324B4D49600D01663 /* Student.swift */,
 				5CF10B4524B4D4BB00D01663 /* Book.swift */,
+				2C88293724D52E9600B74446 /* Rule.swift */,
 			);
 			path = "New Group";
 			sourceTree = "<group>";
@@ -296,11 +311,15 @@
 				5C38F3BB24C03B6000AE3D1D /* addNewBorrowingCardViewController.swift in Sources */,
 				5C3E6900248FC7D900202CEF /* AppDelegate.swift in Sources */,
 				5C3E69202490BF3D00202CEF /* listStudentsTableViewCell.swift in Sources */,
+				2C88293624D5184000B74446 /* listRulesTableViewCell.swift in Sources */,
 				2C88292824C2C86F00B74446 /* resetPasswordViewController.swift in Sources */,
 				5C3E691C248FDDCD00202CEF /* studentMenuViewController.swift in Sources */,
+				2C88293424D50A2900B74446 /* ruleViewController.swift in Sources */,
 				5C3E69282490F3F400202CEF /* statisticStudentsViewController.swift in Sources */,
+				2C88293824D52E9600B74446 /* Rule.swift in Sources */,
 				5C3E69262490ED2C00202CEF /* addStudentsViewController.swift in Sources */,
 				2C88292A24C6B80B00B74446 /* listBooksTableViewCell.swift in Sources */,
+				2C88293C24D5552E00B74446 /* editInfoRuleViewController.swift in Sources */,
 				5C3E691E2490B74C00202CEF /* manageStudentsViewController.swift in Sources */,
 				2CE04E4224A23D5000123629 /* manageBooksViewController.swift in Sources */,
 				2C88293224D2E30500B74446 /* editAccountViewController.swift in Sources */,
@@ -311,6 +330,7 @@
 				5CF10B4424B4D49600D01663 /* Student.swift in Sources */,
 				5C3E69242490E2DF00202CEF /* listBorrowingCardStudentViewController.swift in Sources */,
 				5C3E6902248FC7D900202CEF /* SceneDelegate.swift in Sources */,
+				2C88293A24D544A400B74446 /* addRulesViewController.swift in Sources */,
 				2C4D4D0324A2F73300C031B9 /* bookMenuViewController.swift in Sources */,
 				2CE04E4024A223C700123629 /* addBooksViewController.swift in Sources */,
 			);

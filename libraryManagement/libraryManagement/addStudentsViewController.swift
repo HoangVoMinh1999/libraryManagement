@@ -120,18 +120,18 @@ class addStudentsViewController: UIViewController, UIImagePickerControllerDelega
     
     
 
-    @IBAction func confirmButton(_ sender: Any) {
-
-        //---Collect data new student
-        let new_student:Student =  Student(name: nameTextField.text!, ID: IDTextField.text!, birthday: birthdayTextField.text!,gender:genderTextField.text!, address: addressTextField.text!, email: emailTextField.text!, startedDay: starteddayTextField.text!, status: true)
-        
-        // Add a new document with a generated ID
-        new_student.insertNewStudent(newStudent:new_student)
-        
-        //---Change view to manageStudent view
-        self.performSegue(withIdentifier: "unwindToMenuStudent", sender: self)
-        
-    }
+//    @IBAction func confirmButton(_ sender: Any) {
+//
+//        //---Collect data new student
+//        let new_student:Student =  Student(name: nameTextField.text!, ID: IDTextField.text!, birthday: birthdayTextField.text!,gender:genderTextField.text!, address: addressTextField.text!, email: emailTextField.text!, startedDay: starteddayTextField.text!, status: true)
+//        
+//        // Add a new document with a generated ID
+//        new_student.insertNewStudent(newStudent:new_student)
+//        
+//        //---Change view to manageStudent view
+//        self.performSegue(withIdentifier: "unwindToMenuStudent", sender: self)
+//        
+//    }
     
     
     @IBAction func cancelButton(_ sender: Any) {

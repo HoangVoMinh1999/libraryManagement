@@ -92,14 +92,14 @@ class editInfoStudentViewController: UIViewController,UIPickerViewDelegate,UIPic
     }
     
     
-    @IBAction func confirmAction(_ sender: Any) {
-        let currentStudent:Student =  Student(name: nameTextField.text!, ID: idTextField.text!, birthday: birthdayTextField.text!,gender:genderTextField.text!, address: addressTextField.text!, email: emailTextField.text!, startedDay: starteddayTextField.text!, status: statusSwitch.isOn)
-        
-        currentStudent.updateDetail(currentStudent: currentStudent, ID: temp.value(forKey: "ID_current_student")! as! String)
-        
-        
-        self.performSegue(withIdentifier: "unwindToManageStudent", sender: self)
-    }
+//    @IBAction func confirmAction(_ sender: Any) {
+//        let currentStudent:Student =  Student(name: nameTextField.text!, ID: idTextField.text!, birthday: birthdayTextField.text!,gender:genderTextField.text!, address: addressTextField.text!, email: emailTextField.text!, startedDay: starteddayTextField.text!, status: statusSwitch.isOn)
+//
+//        currentStudent.updateDetail(currentStudent: currentStudent, ID: temp.value(forKey: "ID_current_student")! as! String)
+//
+//
+//        self.performSegue(withIdentifier: "unwindToManageStudent", sender: self)
+//    }
     
     
     @IBAction func statusSwitch(_ sender: Any) {

@@ -44,6 +44,20 @@ class studentMenuViewController: UIViewController {
             }
         }
         
+        db.collection("Rules").getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                var data_rules: Array<Dictionary<String,Any>> = []
+                var ID_rules: Array<String> = []
+                for document in querySnapshot!.documents {
+                    data_rules.append(document.data())
+                    ID_rules.append(document.documentID)
+                }
+                self.temp.set(ID_rules, forKey: "ID_rules")
+            }
+        }
+        
         // Do any additional setup after loading the view.
     }
     

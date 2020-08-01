@@ -45,15 +45,13 @@ class editInfoBookViewController: UIViewController {
     }
     
     
-    @IBAction func confirmButton(_ sender: Any) {
-        let currentBook:Book = Book(ID: bookIDTextField.text!, name: booknameTextField.text!.uppercased(), category: categoryTextField.text!, author: authorTextField.text!, publishingyear: publishingyearTextField.text!, publishingcompany: publishingcompanyTextField.text!, dateadded: dateaddedTextField.text!, status: true, quantity: Int(quantityTextField.text!)!)
-        
-        currentBook.updateDetail(currentBook: currentBook, ID: temp.value(forKey: "ID_current_book") as! String)
-        
-//        let src = (storyboard?.instantiateViewController(identifier: "bookMenuViewController")) as! bookMenuViewController
-//        present(src, animated: true, completion: nil)
-        self.performSegue(withIdentifier: "unwindToManageBookWithSegue", sender: self)
-    }
+//    @IBAction func confirmButton(_ sender: Any) {
+//        let currentBook:Book = Book(ID: bookIDTextField.text!, name: booknameTextField.text!.uppercased(), category: categoryTextField.text!, author: authorTextField.text!, publishingyear: publishingyearTextField.text!, publishingcompany: publishingcompanyTextField.text!, dateadded: dateaddedTextField.text!, status: true, quantity: Int(quantityTextField.text!)!)
+//        
+//        currentBook.updateDetail(currentBook: currentBook, ID: temp.value(forKey: "ID_current_book") as! String)
+//        
+//        self.performSegue(withIdentifier: "unwindToManageBookWithSegue", sender: self)
+//    }
     
     @IBAction func cancelButton(_ sender: Any) {
         self.performSegue(withIdentifier: "unwindToManageBookWithSegue", sender: self)
