@@ -23,13 +23,13 @@ class Rule{
         self.content = content
     }
     
-    func insertNewRule(newRule:Rule){
+    func insertNewRule(){
         let db = Firestore.firestore()
         var ref: DocumentReference? = nil
 
         ref = db.collection("Rules").addDocument(data: [
-            "title":"\(newRule.title)",
-            "content":"\(newRule.content)"
+            "title":"\(self.title)",
+            "content":"\(self.content)"
         ]) { err in
             if let err = err {
                 print("Error adding document: \(err)")
@@ -39,12 +39,12 @@ class Rule{
         }
     }
     
-    func updateDetail(currentRule:Rule,ID:String){
+    func updateDetail(ID:String){
         let db = Firestore.firestore()
         let ref: DocumentReference? = nil
         db.collection("Rules").document("\(ID)").setData([
-            "title":"\(currentRule.title)",
-            "content":"\(currentRule.content)"
+            "title":"\(self.title)",
+            "content":"\(self.content)"
         ], merge: true)
     }
 }

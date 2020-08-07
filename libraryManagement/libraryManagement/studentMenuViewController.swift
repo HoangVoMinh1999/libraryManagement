@@ -19,7 +19,7 @@ class studentMenuViewController: UIViewController {
     @IBAction func unwindToMenuStudent(segue:UIStoryboardSegue){
     }
     //---Variable
-    var temp = UserDefaults()
+    var temp:UserDefaults = UserDefaults()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +27,38 @@ class studentMenuViewController: UIViewController {
         manageButton.customMenuButton()
         statisticButton.customMenuButton()
         
+        var ID_students:Array<String> = temp.value(forKey: "ID_students")! as! Array<String>
+        var ID_rules:Array<String> = temp.value(forKey: "ID_rules")! as! Array<String>
         
+        if (ID_students == []){
+            let new_student:Student = Student()
+            new_student.insertNewStudent()
+        }
+        if (ID_rules == []){
+            let new_rule:Rule = Rule()
+            new_rule.insertNewRule()
+        }
+        
+        // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        temp.set([], forKey: "ID_students")
+        temp.set([], forKey: "ID_rules")
+        loadStudentData(temp: temp)
+        loadRuleData(temp: temp)
+    }
+    
+}
+
+extension UIButton{
+    func customMenuButton(){
+        layer.cornerRadius = 30
+    }
+}
+extension UIViewController{
+    
+    func loadStudentData(temp:UserDefaults) {
         let db = Firestore.firestore()
         
         db.collection("Students").getDocuments() { (querySnapshot, err) in
@@ -40,10 +71,13 @@ class studentMenuViewController: UIViewController {
                     data_students.append(document.data())
                     ID_students.append(document.documentID)
                 }
-                self.temp.set(ID_students, forKey: "ID_students")
+                temp.set(ID_students, forKey: "ID_students")
             }
         }
-        
+    }
+    
+    func loadRuleData(temp:UserDefaults) {
+        let db = Firestore.firestore()
         db.collection("Rules").getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
@@ -54,28 +88,8 @@ class studentMenuViewController: UIViewController {
                     data_rules.append(document.data())
                     ID_rules.append(document.documentID)
                 }
-                self.temp.set(ID_rules, forKey: "ID_rules")
+                temp.set(ID_rules, forKey: "ID_rules")
             }
         }
-        
-        // Do any additional setup after loading the view.
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
-}
-
-extension UIButton{
-    func customMenuButton(){
-        layer.cornerRadius = 30
     }
 }

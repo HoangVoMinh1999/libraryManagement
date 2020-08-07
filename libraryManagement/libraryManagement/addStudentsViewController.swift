@@ -36,6 +36,7 @@ class addStudentsViewController: UIViewController, UIImagePickerControllerDelega
     @IBOutlet weak var starteddayTextField: UITextField!
     @IBOutlet weak var imgItem: UIImageView!
     //---Variable
+    var temp = UserDefaults()
     var imgItemData:Data!
     var list = ["Male","Female","Other"]
     //---Action
@@ -101,6 +102,7 @@ class addStudentsViewController: UIViewController, UIImagePickerControllerDelega
     }
     
     @IBAction func genderAction(_ sender: Any) {
+        genderTextField.text = "Male"
         let alert=UIAlertController(title: "\n\n\n\n\n\n\n\n\n", message: nil, preferredStyle: .actionSheet)
         let picker = UIPickerView(frame: CGRect(x: 30, y:0, width: 300, height: 400))
         picker.dataSource=self
@@ -120,18 +122,41 @@ class addStudentsViewController: UIViewController, UIImagePickerControllerDelega
     
     
 
-//    @IBAction func confirmButton(_ sender: Any) {
-//
-//        //---Collect data new student
-//        let new_student:Student =  Student(name: nameTextField.text!, ID: IDTextField.text!, birthday: birthdayTextField.text!,gender:genderTextField.text!, address: addressTextField.text!, email: emailTextField.text!, startedDay: starteddayTextField.text!, status: true)
-//        
-//        // Add a new document with a generated ID
-//        new_student.insertNewStudent(newStudent:new_student)
-//        
-//        //---Change view to manageStudent view
-//        self.performSegue(withIdentifier: "unwindToMenuStudent", sender: self)
-//        
-//    }
+    @IBAction func confirmButton(_ sender: Any) {
+
+        //---Collect data new student
+        let new_student:Student =  Student(name: nameTextField.text!, ID: IDTextField.text!, birthday: birthdayTextField.text!,gender:genderTextField.text!, address: addressTextField.text!, email: emailTextField.text!, startedDay: starteddayTextField.text!, status: 1)
+        
+        // Add a new document with a generated ID
+        let ID_students:Array<String> = temp.value(forKey: "ID_students") as! Array<String>
+        
+        
+        if (ID_students.count == 1){
+            let db = Firestore.firestore()
+            db.collection("Students").document("\(ID_students[0])")
+            .addSnapshotListener { documentSnapshot, error in
+              guard let document = documentSnapshot else {
+                print("Error fetching document: \(error!)")
+                return
+              }
+              guard let data = document.data() else {
+                print("Document data was empty.")
+                return
+              }
+                if (data["name"] as! String == ""){
+                    new_student.updateDetail(ID: ID_students[0])
+                }
+                else{
+                    new_student.insertNewStudent()
+                }
+            }
+        } else {
+            new_student.insertNewStudent()
+        }
+        //---Change view to manageStudent view
+        self.performSegue(withIdentifier: "unwindToMenuStudent", sender: self)
+        
+    }
     
     
     @IBAction func cancelButton(_ sender: Any) {

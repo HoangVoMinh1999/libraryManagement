@@ -21,19 +21,13 @@ class listBorrowingCardStudentViewController: UIViewController,UITableViewDataSo
         let ID_cards:Array<String> = temp.value(forKey: "ID_cards")! as! Array<String>
         print(ID_cards.count)
         let cell:listBorrowingCardsStudentTableViewCell = listBorrowingCardTableView.dequeueReusableCell(withIdentifier: "listBorrowingCardsStudentTableViewCell") as! listBorrowingCardsStudentTableViewCell
-        if (ID_cards.count != 0){
-            let db = Firestore.firestore()
-            db.collection("Students").document("\(ID_cards[indexPath.row])")
-            .addSnapshotListener { documentSnapshot, error in
-                guard let document = documentSnapshot else {
-                    print("Error fetching document: \(error!)")
-                    return
-                }
-                let source = document.metadata.hasPendingWrites ? "Local" : "Server"
-                print("\(source) data: \(document.data() ?? [:])")
-                cell.bookNameLabel.text = document.data()!["ID_book"] as? String
-                cell.startedDayLabel.text = document.data()!["startedDay"] as? String
+        let db = Firestore.firestore()
+        db.collection("BorrowCard")
+        .addSnapshotListener { querySnapshot, error in
+            if let error = error {
+                print("Error retreiving collection: \(error)")
             }
+
         }
         return cell
     }

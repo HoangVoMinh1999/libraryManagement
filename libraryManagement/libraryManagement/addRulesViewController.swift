@@ -25,8 +25,7 @@ class addRulesViewController: UIViewController {
             alert.addAction(okButton)
             present(alert, animated: true, completion: nil)
         } else {
-            let new_rule = Rule(title: titleTextField.text!, content: contentTextField.text!)
-            new_rule.insertNewRule(newRule: new_rule)
+
         }
         
         let db = Firestore.firestore()

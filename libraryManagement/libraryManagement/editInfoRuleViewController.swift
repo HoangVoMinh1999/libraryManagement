@@ -19,11 +19,7 @@ class editInfoRuleViewController: UIViewController {
     
     //---Action
     @IBAction func confirmButton(_ sender: Any) {
-        let currentRule:Rule = Rule(title: titleTextField.text!, content: contentTextField.text!)
-        
-        currentRule.updateDetail(currentRule: currentRule, ID: temp.value(forKey: "ID_current_rule") as! String)
-        
-        self.performSegue(withIdentifier: "unwindToRuleWithSegue", sender: self)
+
     }
     
     @IBAction func cancelButton(_ sender: Any) {

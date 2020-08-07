@@ -41,10 +41,10 @@ class Student{
         self.status = status
     }
     
-    func insertNewStudent(newStudent:Student){
+    func insertNewStudent(){
         let db = Firestore.firestore()
         var ref: DocumentReference? = nil
-        ref = db.collection("Students").addDocument(data: ["name":"\(newStudent.name)","ID":"\(newStudent.ID)","birthday":"\(newStudent.birthday)","gender":"\(newStudent.gender)","address":"\(newStudent.address)","email":"\(newStudent.email)","startedDay":"\(newStudent.startedDay)","status":"1"]) { err in
+        ref = db.collection("Students").addDocument(data: ["name":"\(self.name)","ID":"\(self.ID)","birthday":"\(self.birthday)","gender":"\(self.gender)","address":"\(self.address)","email":"\(self.email)","startedDay":"\(self.startedDay)","status":"1"]) { err in
             if let err = err {
                 print("Error adding document: \(err)")
             } else {
@@ -53,9 +53,9 @@ class Student{
         }
     }
     
-    func updateDetail(currentStudent:Student,ID:String){
+    func updateDetail(ID:String){
         let db = Firestore.firestore()
         var ref: DocumentReference? = nil
-        db.collection("Students").document("\(ID)").setData(["name":"\(currentStudent.name)","ID":"\(currentStudent.ID)","birthday":"\(currentStudent.birthday)","gender":"\(currentStudent.gender)","address":"\(currentStudent.address)","email":"\(currentStudent.email)","startedDay":"\(currentStudent.startedDay)","status":"\(currentStudent.status)"], merge: true)
+        db.collection("Students").document("\(ID)").setData(["name":"\(self.name)","ID":"\(self.ID)","birthday":"\(self.birthday)","gender":"\(self.gender)","address":"\(self.address)","email":"\(self.email)","startedDay":"\(self.startedDay)","status":"\(self.status)"], merge: true)
     }
 }
