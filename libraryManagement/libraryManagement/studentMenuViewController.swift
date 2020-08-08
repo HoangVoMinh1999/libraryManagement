@@ -29,7 +29,8 @@ class studentMenuViewController: UIViewController {
         
         var ID_students:Array<String> = temp.value(forKey: "ID_students")! as! Array<String>
         var ID_rules:Array<String> = temp.value(forKey: "ID_rules")! as! Array<String>
-        
+        var ID_books:Array<String> = temp.value(forKey: "ID_books")! as! Array<String>
+        print(ID_students)
         if (ID_students == []){
             let new_student:Student = Student()
             new_student.insertNewStudent()
@@ -38,6 +39,10 @@ class studentMenuViewController: UIViewController {
             let new_rule:Rule = Rule()
             new_rule.insertNewRule()
         }
+        if (ID_books == []){
+            let new_book:Book = Book()
+            new_book.insertNewBook()
+        }
         
         // Do any additional setup after loading the view.
     }
@@ -45,8 +50,10 @@ class studentMenuViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         temp.set([], forKey: "ID_students")
         temp.set([], forKey: "ID_rules")
+        temp.set([],forKey: "ID_books")
         loadStudentData(temp: temp)
         loadRuleData(temp: temp)
+        loadBookData(temp: temp)
     }
     
 }
@@ -89,6 +96,23 @@ extension UIViewController{
                     ID_rules.append(document.documentID)
                 }
                 temp.set(ID_rules, forKey: "ID_rules")
+            }
+        }
+    }
+    
+    func loadBookData(temp:UserDefaults) {
+        let db = Firestore.firestore()
+        db.collection("Books").getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                var data_rules: Array<Dictionary<String,Any>> = []
+                var ID_rules: Array<String> = []
+                for document in querySnapshot!.documents {
+                    data_rules.append(document.data())
+                    ID_rules.append(document.documentID)
+                }
+                temp.set(ID_rules, forKey: "ID_books")
             }
         }
     }

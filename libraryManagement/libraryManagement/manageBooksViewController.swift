@@ -44,9 +44,15 @@ class manageBooksViewController: UIViewController, UITableViewDataSource, UITabl
             }
             let source = document.metadata.hasPendingWrites ? "Local" : "Server"
             print("\(source) data: \(document.data() ?? [:])")
-            cell.bookIDLabel.text = document.data()!["ID"]! as? String
-            cell.booknameLabel.text = document.data()!["name"]! as? String
-            self.tmp.set(document.data(), forKey: "\(ID_books[indexPath.row])")
+            if (document.data()!["name"]! as? String != ""){
+                cell.bookIDLabel.text = document.data()!["ID"]! as? String
+                cell.booknameLabel.text = document.data()!["name"]! as? String
+                self.tmp.set(document.data(), forKey: "\(ID_books[indexPath.row])")
+                self.noticeLabel.isHidden = true
+                self.addBookButton.isHidden = true
+            } else {
+                cell.isHidden = true
+            }
         }
         return cell
     }
@@ -63,9 +69,6 @@ class manageBooksViewController: UIViewController, UITableViewDataSource, UITabl
             let okButton:UIAlertAction = UIAlertAction(title: "OK", style: .default) { (UIAlertAction) in
                 
                 self.booksTableView.deleteRows(at: [indexPath], with: .fade)
-//                var data:Array<Dictionary<String,Any>> = self.tmp.value(forKey: "data_books") as! Array<Dictionary<String, Any>>
-//                data[indexPath.row]["status"] = false
-                
             }
             alert.addAction(okButton)
             let cancelButton:UIAlertAction = UIAlertAction(title: "CANCEL", style: .destructive, handler: nil)
@@ -88,6 +91,9 @@ class manageBooksViewController: UIViewController, UITableViewDataSource, UITabl
     
     //---Outlet
     @IBOutlet weak var booksTableView: UITableView!
+    @IBOutlet weak var noticeLabel: UILabel!
+    @IBOutlet weak var addBookButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -98,13 +104,6 @@ class manageBooksViewController: UIViewController, UITableViewDataSource, UITabl
         booksTableView.dataSource = self
         booksTableView.reloadData()
         
-        searchController.searchResultsUpdater = self
-        searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Search Books"
-        navigationItem.searchController = searchController
-        definesPresentationContext = true
-
-
 
         // Do any additional setup after loading the view.
     }

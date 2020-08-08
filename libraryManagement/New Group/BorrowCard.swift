@@ -47,5 +47,16 @@ class  BorrowCard{
         }
     }
     
-    
+    func updateCard(ID:String){
+        let db = Firestore.firestore()
+        let ref: DocumentReference? = nil
+        db.collection("BorrowCard").document("\(ID)").setData([
+            "ID_student":"\(self.ID_student)",
+            "ID_book":"\(self.ID_book)",
+            "startedDay":"\(self.endedDay)",
+            "endedDay":"",
+            "status":"\(self.status)",
+            "fine":"\(self.fine)"
+        ], merge: true)
+    }
 }

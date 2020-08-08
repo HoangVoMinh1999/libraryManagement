@@ -29,9 +29,11 @@ class manageStudentsViewController: UIViewController,UITableViewDataSource,UITab
             }
             let source = document.metadata.hasPendingWrites ? "Local" : "Server"
             print("\(source) data: \(document.data() ?? [:])")
-            cell.MSSVLabel.text = document.data()!["ID"]! as? String
-            cell.studentNameLabel.text = document.data()!["name"]! as? String
-            self.temp.set(document.data(), forKey: "\(ID_students[indexPath.row])")
+            if (document.data()!["name"] as! String != ""){
+                cell.MSSVLabel.text = document.data()!["ID"]! as? String
+                cell.studentNameLabel.text = document.data()!["name"]! as? String
+                self.temp.set(document.data(), forKey: "\(ID_students[indexPath.row])")
+            }
         }
         return cell
     }

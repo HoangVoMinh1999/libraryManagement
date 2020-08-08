@@ -32,34 +32,35 @@ class addBooksViewController: UIViewController {
     //---Variable
     var temp = UserDefaults()
     //---Action---
-//    @IBAction func confirmButton(_ sender: Any) {
-//        let ls_data:Array<Dictionary<String,Any>> = temp.value(forKey: "data_books") as! Array<Dictionary<String, Any>>
-//        let ls_ID:Array<String> = temp.value(forKey: "ID_books") as! Array<String>
-//        if (bookIDTextField.text! == "" || booknameTextField.text! == "" || categoryTextField.text! == "" || authorTextField.text! == "" || publishingyearTextField.text! == "" || publishingcompanyTextField.text! == "" || dateaddedTextField.text! == ""){
-//            let alert:UIAlertController=UIAlertController(title: "Warning!", message: "You need to fill all information", preferredStyle: .alert)
-//            let okButton:UIAlertAction=UIAlertAction(title: "OK", style: .default, handler: nil)
-//            alert.addAction(okButton)
-//            present(alert, animated: true, completion: nil)
-//        } else {
-//            var position = 0
-//            for i in ls_data {
-//                if (i["name"] as! String == booknameTextField.text!.uppercased() ){
-//                    let new_book = Book(ID: i["ID"] as! String ,name: i["name"] as! String, category: i["category"] as! String, author: i["author"] as! String, publishingyear: i["publishingyear"] as! String, publishingcompany: i["publishingcompany"] as! String, dateadded: i["dateadded"] as! String, status: Bool(i["status"] as! String)!, quantity: Int(i["quantity"] as! String)!)
-//                    new_book.setQuantity(quantity: Int(i["quantity"] as! String)! + Int(quantityTextField.text!)!)
-//                    new_book.updateDetail(currentBook: new_book, ID: ls_ID[position])
-//                    let src = (storyboard?.instantiateViewController(identifier: "bookMenuViewController"))! as bookMenuViewController
-//                    present(src, animated: true,completion: nil)
-//                    return
-//                }
-//                position += 1
-//            }
-//            let new_book = Book(ID: bookIDTextField.text! ,name: booknameTextField.text!.uppercased(), category: categoryTextField.text!, author: authorTextField.text!, publishingyear: publishingyearTextField.text!, publishingcompany: publishingcompanyTextField.text!, dateadded: dateaddedTextField.text!, status: true, quantity: Int(quantityTextField.text!)!)
-//            new_book.insertNewBook(newBook: new_book)
-//
-//            self.performSegue(withIdentifier: "unwindToMenuBookWithSegue", sender: self)
-//        }
-//
-//    }
+    @IBAction func confirmButton(_ sender: Any) {
+        let new_book:Book = Book(ID: bookIDTextField.text!, name: booknameTextField.text!, category: categoryTextField.text!, author: authorTextField.text!, publishingyear: publishingyearTextField.text!,publishingcompany: publishingcompanyTextField.text!, dateadded: dateaddedTextField.text!, status: 1, quantity: Int(quantityTextField.text!)!, check: 0)
+        let ID_books:Array<String> = temp.value(forKey: "ID_books") as! Array<String>
+        
+        
+        if (ID_books.count == 1){
+            let db = Firestore.firestore()
+            db.collection("Books").document("\(ID_books[0])")
+            .addSnapshotListener { documentSnapshot, error in
+              guard let document = documentSnapshot else {
+                print("Error fetching document: \(error!)")
+                return
+              }
+              guard let data = document.data() else {
+                print("Document data was empty.")
+                return
+              }
+                if (data["name"] as! String == ""){
+                    new_book.updateDetail(ID: ID_books[0])
+                }
+                else{
+                    new_book.insertNewBook()
+                }
+            }
+        } else {
+            new_book.insertNewBook()
+        }
+        self.performSegue(withIdentifier: "unwindToMenuBookWithSegue", sender: self)
+    }
     
     @IBAction func cancelButton(_ sender: Any) {
         self.performSegue(withIdentifier: "unwindToMenuBookWithSegue", sender: self)
