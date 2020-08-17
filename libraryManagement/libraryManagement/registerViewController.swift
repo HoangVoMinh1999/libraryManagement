@@ -14,7 +14,7 @@ import FirebaseStorage
 let storage = Storage.storage()
 let storageRef = storage.reference(forURL: "gs://librarymanagement-bd9ab.appspot.com")
 
-class registerViewController: UIViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
+class registerViewController: UIViewController {
     //--Variable
     var imgData: Data!
     
@@ -80,20 +80,26 @@ class registerViewController: UIViewController, UIImagePickerControllerDelegate 
                         }
                         else
                         {
-                            let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
-                            changeRequest?.displayName = self.nameTextField.text!
-                            changeRequest?.commitChanges { (error) in
-                                if (error == nil)
-                                {
-                                    print("Register success!")
+                            //let size = metadata.size
+                            avatarRef.downloadURL { (url, error) in
+                              guard let downloadURL = url else {
+                                let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
+                                changeRequest?.displayName = self.nameTextField.text!
+                                changeRequest?.commitChanges { (error) in
+                                    if (error == nil)
+                                    {
+                                        print("Register success!")
+                                    }
+                                    else
+                                    {
+                                        let alert:UIAlertController=UIAlertController(title: "Warning", message: "Fail to update profile", preferredStyle: .alert)
+                                        let okButton:UIAlertAction=UIAlertAction(title: "OK", style: .default, handler: nil)
+                                        alert.addAction(okButton)
+                                        self.present(alert, animated: true, completion: nil)
+                                    }
                                 }
-                                else
-                                {
-                                    let alert:UIAlertController=UIAlertController(title: "Warning", message: "Fail to update profile", preferredStyle: .alert)
-                                    let okButton:UIAlertAction=UIAlertAction(title: "OK", style: .default, handler: nil)
-                                    alert.addAction(okButton)
-                                    self.present(alert, animated: true, completion: nil)
-                                }
+                                return
+                              }
                             }
                         }
                         return
@@ -120,19 +126,29 @@ class registerViewController: UIViewController, UIImagePickerControllerDelegate 
         password_1TextField.textContentType = .newPassword
         password_2TextField.textContentType = .newPassword
         
-        avatarImage.image = UIImage(contentsOfFile: "avatar")
+        // avatarImage.image = UIImage(contentsOfFile: "avatar")
+        
         // Do any additional setup after loading the view.
     }
-    
+}
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+extension registerViewController: UIImagePickerControllerDelegate & UINavigationControllerDelegate
+{
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let chooseImg = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
+        let imgValue = max(chooseImg.size
+            .width, chooseImg.size.height)
+        if (imgValue > 3000) {
+            imgData = chooseImg.jpegData(compressionQuality: 0.1)
+        }
+        else if (imgValue > 2000) {
+            imgData = chooseImg.jpegData(compressionQuality: 0.3)
+        }
+        else {
+            imgData = chooseImg.pngData()
+        }
+        avatarImage.image = UIImage(data: imgData)
+        
+        dismiss(animated: true, completion: nil)
     }
-    */
-
 }
