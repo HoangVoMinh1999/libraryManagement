@@ -15,7 +15,8 @@ class addRulesViewController: UIViewController {
     
     //---Outlet
     @IBOutlet weak var titleTextField: UITextField!
-    @IBOutlet weak var contentTextField: UITextField!
+    @IBOutlet weak var contentTextField: UITextView!
+    
     
     //---Action
     @IBAction func confirmButton(_ sender: Any) {
@@ -25,31 +26,20 @@ class addRulesViewController: UIViewController {
             alert.addAction(okButton)
             present(alert, animated: true, completion: nil)
         } else {
-
-        }
-        
-        let db = Firestore.firestore()
-        
-        db.collection("Rules").getDocuments() { (querySnapshot, err) in
-            if let err = err {
-                print("Error getting documents: \(err)")
-            } else {
-                var data_rules: Array<Dictionary<String,Any>> = []
-                var ID_rules: Array<String> = []
-                for document in querySnapshot!.documents {
-                    data_rules.append(document.data())
-                    ID_rules.append(document.documentID)
-                }
-                print(ID_rules)
-                self.temp.set(ID_rules, forKey: "ID_rules")
+            let db = Firestore.firestore()
+            let new_rule = Rule(title: titleTextField.text!, content: contentTextField.text!)
+            new_rule.saveOrUpdateRules()
+            let alert:UIAlertController = UIAlertController(title: "Notice", message: "Add rule successfully!!!", preferredStyle: .alert)
+            let okButton:UIAlertAction = UIAlertAction(title: "OK", style: .default) { (UIAlertAction) in
+                    self.performSegue(withIdentifier: "unwindToRule", sender: self)
             }
+            alert.addAction(okButton)
+            self.present(alert,animated: true,completion: nil)
         }
-
-        self.performSegue(withIdentifier: "unwindToRuleWithSegue", sender: self)
     }
     
     @IBAction func cancelButton(_ sender: Any) {
-        self.performSegue(withIdentifier: "unwindToRuleWithSegue", sender: self)
+        self.performSegue(withIdentifier: "unwindToRule", sender: self)
     }
     
     
@@ -57,10 +47,10 @@ class addRulesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        contentTextField.layer.borderWidth = 2
+        contentTextField.text = ""
         // Do any additional setup after loading the view.
     }
-    
 
     /*
     // MARK: - Navigation

@@ -23,28 +23,10 @@ class Rule{
         self.content = content
     }
     
-    func insertNewRule(){
+    func saveOrUpdateRules(){
         let db = Firestore.firestore()
-        var ref: DocumentReference? = nil
-
-        ref = db.collection("Rules").addDocument(data: [
-            "title":"\(self.title)",
-            "content":"\(self.content)"
-        ]) { err in
-            if let err = err {
-                print("Error adding document: \(err)")
-            } else {
-                print("Document added with ID: \(ref!.documentID)")
-            }
-        }
+        // Update one field, creating the document if it does not exist.
+        db.collection("Rules").document("\(self.title)").setData([ "title":"\(self.title)","content":"\(self.content)" ], merge: true)
     }
     
-    func updateDetail(ID:String){
-        let db = Firestore.firestore()
-        let ref: DocumentReference? = nil
-        db.collection("Rules").document("\(ID)").setData([
-            "title":"\(self.title)",
-            "content":"\(self.content)"
-        ], merge: true)
-    }
 }

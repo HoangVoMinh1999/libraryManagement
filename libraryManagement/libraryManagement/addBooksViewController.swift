@@ -8,6 +8,11 @@
 
 import UIKit
 import Firebase
+import FirebaseAuth
+import FirebaseStorage
+
+let storage = Storage.storage()
+let storageRef = storage.reference(forURL: "gs://librarymanagement-bd9ab.appspot.com")
 
 class addBooksViewController: UIViewController{
     //---Outlet---
@@ -84,13 +89,21 @@ class addBooksViewController: UIViewController{
                         alert.addAction(okButton)
                         self.present(alert,animated: true,completion: nil)
                     } else{
-                        new_book.saveOrUpdateNewBook()
-                        let alert:UIAlertController = UIAlertController(title: "Notice", message: "Add successfully !!!", preferredStyle: .alert)
-                        let okButton:UIAlertAction = UIAlertAction(title: "OK", style: .default) { (UIAlertAction) in
-                                self.performSegue(withIdentifier: "unwindToMenuBookWithSegue", sender: self)
+                        let queue:DispatchQueue = DispatchQueue(label: "Update")
+                        queue.async {
+                            do{
+                                new_book.saveOrUpdateNewBook()
+                            }
+                            DispatchQueue.main.async {
+                                self.updateData()
+                                let alert:UIAlertController = UIAlertController(title: "Notice", message: "Add successfully !!!", preferredStyle: .alert)
+                                let okButton:UIAlertAction = UIAlertAction(title: "OK", style: .default) { (UIAlertAction) in
+                                        self.performSegue(withIdentifier: "unwindToMenuBookWithSegue", sender: self)
+                                }
+                                alert.addAction(okButton)
+                                self.present(alert,animated: true,completion: nil)
+                            }
                         }
-                        alert.addAction(okButton)
-                        self.present(alert,animated: true,completion: nil)
                     }
 
                 }
@@ -185,11 +198,11 @@ extension addBooksViewController: UIImagePickerControllerDelegate & UINavigation
         dismiss(animated: true, completion: nil)
     }
     
-    func updateData(ID:String){
+    func updateData(){
         let queue: DispatchQueue = DispatchQueue(label: "UpdateImage")
         queue.async {
             do{
-                let ref = Storage.storage().reference().child("images/\(self.bookIDTextField.text!)")
+                let ref = Storage.storage().reference().child("books/\(self.bookIDTextField.text!)")
                  let metaData = StorageMetadata()
                 let chooseImg = self.imgBook.image
                 let pickerData = chooseImg!.jpegData(compressionQuality: 1)!
@@ -208,7 +221,7 @@ extension addBooksViewController: UIImagePickerControllerDelegate & UINavigation
             }
             DispatchQueue.main.async {
                 let db = Firestore.firestore()
-                db.collection("Accounts").document("\(ID)").updateData(["avatar" : "gs://librarymanagement-bd9ab.appspot.com/images/\(self.bookIDTextField.text!)"])
+                db.collection("Books").document("\(self.bookIDTextField.text!)").updateData(["avatarURL" : "gs://librarymanagement-bd9ab.appspot.com/books/\(self.bookIDTextField.text!)"])
             }
         }
 

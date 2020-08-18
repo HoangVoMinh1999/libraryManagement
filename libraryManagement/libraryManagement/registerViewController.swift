@@ -11,9 +11,6 @@ import Firebase
 import FirebaseAuth
 import FirebaseStorage
 
-let storage = Storage.storage()
-let storageRef = storage.reference(forURL: "gs://librarymanagement-bd9ab.appspot.com")
-
 class registerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -34,7 +31,7 @@ class registerViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     //--Variable
     var imgData: Data!
     var list = ["Male","Female","Other"]
-    
+
     //---Outlet
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var birthdayTextField: UITextField!

@@ -22,8 +22,6 @@ class ruleViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     }
     
-    
-    
     //---Func
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let ID_rules:Array<String> = tmp.value(forKey: "ID_rules") as! Array<String>
@@ -79,7 +77,9 @@ class ruleViewController: UIViewController, UITableViewDelegate, UITableViewData
 
         // Do any additional setup after loading the view.
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        loadRuleData(temp: tmp)
+    }
 
     /*
     // MARK: - Navigation
