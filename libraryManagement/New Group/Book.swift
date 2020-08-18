@@ -20,6 +20,7 @@ class Book{
     var status:Int
     var quantity:Int
     var check:Int
+    var avatarURL:String
     
     init() {
         ID = ""
@@ -32,9 +33,10 @@ class Book{
         status = 1
         quantity = 0
         check = 0
+        avatarURL = ""
     }
     
-    init(ID:String,name:String,category:String,author:String,publishingyear:String,publishingcompany:String,dateadded:String,status:Int,quantity:Int,check:Int) {
+    init(ID:String,name:String,category:String,author:String,publishingyear:String,publishingcompany:String,dateadded:String,status:Int,quantity:Int,check:Int,avatarURL:String) {
         self.ID=ID
         self.name=name
         self.category=category
@@ -45,18 +47,16 @@ class Book{
         self.status=status
         self.quantity=quantity
         self.check=check
+        self.avatarURL = avatarURL
     }
     
     func setQuantity(quantity:Int) -> Void {
         self.quantity = quantity
     }
     
-    func insertNewBook(){
+    func saveOrUpdateNewBook(){
         let db = Firestore.firestore()
-        var ref: DocumentReference? = nil
-
-        ref = db.collection("Books").addDocument(data: [
-            "ID":"\(self.ID)",
+        db.collection("Books").document("\(self.ID)").setData(["ID":"\(self.ID)",
             "name":"\(self.name)",
             "category":"\(self.category)",
             "author":"\(self.author)",
@@ -65,14 +65,8 @@ class Book{
             "dateadded":"\(self.dateadded)",
             "status":1,
             "quantity":"\(self.quantity)",
-            "check":0
-        ]) { err in
-            if let err = err {
-                print("Error adding document: \(err)")
-            } else {
-                print("Document added with ID: \(ref!.documentID)")
-            }
-        }
+            "check":0,
+            "avatarURL":"\(self.avatarURL)"], merge: true)
     }
     
     func updateDetail(ID:String){
@@ -88,7 +82,8 @@ class Book{
         "dateadded":"\(self.dateadded)",
         "status":"\(self.status)",
         "quantity":"\(self.quantity)",
-        "check":"\(self.check)"
+        "check":"\(self.check)",
+        "avatarURL":"\(self.avatarURL)"
         ], merge: true)
     }
 

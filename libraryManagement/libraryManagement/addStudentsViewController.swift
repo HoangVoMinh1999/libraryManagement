@@ -125,11 +125,10 @@ class addStudentsViewController: UIViewController, UIImagePickerControllerDelega
     @IBAction func confirmButton(_ sender: Any) {
 
         //---Collect data new student
-        let new_student:Student =  Student(name: nameTextField.text!, ID: IDTextField.text!, birthday: birthdayTextField.text!,gender:genderTextField.text!, address: addressTextField.text!, email: emailTextField.text!, startedDay: starteddayTextField.text!, status: 1)
+        let new_student:Student =  Student(name: nameTextField.text!.uppercased(), ID: IDTextField.text!, birthday: birthdayTextField.text!,gender:genderTextField.text!, address: addressTextField.text!, email: emailTextField.text!, startedDay: starteddayTextField.text!, status: 1)
         
         // Add a new document with a generated ID
         let ID_students:Array<String> = temp.value(forKey: "ID_students") as! Array<String>
-        
         
         if (ID_students.count == 1){
             let db = Firestore.firestore()
@@ -145,16 +144,51 @@ class addStudentsViewController: UIViewController, UIImagePickerControllerDelega
               }
                 if (data["name"] as! String == ""){
                     new_student.updateDetail(ID: ID_students[0])
+                    let alert:UIAlertController=UIAlertController(title: "Notice", message: "Add student successfully !!!", preferredStyle: .alert)
+                    let okButton:UIAlertAction=UIAlertAction(title: "OK", style: .default) { (UIAlertAction) in
+                        self.performSegue(withIdentifier: "unwindToMenuStudent", sender: self)
+                    }
+                    alert.addAction(okButton)
+                    self.present(alert,animated:true,completion: nil)
                 }
                 else{
-                    new_student.insertNewStudent()
+                    if (new_student.ID == document.data()!["ID"] as! String){
+                        let alert:UIAlertController = UIAlertController(title: "Notice", message: "This student is existed !!!", preferredStyle: .alert)
+                        let okButton:UIAlertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                        alert.addAction(okButton)
+                        self.present(alert,animated: true,completion: nil)
+                    } else {
+                        new_student.insertNewStudent()
+                        let alert:UIAlertController=UIAlertController(title: "Notice", message: "Add student successfully !!!", preferredStyle: .alert)
+                        let okButton:UIAlertAction=UIAlertAction(title: "OK", style: .default) { (UIAlertAction) in
+                            self.performSegue(withIdentifier: "unwindToMenuStudent", sender: self)
+                        }
+                        alert.addAction(okButton)
+                        self.present(alert,animated:true,completion: nil)
+                    }
                 }
             }
         } else {
-            new_student.insertNewStudent()
+            temp.set(false, forKey: "check")
+            self.checkStudent(Student: new_student, UserDefaults: temp)
+            let check = temp.value(forKey: "check") as! Bool
+            if (check == true){
+                let alert:UIAlertController = UIAlertController(title: "Notice", message: "This student is existed !!!", preferredStyle: .alert)
+                let okButton:UIAlertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                alert.addAction(okButton)
+                self.present(alert,animated: true,completion: nil)
+            } else{
+                new_student.insertNewStudent()
+                let alert:UIAlertController=UIAlertController(title: "Notice", message: "Add student successfully !!!", preferredStyle: .alert)
+                let okButton:UIAlertAction=UIAlertAction(title: "OK", style: .default) { (UIAlertAction) in
+                    self.performSegue(withIdentifier: "unwindToMenuStudent", sender: self)
+                }
+                alert.addAction(okButton)
+                self.present(alert,animated:true,completion: nil)
+            }
         }
         //---Change view to manageStudent view
-        self.performSegue(withIdentifier: "unwindToMenuStudent", sender: self)
+
         
     }
     
@@ -200,6 +234,23 @@ extension addStudentsViewController{
         //---ImageItem= imgChosen
         imgItem.image=UIImage(data: imgItemData)
         dismiss(animated: true, completion: nil)
+    }
+    
+    func checkStudent(Student:Student,UserDefaults:UserDefaults){
+        let db = Firestore.firestore()
+        let ID_students:Array<Dictionary<String,Any>>=UserDefaults.value(forKey: "ID_students") as! Array<Dictionary<String,Any>>
+        for id in ID_students {
+            let docRef = db.collection("Students").document("\(id)")
+            docRef.getDocument { (document, error) in
+                if let document = document, document.exists {
+                    if (Student.ID == document.data()!["ID"] as! String){
+                        UserDefaults.set(true, forKey: "check")
+                    }
+                } else {
+                    print("Document does not exist")
+                }
+            }
+        }
     }
 }
 

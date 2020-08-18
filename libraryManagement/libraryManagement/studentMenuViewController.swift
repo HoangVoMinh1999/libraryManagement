@@ -26,25 +26,6 @@ class studentMenuViewController: UIViewController {
         addButton.customMenuButton()
         manageButton.customMenuButton()
         statisticButton.customMenuButton()
-        
-        var ID_students:Array<String> = temp.value(forKey: "ID_students")! as! Array<String>
-        var ID_rules:Array<String> = temp.value(forKey: "ID_rules")! as! Array<String>
-        var ID_books:Array<String> = temp.value(forKey: "ID_books")! as! Array<String>
-        print(ID_students)
-        if (ID_students == []){
-            let new_student:Student = Student()
-            new_student.insertNewStudent()
-        }
-        if (ID_rules == []){
-            let new_rule:Rule = Rule()
-            new_rule.insertNewRule()
-        }
-        if (ID_books == []){
-            let new_book:Book = Book()
-            new_book.insertNewBook()
-        }
-        
-        // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
