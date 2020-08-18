@@ -18,6 +18,7 @@
 		2C88293824D52E9600B74446 /* Rule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C88293724D52E9600B74446 /* Rule.swift */; };
 		2C88293A24D544A400B74446 /* addRulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C88293924D544A400B74446 /* addRulesViewController.swift */; };
 		2C88293C24D5552E00B74446 /* editInfoRuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C88293B24D5552E00B74446 /* editInfoRuleViewController.swift */; };
+		2C88293E24EBAA3500B74446 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C88293D24EBAA3100B74446 /* Account.swift */; };
 		2CE04E4024A223C700123629 /* addBooksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE04E3F24A223C700123629 /* addBooksViewController.swift */; };
 		2CE04E4224A23D5000123629 /* manageBooksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE04E4124A23D5000123629 /* manageBooksViewController.swift */; };
 		2CE04E4424A23E5600123629 /* statisticBooksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE04E4324A23E5600123629 /* statisticBooksViewController.swift */; };
@@ -59,6 +60,7 @@
 		2C88293724D52E9600B74446 /* Rule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rule.swift; sourceTree = "<group>"; };
 		2C88293924D544A400B74446 /* addRulesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addRulesViewController.swift; sourceTree = "<group>"; };
 		2C88293B24D5552E00B74446 /* editInfoRuleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = editInfoRuleViewController.swift; sourceTree = "<group>"; };
+		2C88293D24EBAA3100B74446 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		2CE04E3F24A223C700123629 /* addBooksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addBooksViewController.swift; sourceTree = "<group>"; };
 		2CE04E4124A23D5000123629 /* manageBooksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = manageBooksViewController.swift; sourceTree = "<group>"; };
 		2CE04E4324A23E5600123629 /* statisticBooksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = statisticBooksViewController.swift; sourceTree = "<group>"; };
@@ -168,6 +170,7 @@
 				5CF10B4524B4D4BB00D01663 /* Book.swift */,
 				2C88293724D52E9600B74446 /* Rule.swift */,
 				5C477E2824D4C5870046F3BF /* BorrowCard.swift */,
+				2C88293D24EBAA3100B74446 /* Account.swift */,
 			);
 			path = "New Group";
 			sourceTree = "<group>";
@@ -327,6 +330,7 @@
 				5C3E691E2490B74C00202CEF /* manageStudentsViewController.swift in Sources */,
 				2CE04E4224A23D5000123629 /* manageBooksViewController.swift in Sources */,
 				2C88293224D2E30500B74446 /* editAccountViewController.swift in Sources */,
+				2C88293E24EBAA3500B74446 /* Account.swift in Sources */,
 				2CE04E4424A23E5600123629 /* statisticBooksViewController.swift in Sources */,
 				5CF10B4624B4D4BB00D01663 /* Book.swift in Sources */,
 				5C3E6916248FCB0600202CEF /* registerViewController.swift in Sources */,
