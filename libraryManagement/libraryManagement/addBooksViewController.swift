@@ -40,32 +40,73 @@ class addBooksViewController: UIViewController {
             self.present(alert,animated: true,completion: nil)
         } else {
             let new_book:Book = Book(ID: bookIDTextField.text!, name: booknameTextField.text!.uppercased(), category: categoryTextField.text!, author: authorTextField.text!, publishingyear: publishingyearTextField.text!,publishingcompany: publishingcompanyTextField.text!, dateadded: dateaddedTextField.text!, status: 1, quantity: Int(quantityTextField.text!)!, check: 0)
-            let ID_books:Array<String> = self.temp.value(forKey: "ID_books") as! Array<String>
-            for id in ID_books {
+            let ID_books:Array<String> = temp.value(forKey: "ID_books") as! Array<String>
+            if (ID_books.count == 1){
+                print("1")
                 let db = Firestore.firestore()
-                db.collection("Books").document("\(id)")
-                .addSnapshotListener { documentSnapshot, error in
-                  guard let document = documentSnapshot else {
-                    print("Error fetching document: \(error!)")
-                    return
-                  }
-                  guard let data = document.data() else {
-                    print("Document data was empty.")
-                    return
-                  }
-                  if (data["name"] as! String == new_book.name){
-                    let alert:UIAlertController=UIAlertController(title: "Notice", message: "This book is existed", preferredStyle: .alert)
-                    let okButton:UIAlertAction=UIAlertAction(title: "OK", style: .default, handler: nil)
-                    alert.addAction(okButton)
-                    self.present(alert,animated: true,completion: nil)
-                    return
-                  } else if (data["name"] as! String == ""){
-                    new_book.updateDetail(ID: id)
-                    return
-                  }
+                let docRef = db.collection("Books").document("\(ID_books[0])")
+                docRef.getDocument { (document, error) in
+                    if let document = document, document.exists {
+                        let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
+                        print("Document data: \(dataDescription)")
+                        if (document["name"] as! String == ""){
+                            new_book.updateDetail(ID: ID_books[0])
+                            let alert:UIAlertController = UIAlertController(title: "Notice", message: "Add successfully !!!", preferredStyle: .alert)
+                            let okButton:UIAlertAction = UIAlertAction(title: "OK", style: .default) { (UIAlertAction) in
+                                    self.performSegue(withIdentifier: "unwindToMenuBookWithSegue", sender: self)
+                            }
+                            alert.addAction(okButton)
+                            self.present(alert,animated: true,completion: nil)
+                        }
+                        else {
+                            if (new_book.name == document.data()!["name"] as! String){
+                                let alert:UIAlertController = UIAlertController(title: "Notice", message: "This book is existed", preferredStyle: .alert)
+                                let okButton:UIAlertAction=UIAlertAction(title: "OK", style: .default, handler: nil)
+                                alert.addAction(okButton)
+                                self.present(alert,animated: true,completion: nil)
+                            } else {
+                                new_book.insertNewBook()
+                                let alert:UIAlertController = UIAlertController(title: "Notice", message: "Add successfully !!!", preferredStyle: .alert)
+                                let okButton:UIAlertAction = UIAlertAction(title: "OK", style: .default) { (UIAlertAction) in
+                                        self.performSegue(withIdentifier: "unwindToMenuBookWithSegue", sender: self)
+                                }
+                                alert.addAction(okButton)
+                                self.present(alert,animated: true,completion: nil)
+                            }
+                        }
+                    } else {
+                        print("Document does not exist")
+                    }
+                }
+            } else {
+                print("2")
+                temp.set(false, forKey: "check")
+                let queue:DispatchQueue = DispatchQueue(label: "check")
+                queue.async {
+                    do {
+                        self.checkNewBook(book: new_book, UserDefaults: self.temp)
+                    }
+                    DispatchQueue.main.async {
+                        let check = self.temp.value(forKey: "check") as! Bool
+                        print(check)
+                        if (check == true){
+                            print("del add dc")
+                            let alert:UIAlertController = UIAlertController(title: "Notice", message: "This book is existed", preferredStyle: .alert)
+                            let okButton:UIAlertAction=UIAlertAction(title: "OK", style: .default, handler: nil)
+                            alert.addAction(okButton)
+                            self.present(alert,animated: true,completion: nil)
+                        } else {
+                            new_book.insertNewBook()
+                            let alert:UIAlertController = UIAlertController(title: "Notice", message: "Add successfully !!!", preferredStyle: .alert)
+                            let okButton:UIAlertAction = UIAlertAction(title: "OK", style: .default) { (UIAlertAction) in
+                                    self.performSegue(withIdentifier: "unwindToMenuBookWithSegue", sender: self)
+                            }
+                            alert.addAction(okButton)
+                            self.present(alert,animated: true,completion: nil)
+                        }
+                    }
                 }
             }
-            new_book.insertNewBook()
         }
     }
     
@@ -109,4 +150,23 @@ class addBooksViewController: UIViewController {
     }
     */
 
+}
+
+extension UIViewController{
+    func checkNewBook(book:Book,UserDefaults:UserDefaults){
+        let ID_books:Array<String> = UserDefaults.value(forKey: "ID_books") as! Array<String>
+        for id in ID_books {
+            let db = Firestore.firestore()
+            let docRef = db.collection("Books").document("\(id)")
+            docRef.getDocument { (document, error) in
+                if let document = document, document.exists {
+                    if (book.name == document["name"] as! String ){
+                        UserDefaults.set(true, forKey: "check")
+                    }
+                } else {
+                    print("Document does not exist")
+                }
+            }
+        }
+    }
 }

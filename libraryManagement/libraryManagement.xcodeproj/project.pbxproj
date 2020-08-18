@@ -39,7 +39,6 @@
 		5C3E69262490ED2C00202CEF /* addStudentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3E69252490ED2C00202CEF /* addStudentsViewController.swift */; };
 		5C3E69282490F3F400202CEF /* statisticStudentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3E69272490F3F400202CEF /* statisticStudentsViewController.swift */; };
 		5C3E692A2490F52300202CEF /* listBorrowingCardsStudentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3E69292490F52300202CEF /* listBorrowingCardsStudentTableViewCell.swift */; };
-		5C3E692E249125FA00202CEF /* Class in Resources */ = {isa = PBXBuildFile; fileRef = 5C3E692D249125FA00202CEF /* Class */; };
 		5C3E693024AEDC4800202CEF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5C3E692F24AEDC4800202CEF /* GoogleService-Info.plist */; };
 		5C477E2924D4C5870046F3BF /* BorrowCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C477E2824D4C5870046F3BF /* BorrowCard.swift */; };
 		5CF10B4424B4D49600D01663 /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF10B4324B4D49600D01663 /* Student.swift */; };
@@ -83,7 +82,6 @@
 		5C3E69252490ED2C00202CEF /* addStudentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addStudentsViewController.swift; sourceTree = "<group>"; };
 		5C3E69272490F3F400202CEF /* statisticStudentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = statisticStudentsViewController.swift; sourceTree = "<group>"; };
 		5C3E69292490F52300202CEF /* listBorrowingCardsStudentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = listBorrowingCardsStudentTableViewCell.swift; sourceTree = "<group>"; };
-		5C3E692D249125FA00202CEF /* Class */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Class; sourceTree = "<group>"; };
 		5C3E692F24AEDC4800202CEF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5C477E2824D4C5870046F3BF /* BorrowCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorrowCard.swift; sourceTree = "<group>"; };
 		5CF10B4324B4D49600D01663 /* Student.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
@@ -108,7 +106,6 @@
 			isa = PBXGroup;
 			children = (
 				5CF10B4224B4D47300D01663 /* New Group */,
-				5C3E692D249125FA00202CEF /* Class */,
 				5C3E68FE248FC7D900202CEF /* libraryManagement */,
 				5C3E68FD248FC7D900202CEF /* Products */,
 				C3D363BEBEE813E91E47CEAC /* Pods */,
@@ -256,7 +253,6 @@
 				5C3E6909248FC7FB00202CEF /* Assets.xcassets in Resources */,
 				5C3E693024AEDC4800202CEF /* GoogleService-Info.plist in Resources */,
 				5C3E6907248FC7D900202CEF /* Main.storyboard in Resources */,
-				5C3E692E249125FA00202CEF /* Class in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
