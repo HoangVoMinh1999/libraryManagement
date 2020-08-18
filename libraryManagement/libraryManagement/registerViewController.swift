@@ -128,9 +128,11 @@ class registerViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
                     db.collection("Accounts").document(self.emailTextField.text!).setData(["name" : self.nameTextField.text,"birthday": self.birthdayTextField.text,"gender":self.genderTextField.text,"email": self.emailTextField.text,"avatar": "gs://librarymanagement-bd9ab.appspot.com/images/avatar.png"])
                     
 
-                    let alert:UIAlertController=UIAlertController(title: "Success", message: error?.localizedDescription, preferredStyle: .alert)
+                    let alert:UIAlertController=UIAlertController(title: "Login Success", message: error?.localizedDescription, preferredStyle: .alert)
                     let okButton:UIAlertAction=UIAlertAction(title: "OK", style: .default) { (UIAlertAction) in
                         self.updateData()
+                        
+                        self.performSegue(withIdentifier: "unwindToAccountViewWithSegue", sender: self)
                     }
                     alert.addAction(okButton)
                     self.present(alert, animated: true, completion: nil)
@@ -145,7 +147,10 @@ class registerViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
                 }
             }
         }
-        
+    }
+       
+    @IBAction func cancelButton(_ sender: Any) {
+        self.performSegue(withIdentifier: "unwindToAccountViewWithSegue", sender: self)
     }
     
     override func viewDidLoad() {

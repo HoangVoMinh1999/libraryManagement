@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="8JH-7T-hlZ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="kLl-lO-5fC">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -250,6 +250,9 @@
                                 <state key="normal" title="CANCEL">
                                     <color key="titleColor" red="1" green="0.26218101519999998" blue="0.2196629933" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="cancelButton:" destination="FNv-X2-xXM" eventType="touchUpInside" id="3LB-nb-5k0"/>
+                                </connections>
                             </button>
                             <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="avatar" translatesAutoresizingMaskIntoConstraints="NO" id="ruD-wl-pTF">
                                 <rect key="frame" x="107" y="564" width="200" height="200"/>
@@ -279,16 +282,18 @@
                         <outlet property="nameTextField" destination="tLD-44-oJZ" id="cao-Sx-9Lf"/>
                         <outlet property="password_1TextField" destination="gtL-xp-PcX" id="QfD-YQ-758"/>
                         <outlet property="password_2TextField" destination="Jyw-m1-Gbo" id="p6Z-ON-5JW"/>
+                        <segue destination="dRl-yY-XEi" kind="unwind" identifier="unwindToAccountViewWithSegue" unwindAction="unwindToAccountViewWithSegue:" id="aCh-b4-bsV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nvf-VB-RbV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="dRl-yY-XEi" userLabel="Exit" sceneMemberID="exit"/>
                 <tapGestureRecognizer id="GtL-dG-3oa">
                     <connections>
                         <action selector="tapAvatar:" destination="FNv-X2-xXM" id="Iy0-3n-r4T"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="5867" y="2261"/>
+            <point key="canvasLocation" x="7787" y="2291"/>
         </scene>
         <!--STUDENT-->
         <scene sceneID="BFy-2T-LU8">
@@ -2062,9 +2067,11 @@
                         <outlet property="emailTextField" destination="Occ-fU-gS2" id="JKk-co-SxM"/>
                         <outlet property="fullnameTextField" destination="90p-Ri-zJA" id="OWp-iF-rbU"/>
                         <outlet property="genderTextField" destination="t47-Jf-8Np" id="y5k-6s-Fa2"/>
+                        <segue destination="0Bz-hu-APo" kind="unwind" identifier="unwindToLoginViewWithSegue" unwindAction="unwindToLoginViewWithSegue:" id="hhR-Lp-dFB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="crc-zu-tES" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="0Bz-hu-APo" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="8597.1014492753638" y="1572.9910714285713"/>
         </scene>
@@ -2243,7 +2250,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="o9M-Ja-TBw"/>
+        <segue reference="XPt-Al-xzT"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
     <resources>

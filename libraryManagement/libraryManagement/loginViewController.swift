@@ -35,9 +35,9 @@ class loginViewController: UIViewController {
     }
     @IBAction func forgetButton(_ sender: Any) {
     }
-    //---Variable
-    //var Username:String = "hoang"
-    //var Password:String = "123456"
+
+    @IBAction func unwindToLoginView(segue:UIStoryboardSegue){
+    }
     
     
     override func viewDidLoad() {
