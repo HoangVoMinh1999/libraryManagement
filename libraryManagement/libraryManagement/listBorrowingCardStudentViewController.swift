@@ -11,15 +11,14 @@ import Firebase
 
 class listBorrowingCardStudentViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let ID_cards:Array<String> = temp.value(forKey: "ID_cards")! as! Array<String>
-        print(ID_cards.count)
-        return ID_cards.count
+        let count = temp.value(forKey: "count") as! Int
+        return count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+ 
+        let t:Dictionary<String,Any> = temp.value(forKey: "\(temp.value(forKey: "ID_current_student")!)") as! Dictionary<String, Any>
         
-        let ID_cards:Array<String> = temp.value(forKey: "ID_cards")! as! Array<String>
-        print(ID_cards.count)
         let cell:listBorrowingCardsStudentTableViewCell = listBorrowingCardTableView.dequeueReusableCell(withIdentifier: "listBorrowingCardsStudentTableViewCell") as! listBorrowingCardsStudentTableViewCell
         let db = Firestore.firestore()
         db.collection("BorrowCard")
@@ -27,7 +26,19 @@ class listBorrowingCardStudentViewController: UIViewController,UITableViewDataSo
             if let error = error {
                 print("Error retreiving collection: \(error)")
             }
-
+            let documents = querySnapshot!.documents
+            for document in documents {
+                if (document.data()["ID_student"] as! String == t["ID"] as! String){
+                    cell.bookNameLabel.text = document.data()["bookName"] as! String
+                    cell.endedDayLabel.text = document.data()["endedDay"] as! String
+                    cell.startedDayLabel.text = document.data()["startedDay"] as! String
+                    if (document.data()["status"] as! String == "1"){
+                        cell.statusLabel.text = ""
+                    } else {
+                        cell.statusLabel.text = "Done"
+                    }
+                }
+            }
         }
         return cell
     }
@@ -39,24 +50,6 @@ class listBorrowingCardStudentViewController: UIViewController,UITableViewDataSo
     var temp = UserDefaults()
     //---Action
     @IBAction func addButton(_ sender: Any) {
-        let newCard = BorrowCard()
-                let db = Firestore.firestore()
-        var ref: DocumentReference? = nil
-        ref = db.collection("BorrowCard").addDocument(data: [
-            "ID_student":"\(newCard.ID_student)",
-            "ID_book":"\(newCard.ID_book)",
-            "startedDay":"\(newCard.endedDay)",
-            "endedDay":"",
-            "status":"\(newCard.status)",
-            "fine":"\(newCard.fine)"
-        ]) { err in
-            if let err = err {
-                print("Error adding document: \(err)")
-            } else {
-                print("Document added with ID: \(ref!.documentID)")
-                self.temp.set("\(ref!.documentID)", forKey: "ID_new_card")
-            }
-        }
     }
     @IBAction func unwindToManageCard(segue:UIStoryboardSegue){
         listBorrowingCardTableView.reloadData()

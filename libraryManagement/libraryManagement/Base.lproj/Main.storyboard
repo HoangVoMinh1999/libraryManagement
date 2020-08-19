@@ -1338,6 +1338,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="dateTextField:" destination="TE0-22-Uw4" eventType="editingDidBegin" id="x88-9S-UFK"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Book's ID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4RD-oN-XgH">
                                 <rect key="frame" x="20" y="391" width="86" height="24"/>
@@ -1352,6 +1355,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
+                                    <action selector="bookAction:" destination="TE0-22-Uw4" eventType="editingDidBegin" id="qxa-40-BDF"/>
                                     <action selector="bookIDAction:" destination="TE0-22-Uw4" eventType="editingDidEnd" id="Hf1-GU-oYr"/>
                                 </connections>
                             </textField>
@@ -1494,18 +1498,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="qmY-vO-Ot0"/>
                     </view>
-                    <navigationItem key="navigationItem" id="6n2-PO-bvH">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="PCF-zd-mod">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="9CX-8E-JRM">
-                                <rect key="frame" x="362" y="5" width="32" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" backgroundImage="arrow.clockwise" catalog="system"/>
-                            </button>
-                            <connections>
-                                <segue destination="9Wo-cJ-k5I" kind="show" id="aoG-Rg-mXm"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="6n2-PO-bvH"/>
                     <connections>
                         <outlet property="listBorrowingCardTableView" destination="YPU-ME-Jjw" id="f1i-6H-ogi"/>
                         <outlet property="studentNameLabel" destination="gDc-sf-oGa" id="FRB-wO-CkP"/>
@@ -2257,10 +2250,9 @@
     </inferredMetricsTieBreakers>
     <color key="tintColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
     <resources>
-        <image name="arrow.clockwise" catalog="system" width="115" height="128"/>
         <image name="avatar" width="512" height="512"/>
-        <image name="book" width="245" height="206"/>
         <image name="book" catalog="system" width="128" height="101"/>
+        <image name="book" width="245" height="206"/>
         <image name="book.circle" catalog="system" width="128" height="121"/>
         <image name="book.fill" catalog="system" width="128" height="100"/>
         <image name="bubble.left.and.bubble.right" catalog="system" width="128" height="96"/>

@@ -14,6 +14,7 @@ import Firebase
 class  BorrowCard{
     var ID_student:String
     var ID_book:String
+    var bookName:String
     var startedDay:String
     var endedDay:String
     var status:Int
@@ -21,10 +22,21 @@ class  BorrowCard{
     init() {
         ID_student = ""
         ID_book = ""
+        bookName = ""
         startedDay = ""
         endedDay = ""
         status = 1
         fine = 0
+    }
+    
+    init(ID_student:String,ID_book:String,bookName:String,startedDay:String,endedDay:String,status:Int,fine:Int) {
+        self.ID_student = ID_student
+        self.ID_book = ID_book
+        self.bookName = bookName
+        self.startedDay = startedDay
+        self.endedDay = endedDay
+        self.status = status
+        self.fine = fine
     }
     
     func addCard() {
@@ -34,7 +46,8 @@ class  BorrowCard{
         ref = db.collection("BorrowCard").addDocument(data: [
             "ID_student":"\(self.ID_student)",
             "ID_book":"\(self.ID_book)",
-            "startedDay":"\(self.endedDay)",
+            "bookName":"\(self.bookName)",
+            "startedDay":"\(self.startedDay)",
             "endedDay":"",
             "status":"\(self.status)",
             "fine":"\(self.fine)"
@@ -53,7 +66,8 @@ class  BorrowCard{
         db.collection("BorrowCard").document("\(ID)").setData([
             "ID_student":"\(self.ID_student)",
             "ID_book":"\(self.ID_book)",
-            "startedDay":"\(self.endedDay)",
+            "bookName":"\(self.bookName)",
+            "startedDay":"\(self.startedDay)",
             "endedDay":"",
             "status":"\(self.status)",
             "fine":"\(self.fine)"

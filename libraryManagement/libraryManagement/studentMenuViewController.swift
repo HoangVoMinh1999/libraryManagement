@@ -35,6 +35,7 @@ class studentMenuViewController: UIViewController {
         loadStudentData(temp: temp)
         loadRuleData(temp: temp)
         loadBookData(temp: temp)
+        loadBook(temp: temp)
     }
     
 }

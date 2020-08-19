@@ -82,7 +82,7 @@ class Book{
         "dateadded":"\(self.dateadded)",
         "status":"\(self.status)",
         "quantity":"\(self.quantity)",
-        "check":"\(self.check)",
+        "check":self.check,
         "avatarURL":"\(self.avatarURL)"
         ], merge: true)
     }

@@ -72,7 +72,7 @@ class addBooksViewController: UIViewController{
             alert.addAction(okButton)
             self.present(alert,animated: true,completion: nil)
         } else {
-            let new_book:Book = Book(ID: bookIDTextField.text!, name: booknameTextField.text!.uppercased(), category: categoryTextField.text!, author: authorTextField.text!, publishingyear: publishingyearTextField.text!,publishingcompany: publishingcompanyTextField.text!, dateadded: dateaddedTextField.text!, status: 1, quantity: Int(quantityTextField.text!)!, check: 0, avatarURL: "")
+            let new_book:Book = Book(ID: bookIDTextField.text!, name: booknameTextField.text!.uppercased(), category: categoryTextField.text!, author: authorTextField.text!, publishingyear: publishingyearTextField.text!,publishingcompany: publishingcompanyTextField.text!, dateadded: dateaddedTextField.text!, status: 1, quantity: Int(quantityTextField.text!)!, check: 0,avatarURL: "")
             temp.set(false, forKey: "check")
             var check = false
             let queue: DispatchQueue = DispatchQueue(label: "check data")

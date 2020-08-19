@@ -141,20 +141,23 @@ class editInfoStudentViewController: UIViewController,UIPickerViewDelegate,UIPic
             statusLabel.text = "Deact"
         }
         
+        idTextField.isEnabled = false
+        
         // Do any additional setup after loading the view.
-        let db = Firestore.firestore()
-        db.collection("BorrowCard").getDocuments() { (querySnapshot, err) in
-            if let err = err {
-                print("Error getting documents: \(err)")
-            } else {
-                var data_rules: Array<Dictionary<String,Any>> = []
-                var ID_rules: Array<String> = []
-                for document in querySnapshot!.documents {
-                    data_rules.append(document.data())
-                    ID_rules.append(document.documentID)
-                }
-                self.temp.set(ID_rules, forKey: "ID_cards")
+        db.collection("BorrowCard")
+        .addSnapshotListener { querySnapshot, error in
+            if let error = error {
+                print("Error retreiving collection: \(error)")
             }
+            let documents = querySnapshot!.documents
+            var count = 0
+            for document in documents {
+                if (document.data()["ID_student"] as! String == self.idTextField.text!){
+                    count += 1
+                }
+            }
+            print(count)
+            self.temp.set(count, forKey: "count")
         }
     }
     

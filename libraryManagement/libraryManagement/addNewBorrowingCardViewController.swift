@@ -9,7 +9,25 @@
 import UIKit
 import Firebase
 
-class addNewBorrowingCardViewController: UIViewController {
+class addNewBorrowingCardViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        let ID_books:Array<String> = temp.value(forKey: "ID_books") as! Array<String>
+        return ID_books.count
+    }
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        let data:Array<String> = temp.value(forKey: "listBook") as! Array<String>
+        print(data)
+        return data[row]
+    }
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        let data:Array<String> = temp.value(forKey: "listBook") as! Array<String>
+        idBookTextField.text = data[row]
+    }
+    
     //---Outlet
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var idStudentTextField: UITextField!
@@ -18,72 +36,87 @@ class addNewBorrowingCardViewController: UIViewController {
     @IBOutlet weak var startedDayTextField: UITextField!
     //---Variable
     var temp:UserDefaults = UserDefaults()
+    var id = ""
+    var name = ""
     //---Action
-    @IBAction func bookIDAction(_ sender: Any) {
-        let amount = 0
-        if (amount != 0){
-            noticeLabel.isHidden = false
-            noticeLabel.textColor = UIColor(cgColor: CGColor(srgbRed: 0.1, green: 1, blue: 0.5, alpha: 1))
-            noticeLabel.text = "* This book is available to borrow"
-        } else {
-            noticeLabel.isHidden = false
-            noticeLabel.textColor = UIColor(cgColor: CGColor(srgbRed: 1, green: 0.1, blue: 0.5, alpha: 1))
-            noticeLabel.text = "* No available book in library"
+    
+    @IBAction func dateTextField(_ sender: Any) {
+        let alert=UIAlertController(title: "\n\n\n\n\n\n\n\n\n", message: nil, preferredStyle: .actionSheet)
+        let datePicker = UIDatePicker(frame: CGRect(x: 20, y:0, width: 400, height: 300))
+        datePicker.sizeToFit()
+        datePicker.datePickerMode = .date
+        alert.view.addSubview(datePicker)
+        let okButton:UIAlertAction=UIAlertAction(title: "OK", style: .default) { (UIAlertAction) in
+            self.startedDayTextField.text = datePicker.date.dateToString()
         }
+        alert.addAction(okButton)
+        let cancelButton:UIAlertAction=UIAlertAction(title: "Cancel", style: .destructive, handler: nil)
+        alert.addAction(cancelButton)
+        //        alert.show()
+        self.present(alert,animated:true,completion: nil)
+    }
+    
+    
+    @IBAction func bookAction(_ sender: Any) {
+        let data:Array<String> = temp.value(forKey: "listBook") as! Array<String>
+        idBookTextField.text = data[0]
+        let alert=UIAlertController(title: "\n\n\n\n\n\n\n\n\n", message: nil, preferredStyle: .actionSheet)
+        let picker = UIPickerView(frame: CGRect(x: 30, y:0, width: 300, height: 400))
+        picker.dataSource=self
+        picker.delegate=self
+        picker.sizeToFit()
+        alert.view.addSubview(picker)
+        let okButton:UIAlertAction = UIAlertAction(title: "OK", style: .destructive, handler: nil)
+        alert.addAction(okButton)
+        let cancelButton:UIAlertAction=UIAlertAction(title: "Cancel", style: .cancel) { (UIAlertAction) in
+            self.idBookTextField.text = ""
+        }
+        alert.addAction(cancelButton)
+        
+        present(alert,animated: true,completion: nil)
+    }
+    
+    
+    @IBAction func bookIDAction(_ sender: Any) {
+        let data = idBookTextField.text?.components(separatedBy: "-")
+        id = data![0]
+        name = data![1]
+        print (id)
+        
+        let docRef = db.collection("Books").document("\(self.id)")
+
+          docRef.getDocument { (document, error) in
+              if let document = document, document.exists {
+                if (Int(document.data()!["quantity"] as! String)! > document.data()!["check"] as! Int){
+                          self.noticeLabel.isHidden = false
+                          self.noticeLabel.textColor = UIColor(cgColor: CGColor(srgbRed: 0.1, green: 1, blue: 0.5, alpha: 1))
+                          self.noticeLabel.text = "* This book is available to borrow"
+                        self.temp.set(document.data()!["check"] as! Int, forKey: "check")
+                      } else {
+                          self.noticeLabel.isHidden = false
+                          self.noticeLabel.textColor = UIColor(cgColor: CGColor(srgbRed: 1, green: 0.1, blue: 0.5, alpha: 1))
+                          self.noticeLabel.text = "* No available book in library"
+                      }
+              } else {
+                  print("Document does not exist")
+              }
+          }
+
+
 
     }
     
     @IBAction func confirmAction(_ sender: Any) {
-        let ID_new_card = temp.value(forKey: "ID_new_card") as! String
+        let new_rule:BorrowCard = BorrowCard(ID_student: idStudentTextField.text!, ID_book: id, bookName: name, startedDay: startedDayTextField.text!, endedDay: "", status: 1, fine: 0)
         
-        let db = Firestore.firestore()
-        let currentCard = db.collection("BorrowCard").document(ID_new_card)
-
-        // Set the "capital" field of the city 'DC'
-        currentCard.updateData([
-            "ID_student":"\(idStudentTextField.text!)",
-            "ID_book":"\(idBookTextField.text!)",
-            "startedDay":"\(startedDayTextField.text!)",
-            "endedDay":"",
-            "status":"1",
-            "fine":""
-        ]) { err in
-            if let err = err {
-                print("Error updating document: \(err)")
-            } else {
-                print("Document successfully updated")
-                let alert:UIAlertController = UIAlertController(title: "Notice !!", message: "Add new card successfully !!!", preferredStyle: .alert)
-                let okButton:UIAlertAction = UIAlertAction(title: "OK", style: .default) { (UIAlertAction) in
-                    
-                    let queue:DispatchQueue = DispatchQueue(label: "LoadData")
-                    
-                    queue.async {
-                        do{
-                            let db = Firestore.firestore()
-                            db.collection("BorrowCard").getDocuments() { (querySnapshot, err) in
-                                if let err = err {
-                                    print("Error getting documents: \(err)")
-                                } else {
-                                    var data_rules: Array<Dictionary<String,Any>> = []
-                                    var ID_rules: Array<String> = []
-                                    for document in querySnapshot!.documents {
-                                        data_rules.append(document.data())
-                                        ID_rules.append(document.documentID)
-                                    }
-                                    self.temp.set(ID_rules, forKey: "ID_cards")
-                                    print(self.temp.value(forKey: "ID_cards"))
-                                }
-                            }
-                            DispatchQueue.main.async {
-                                self.performSegue(withIdentifier: "unwindToManageCard", sender: self)
-                            }
-                        }
-                    }
-                }
-                alert.addAction(okButton)
-                self.present(alert,animated: true,completion: nil)
-            }
+        new_rule.addCard()
+        let alert:UIAlertController = UIAlertController(title: "Notice", message: "Add card successfully !!!", preferredStyle: .alert)
+        let okButton:UIAlertAction = UIAlertAction(title: "OK", style: .default) { (UIAlertAction) in
+            // Update one field, creating the document if it does not exist.
+            db.collection("Books").document(self.id).setData([ "check": (self.temp.value(forKey: "check") as! Int + 1) ], merge: true)
         }
+        alert.addAction(okButton)
+        self.present(alert,animated: true,completion: nil)
     }
     
     override func viewDidLoad() {
@@ -98,15 +131,22 @@ class addNewBorrowingCardViewController: UIViewController {
         
         // Do any additional setup after loading the view.
     }
-    
-    /*
-    // MARK: - Navigation
+}
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+extension UIViewController {
+    func loadBook (temp:UserDefaults){
+        db.collection("Books")
+        .addSnapshotListener { querySnapshot, error in
+            if let error = error {
+                print("Error retreiving collection: \(error)")
+            }
+            var data:Array<String> = []
+            let documents = querySnapshot!.documents
+            for document in documents {
+                let temp: String = "\(document.data()["ID"]!)-\(document.data()["name"]!)"
+                data.append(temp)
+            }
+            temp.set(data, forKey: "listBook")
+        }
     }
-    */
-
 }
