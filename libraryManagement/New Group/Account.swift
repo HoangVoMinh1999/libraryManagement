@@ -25,7 +25,7 @@ class Account{
         email = ""
         password = ""
         avatar = ""
-        status = 0
+        status = 1
     }
     
     init(name:String,birthday:String,gender:String,email:String,password:String,avatar:String,status:Int) {

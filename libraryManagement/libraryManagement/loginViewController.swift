@@ -14,14 +14,31 @@ class loginViewController: UIViewController {
     //---Outlet
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
-    
+    //---Variable
+    var temp = UserDefaults()
     //---Action
     @IBAction func loginButton(_ sender: Any) {
         Auth.auth().signIn(withEmail: emailTextField.text!, password: passwordTextField.text!) { [weak self] authResult, error in
           guard let strongSelf = self else { return }
             if (error == nil) {
-                print("Login success!")
-                self!.loggedIn()
+                let queue:DispatchQueue = DispatchQueue(label: "Login")
+                queue.async {
+                    do{
+                        let docRef = db.collection("Accounts").document("\(self!.emailTextField.text!)")
+
+                        docRef.getDocument { (document, error) in
+                            if let document = document, document.exists {
+                                self!.temp.set(document.data(), forKey: "current_user")
+                            } else {
+                                print("Document does not exist")
+                            }
+                        }
+                    }
+                    DispatchQueue.main.async {
+                        let viewController=self?.storyboard?.instantiateViewController(identifier: "mainViewController")
+                        self!.present(viewController!, animated: true, completion: nil)
+                    }
+                }
             }
             else
             {
@@ -43,6 +60,8 @@ class loginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
         let firebaseAuth = Auth.auth()
         do {
           try firebaseAuth.signOut()
@@ -55,16 +74,6 @@ class loginViewController: UIViewController {
         loggedIn()
         // Do any additional setup after loading the view.
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 
@@ -72,9 +81,7 @@ extension UIViewController {
     func loggedIn(){
         Auth.auth().addStateDidChangeListener { (auth, user) in
             if (user != nil){
-                print("Logged in")
-                let viewController=self.storyboard?.instantiateViewController(identifier: "studentMenuViewController") as! studentMenuViewController
-                self.present(viewController, animated: true, completion: nil)
+                print((user?.email)!)
             }
             else{
                 print("Not login")

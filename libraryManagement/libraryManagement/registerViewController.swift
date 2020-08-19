@@ -122,7 +122,7 @@ class registerViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
                 {
 
                     let db = Firestore.firestore()
-                    db.collection("Accounts").document(self.emailTextField.text!).setData(["name" : self.nameTextField.text,"birthday": self.birthdayTextField.text,"gender":self.genderTextField.text,"email": self.emailTextField.text,"avatar": "gs://librarymanagement-bd9ab.appspot.com/images/avatar.png"])
+                    db.collection("Accounts").document(self.emailTextField.text!).setData(["name" : self.nameTextField.text,"birthday": self.birthdayTextField.text,"gender":self.genderTextField.text,"email": self.emailTextField.text,"avatar": "gs://librarymanagement-bd9ab.appspot.com/images/avatar.png","status" : "1"])
                     
 
                     let alert:UIAlertController=UIAlertController(title: "Login Success", message: error?.localizedDescription, preferredStyle: .alert)

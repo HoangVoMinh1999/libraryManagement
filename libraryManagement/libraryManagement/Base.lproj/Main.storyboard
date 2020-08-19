@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="8JH-7T-hlZ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -417,7 +417,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="ULr-cH-s3M">
             <objects>
-                <tabBarController storyboardIdentifier="mainViewController" modalPresentationStyle="fullScreen" id="8JH-7T-hlZ" sceneMemberID="viewController">
+                <tabBarController restorationIdentifier="mainViewController" storyboardIdentifier="mainViewController" modalPresentationStyle="fullScreen" id="8JH-7T-hlZ" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="nBR-Wy-fCa">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1963,10 +1963,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="avatar" translatesAutoresizingMaskIntoConstraints="NO" id="nwN-YU-ZXF">
-                                <rect key="frame" x="18" y="103" width="89" height="89"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Email:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yCk-J2-hCb">
                                 <rect key="frame" x="18" y="389" width="56" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -2020,7 +2016,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CCx-eA-IR3">
-                                <rect key="frame" x="137" y="156" width="86" height="36"/>
+                                <rect key="frame" x="172" y="174" width="86" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Edit detail"/>
@@ -2029,13 +2025,6 @@
                                     <segue destination="0oQ-ao-TKi" kind="show" id="C93-OR-BBu"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Vo Minh Hoang" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H2A-nf-CmO">
-                                <rect key="frame" x="137" y="103" width="165" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ohh-CZ-Vl5">
                                 <rect key="frame" x="172" y="581" width="66" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -2058,17 +2047,30 @@
                                     <segue destination="FNv-X2-xXM" kind="show" id="5qV-N0-Y70"/>
                                 </connections>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="avatar" translatesAutoresizingMaskIntoConstraints="NO" id="GEz-kT-jY7">
+                                <rect key="frame" x="20" y="103" width="120" height="120"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Vo Minh Hoang" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H2A-nf-CmO">
+                                <rect key="frame" x="172" y="123" width="165" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="ALE-Xo-wVL"/>
                     </view>
                     <navigationItem key="navigationItem" title="Account" id="piz-RI-PcC"/>
                     <connections>
-                        <outlet property="avatarImage" destination="nwN-YU-ZXF" id="iA2-mM-0Gq"/>
+                        <outlet property="avatarImage" destination="GEz-kT-jY7" id="wfW-R4-jEC"/>
                         <outlet property="birthdayTextField" destination="8UU-7L-Tso" id="unG-x3-aJ1"/>
+                        <outlet property="createNewAccountButton" destination="4cZ-Ve-8XB" id="N8h-K3-UCd"/>
                         <outlet property="emailTextField" destination="Occ-fU-gS2" id="JKk-co-SxM"/>
                         <outlet property="fullnameTextField" destination="90p-Ri-zJA" id="OWp-iF-rbU"/>
                         <outlet property="genderTextField" destination="t47-Jf-8Np" id="y5k-6s-Fa2"/>
+                        <outlet property="nameLabel" destination="H2A-nf-CmO" id="tfm-eR-vES"/>
                         <segue destination="0Bz-hu-APo" kind="unwind" identifier="unwindToLoginViewWithSegue" unwindAction="unwindToLoginViewWithSegue:" id="hhR-Lp-dFB"/>
                     </connections>
                 </viewController>

@@ -12,6 +12,8 @@ import FirebaseAuth
 
 class accountViewController: UIViewController {
     //---Outlet
+    @IBOutlet weak var createNewAccountButton: UIButton!
+    @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var fullnameTextField: UITextField!
     @IBOutlet weak var birthdayTextField: UITextField!
     @IBOutlet weak var genderTextField: UITextField!
@@ -47,11 +49,26 @@ class accountViewController: UIViewController {
     }
     
     //---Variable
-
+    var temp = UserDefaults()
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        avatarImage.layer.cornerRadius = (avatarImage.image?.size.width)!/2
         // Do any additional setup after loading the view.
+        let t:Dictionary<String,Any> = temp.value(forKey: "current_user") as! Dictionary<String, Any>
+        nameLabel.text = t["name"] as! String
+        fullnameTextField.text = t["name"] as! String
+        birthdayTextField.text = t["birthday"] as! String
+        genderTextField.text = t["gender"] as! String
+        emailTextField.text = t["email"] as! String
+        
+        fullnameTextField.isEnabled = false
+        birthdayTextField.isEnabled = false
+        genderTextField.isEnabled = false
+        emailTextField.isEnabled = false
+        
+        if (t["status"] as! String != "2"){
+            createNewAccountButton.isHidden = true
+        }
     }
     
 
