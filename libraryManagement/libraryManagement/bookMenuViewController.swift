@@ -11,6 +11,9 @@ import Firebase
 
 class bookMenuViewController: UIViewController {
     //---Outlet
+    @IBOutlet weak var addBookButton: UIButton!
+    @IBOutlet weak var manageBookButton: UIButton!
+    @IBOutlet weak var statisticBookButton: UIButton!
     //---Variable
     var temp = UserDefaults()
     //---Action
@@ -20,6 +23,10 @@ class bookMenuViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        addBookButton.customMenuButton()
+        manageBookButton.customMenuButton()
+        statisticBookButton.customMenuButton()
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         loadBookData(temp: temp)

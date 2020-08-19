@@ -21,21 +21,26 @@ class statisticBooksViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        var data: Array<Dictionary<String,Any>> = temp.value(forKey: "data_books") as! Array<Dictionary<String, Any>>
-        totalBookLabel.text = "\(totalBooks(data: data))"
-
+        
+        db.collection("Books").getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                var total = 0
+                var check = 0
+                for document in querySnapshot!.documents {
+                    let quantity = Int(document.data()["quantity"] as! String)
+                    let t = Int(document.data()["check"] as! String)
+                    total += quantity!
+                    check += t!
+                }
+                self.totalBookLabel.text = "\(total)"
+                self.totalBorrowingLabel.text = "\(check)"
+                self.totalRemainingLabel.text = "\(total - check)"
+            }
+        }
         // Do any additional setup after loading the view.
     }
-    
-    func totalBooks(data:Array<Dictionary<String,Any>>) -> Int {
-        var count = 0
-        for i in data {
-            count += Int(i["quantity"] as! String)!
-            }
-        return count
-    }
-    
-
     /*
     // MARK: - Navigation
 

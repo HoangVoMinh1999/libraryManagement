@@ -45,13 +45,38 @@ class editInfoBookViewController: UIViewController {
     }
     
     
-//    @IBAction func confirmButton(_ sender: Any) {
-//        let currentBook:Book = Book(ID: bookIDTextField.text!, name: booknameTextField.text!.uppercased(), category: categoryTextField.text!, author: authorTextField.text!, publishingyear: publishingyearTextField.text!, publishingcompany: publishingcompanyTextField.text!, dateadded: dateaddedTextField.text!, status: true, quantity: Int(quantityTextField.text!)!)
-//        
-//        currentBook.updateDetail(currentBook: currentBook, ID: temp.value(forKey: "ID_current_book") as! String)
-//        
-//        self.performSegue(withIdentifier: "unwindToManageBookWithSegue", sender: self)
-//    }
+    @IBAction func confirmButton(_ sender: Any) {
+        let t:Dictionary<String,Any> = temp.value(forKey: "\(temp.value(forKey: "ID_current_book")!)") as! Dictionary<String, Any>
+        print(t)
+        let currentBook:Book = Book()
+        currentBook.name = booknameTextField.text!.uppercased()
+        currentBook.author = authorTextField.text!
+        currentBook.avatarURL = t["avatarURL"] as! String
+        currentBook.category = categoryTextField.text!
+        currentBook.dateadded = dateaddedTextField.text!
+        currentBook.ID = bookIDTextField.text!
+        currentBook.publishingcompany = publishingcompanyTextField.text!
+        currentBook.publishingyear = publishingyearTextField.text!
+        currentBook.check = t["check"] as! Int
+        if (Int(quantityTextField.text!)! < t["check"] as! Int){
+            let alert:UIAlertController = UIAlertController(title: "Notice", message: "Not suitable quantity !!!", preferredStyle: .alert)
+            let okButton:UIAlertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alert.addAction(okButton)
+            present(alert,animated: true,completion: nil)
+        } else {
+            currentBook.quantity = Int(quantityTextField.text!)!
+        }
+        
+        currentBook.updateDetail(ID: temp.value(forKey: "ID_current_book") as! String)
+        
+        let alert:UIAlertController = UIAlertController(title: "Notice", message: "Update successfully !!!", preferredStyle: .alert)
+        let okButton:UIAlertAction = UIAlertAction(title: "OK", style: .default) { (UIAlertAction) in
+            self.performSegue(withIdentifier: "unwindToManageBookWithSegue", sender: self)
+        }
+        alert.addAction(okButton)
+        self.present(alert,animated: true,completion: nil)
+
+    }
     
     @IBAction func cancelButton(_ sender: Any) {
         self.performSegue(withIdentifier: "unwindToManageBookWithSegue", sender: self)
@@ -62,7 +87,6 @@ class editInfoBookViewController: UIViewController {
         super.viewDidLoad()
         let t:Dictionary<String,Any> = temp.value(forKey: "\(temp.value(forKey: "ID_current_book")!)") as! Dictionary<String, Any>
         
-        print(t)
         bookIDTextField.text = t["ID"] as? String
         booknameTextField.text = t["name"] as? String
         categoryTextField.text = t["category"] as? String
@@ -72,6 +96,8 @@ class editInfoBookViewController: UIViewController {
         dateaddedTextField.text = t["dateadded"] as? String
         quantityTextField.text = t["quantity"] as? String
         // Do any additional setup after loading the view.
+        
+        bookIDTextField.isEnabled = false
     }
     
 
