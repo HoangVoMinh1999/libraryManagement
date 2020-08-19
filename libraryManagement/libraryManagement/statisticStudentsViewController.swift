@@ -16,18 +16,27 @@ class statisticStudentsViewController: UIViewController {
     var temp:UserDefaults = UserDefaults()
     override func viewDidLoad() {
         super.viewDidLoad()
-        var data:Array<Dictionary<String,Any>> = temp.value(forKey: "data_students") as! Array<Dictionary<String, Any>>
-        totalStudentLabel.text = "\(data.count)"
-        availableStudentLabel.text = "\(availableStudents(data: data))"
-        disabledStudentLabel.text = "\(data.count-availableStudents(data: data))"
-        
-        
+        db.collection("Students").getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                self.totalStudentLabel.text = "\(querySnapshot!.documents.count)"
+                var count = 0
+                for document in querySnapshot!.documents {
+                    if ((document.data()["status"]) as! String == "1"){
+                        count += 1
+                    }
+                }
+                self.availableStudentLabel.text = "\(count)"
+                self.disabledStudentLabel.text = "\((querySnapshot?.documents.count)! - count)"
+            }
+        }
         // Do any additional setup after loading the view.
     }
     func availableStudents(data:Array<Dictionary<String,Any>>) -> Int {
         var count = 0
         for i in data {
-            if (i["status"] as! String == "true"){
+            if (i["status"] as! String == "1"){
                 count += 1
             }
         }

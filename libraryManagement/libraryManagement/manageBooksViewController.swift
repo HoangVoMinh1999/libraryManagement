@@ -14,14 +14,6 @@ class manageBooksViewController: UIViewController, UITableViewDataSource, UITabl
     
     //---Variable
     var tmp = UserDefaults()
-//    var book = Book()
-//    var data:Array<Dictionary<String,Any>> = []
-    
-    var isSearchBarEmpty: Bool {
-      return searchController.searchBar.text?.isEmpty ?? true
-    }
-
-
     
     //---Action
     @IBAction func unwindToManageBook(segue:UIStoryboardSegue){
@@ -77,16 +69,7 @@ class manageBooksViewController: UIViewController, UITableViewDataSource, UITabl
         }
     }
     
-    let searchController = UISearchController(searchResultsController: nil)
-    
-//    func filterContentForSearchText(_ searchText: String,
-//                                    category: ) {
-//      filteredBooks = Book { (book: Book) -> Bool in
-//        return book.name.lowercased().contains(searchText.lowercased())
-//      }
-//
-//      tableView.reloadData()
-//    }
+
 
     
     //---Outlet
@@ -96,9 +79,6 @@ class manageBooksViewController: UIViewController, UITableViewDataSource, UITabl
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        data = book.findAll()
-//        print(data)
         
         booksTableView.delegate = self
         booksTableView.dataSource = self
@@ -121,8 +101,4 @@ class manageBooksViewController: UIViewController, UITableViewDataSource, UITabl
     */
 
 }
-extension manageBooksViewController: UISearchResultsUpdating {
-  func updateSearchResults(for searchController: UISearchController) {
-    // TODO
-  }
-}
+

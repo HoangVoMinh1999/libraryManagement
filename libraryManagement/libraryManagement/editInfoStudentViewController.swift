@@ -92,14 +92,22 @@ class editInfoStudentViewController: UIViewController,UIPickerViewDelegate,UIPic
     }
     
     
-//    @IBAction func confirmAction(_ sender: Any) {
-//        let currentStudent:Student =  Student(name: nameTextField.text!, ID: idTextField.text!, birthday: birthdayTextField.text!,gender:genderTextField.text!, address: addressTextField.text!, email: emailTextField.text!, startedDay: starteddayTextField.text!, status: statusSwitch.isOn)
-//
-//        currentStudent.updateDetail(currentStudent: currentStudent, ID: temp.value(forKey: "ID_current_student")! as! String)
-//
-//
-//        self.performSegue(withIdentifier: "unwindToManageStudent", sender: self)
-//    }
+    @IBAction func confirmAction(_ sender: Any) {
+        let currentStudent:Student =  Student(name: nameTextField.text!, ID: idTextField.text!, birthday: birthdayTextField.text!,gender:genderTextField.text!, address: addressTextField.text!, email: emailTextField.text!, startedDay: starteddayTextField.text!, status: 1 )
+        if (statusSwitch.isOn){
+            currentStudent.status = 1
+        } else {
+            currentStudent.status = 0
+        }
+
+        currentStudent.updateDetail( ID: temp.value(forKey: "ID_current_student")! as! String)
+        let alert:UIAlertController = UIAlertController(title: "Notice", message: "Update successfully", preferredStyle: .alert)
+        let okButton:UIAlertAction = UIAlertAction(title: "OK", style: .default) { (UIAlertAction) in
+            self.performSegue(withIdentifier: "unwindToManageStudent", sender: self)
+        }
+        alert.addAction(okButton)
+        present(alert,animated: true,completion: nil)
+    }
     
     
     @IBAction func statusSwitch(_ sender: Any) {
@@ -125,7 +133,7 @@ class editInfoStudentViewController: UIViewController,UIPickerViewDelegate,UIPic
         addressTextField.text = t["address"] as? String
         emailTextField.text = t["email"] as? String
         starteddayTextField.text = t["startedDay"] as? String
-        if (t["status"] as! String == "true"){
+        if (t["status"] as! String == "1"){
             statusSwitch.isOn = true
             statusLabel.text="Active"
         } else {

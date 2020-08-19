@@ -60,32 +60,20 @@ class manageStudentsViewController: UIViewController,UITableViewDataSource,UITab
     }
     
     //---Outlet
-    @IBOutlet weak var searchNameButton: UIButton!
-    @IBOutlet weak var searchIDButton: UIButton!
+    
+    @IBOutlet weak var addButton: UIButton!
+    
+    @IBOutlet weak var noticeLabel: UILabel!
+    @IBOutlet weak var idLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var listStudentsTable: UITableView!
     //---Variable
     var temp:UserDefaults = UserDefaults()
     
 
     //---Action
-    @IBAction func searchNameButton(_ sender: UIButton) {
-        if (sender.isSelected){
-            sender.isSelected = false
-            searchIDButton.isSelected = true
-        } else {
-            sender.isSelected = true
-            searchIDButton.isSelected = false
-        }
-    }
-    @IBAction func searchIDButton(_ sender: UIButton) {
-        if (sender.isSelected){
-            sender.isSelected = false
-            searchNameButton.isSelected = true
-        } else {
-            sender.isSelected = true
-            searchNameButton.isSelected = false
-        }
-    }
+
+
     @IBAction func unwindToManageStudent(segue:UIStoryboardSegue){
     }
     //---Function
@@ -94,11 +82,18 @@ class manageStudentsViewController: UIViewController,UITableViewDataSource,UITab
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        searchNameButton.isSelected = true
         listStudentsTable.dataSource = self
         listStudentsTable.delegate = self
         
-        
+        let ID_students:Array<String> = temp.value(forKey: "ID_students") as! Array<String>
+        if (ID_students.count != 0){
+            noticeLabel.isHidden = true
+            addButton.isHidden = true
+        } else {
+            nameLabel.isHidden = true
+            idLabel.isHidden = true
+            listStudentsTable.isHidden = true
+        }
     
         listStudentsTable.reloadData()
 

@@ -238,7 +238,7 @@ extension addStudentsViewController{
     
     func checkStudent(Student:Student,UserDefaults:UserDefaults){
         let db = Firestore.firestore()
-        let ID_students:Array<Dictionary<String,Any>>=UserDefaults.value(forKey: "ID_students") as! Array<Dictionary<String,Any>>
+        let ID_students:Array<String>=UserDefaults.value(forKey: "ID_students") as! Array<String>
         for id in ID_students {
             let docRef = db.collection("Students").document("\(id)")
             docRef.getDocument { (document, error) in
