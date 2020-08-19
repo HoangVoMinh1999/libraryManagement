@@ -156,7 +156,6 @@ class registerViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         password_2TextField.isSecureTextEntry  = true
         password_1TextField.textContentType = .newPassword
         password_2TextField.textContentType = .newPassword
-        dismiss(animated: true, completion: nil)
         
         // avatarImage.image = UIImage(contentsOfFile: "avatar")
         
