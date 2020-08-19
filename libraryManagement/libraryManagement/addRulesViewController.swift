@@ -26,13 +26,22 @@ class addRulesViewController: UIViewController {
             alert.addAction(okButton)
             present(alert, animated: true, completion: nil)
         } else {
-            let db = Firestore.firestore()
             let new_rule = Rule(title: titleTextField.text!, content: contentTextField.text!)
-            new_rule.saveOrUpdateRules()
             let alert:UIAlertController = UIAlertController(title: "Notice", message: "Add rule successfully!!!", preferredStyle: .alert)
             let okButton:UIAlertAction = UIAlertAction(title: "OK", style: .default) { (UIAlertAction) in
+                let queue:DispatchQueue = DispatchQueue(label: "UpdateRules")
+                queue.sync {
+                    new_rule.saveOrUpdateRules()
+                }
+                queue.sync {
+                    self.loadRuleData(temp: self.temp)
+                }
+                queue.sync {
+                    print(self.temp.value(forKey: "ID_rules") as! Array<String>)
                     self.performSegue(withIdentifier: "unwindToRule", sender: self)
+                }
             }
+
             alert.addAction(okButton)
             self.present(alert,animated: true,completion: nil)
         }
@@ -52,14 +61,9 @@ class addRulesViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func viewWillDisappear(_ animated: Bool) {
+        loadRuleData(temp: temp)
+        print("3: \(temp.value(forKey: "ID_rules") as! Array<String>)")
     }
-    */
 
 }

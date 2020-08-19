@@ -27,6 +27,7 @@ class Rule{
         let db = Firestore.firestore()
         // Update one field, creating the document if it does not exist.
         db.collection("Rules").document("\(self.title)").setData([ "title":"\(self.title)","content":"\(self.content)" ], merge: true)
+        print("Done")
     }
     
 }

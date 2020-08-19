@@ -8,60 +8,60 @@
 
 import UIKit
 import Firebase
-
+let db = Firestore.firestore()
 class ruleViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     //---Variable
     var tmp = UserDefaults()
-    
     //---Outlet
     @IBOutlet weak var rulesTableView: UITableView!
     
     //---Action
     @IBAction func unwindToRule(segue:UIStoryboardSegue) {
-
     }
     
     //---Func
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let ID_rules:Array<String> = tmp.value(forKey: "ID_rules") as! Array<String>
+        let ID_rules:Array<String> = self.tmp.value(forKey: "ID_rules") as! Array<String>
+        print("1")
         return ID_rules.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let ID_rules:Array<String> = tmp.value(forKey: "ID_rules") as! Array<String>
         let cell: listRulesTableViewCell = rulesTableView.dequeueReusableCell(withIdentifier: "listRulesTableViewCell") as! listRulesTableViewCell
-        let db = Firestore.firestore()
-        db.collection("Rules").document("\(ID_rules[indexPath.row])")
-        .addSnapshotListener { documentSnapshot, error in
-            guard let document = documentSnapshot else {
-                print("Error fetching document: \(error!)")
-                return
+                
+        db.collection("Rules")
+        .addSnapshotListener { querySnapshot, error in
+            if let error = error {
+                print("Error retreiving collection: \(error)")
             }
-            let source = document.metadata.hasPendingWrites ? "Local" : "Server"
-            print("\(source) data: \(document.data() ?? [:])")
-            cell.ruletitleLabel.text = document.data()!["title"]! as? String
-            self.tmp.set(document.data(), forKey: "\(ID_rules[indexPath.row])")
+            let documents = querySnapshot!.documents
+            cell.ruletitleLabel.text = documents[indexPath.row]["title"] as! String
+            cell.contentTextArea.text = documents[indexPath.row]["content"] as! String
         }
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let ID_rules:Array<String> = tmp.value(forKey: "ID_rules") as! Array<String>
-        self.tmp.setValue(ID_rules[indexPath.row], forKey: "ID_current_rule")
-        }
-        
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        var ID_rules:Array<String> = tmp.value(forKey: "ID_rules") as! Array<String>
         if editingStyle == .delete {
-            let alert:UIAlertController = UIAlertController(title: "Warning", message: "Do you want to delete this rule?", preferredStyle: .alert)
-            let okButton:UIAlertAction = UIAlertAction(title: "OK", style: .default) { (UIAlertAction) in
-                    
-                self.rulesTableView.deleteRows(at: [indexPath], with: .fade)
-            }
-            alert.addAction(okButton)
-            let cancelButton:UIAlertAction = UIAlertAction(title: "CANCEL", style: .destructive, handler: nil)
-                alert.addAction(cancelButton)
-                present(alert, animated: false,completion: nil)
+            self.rulesTableView.deleteRows(at: [indexPath], with: .automatic)
+//            let alert:UIAlertController = UIAlertController(title: "Notice", message: "Delete successfully !!!", preferredStyle: .alert)
+//            let okButton:UIAlertAction = UIAlertAction(title: "OK", style: .default) { (UIAlertAction) in
+//                db.collection("Rules").document("\(ID_rules[indexPath.row])").delete() { err in
+//                        if let err = err {
+//                            print("Error removing document: \(err)")
+//                        } else {
+//                            print("Document successfully removed!")
+//                        }
+//                    }
+//                ID_rules.remove(at: indexPath.row)
+//                self.tmp.set(ID_rules, forKey: "ID_rules")
+//            }
+//            alert.addAction(okButton)
+//            present(alert, animated: false,completion: nil)
+            
         }
     }
     
@@ -77,10 +77,6 @@ class ruleViewController: UIViewController, UITableViewDelegate, UITableViewData
 
         // Do any additional setup after loading the view.
     }
-    override func viewWillAppear(_ animated: Bool) {
-        loadRuleData(temp: tmp)
-    }
-
     /*
     // MARK: - Navigation
 

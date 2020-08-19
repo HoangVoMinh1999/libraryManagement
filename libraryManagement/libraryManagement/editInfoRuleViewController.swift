@@ -15,15 +15,30 @@ class editInfoRuleViewController: UIViewController {
     
     //---Outlet
     @IBOutlet weak var titleTextField: UITextField!
-    @IBOutlet weak var contentTextField: UITextField!
+    @IBOutlet weak var contentTextField: UITextView!
+    
     
     //---Action
     @IBAction func confirmButton(_ sender: Any) {
-
+        if (contentTextField.text == ""){
+            let alert:UIAlertController = UIAlertController(title: "Notice", message: "Please fill content of rule", preferredStyle: .alert)
+            let okButton:UIAlertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alert.addAction(okButton)
+            self.present(alert,animated: true,completion: nil)
+        } else {
+            let new_rule:Rule = Rule(title: titleTextField.text!, content: contentTextField.text!)
+            new_rule.saveOrUpdateRules()
+            let alert:UIAlertController = UIAlertController(title: "Notice", message: "Add successfully !!!", preferredStyle: .alert)
+            let okButton:UIAlertAction = UIAlertAction(title: "OK", style: .default) { (UIAlertAction) in
+                    self.performSegue(withIdentifier: "unwindToRule", sender: self)
+            }
+            alert.addAction(okButton)
+            self.present(alert,animated: true,completion: nil)
+        }
     }
     
     @IBAction func cancelButton(_ sender: Any) {
-        self.performSegue(withIdentifier: "unwindToRuleWithSegue", sender: self)
+        self.performSegue(withIdentifier: "unwindToRule", sender: self)
     }
     
     //---Func
@@ -31,8 +46,11 @@ class editInfoRuleViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let t:Dictionary<String,Any> = temp.value(forKey: "\(temp.value(forKey: "ID_current_rule")!)") as! Dictionary<String, Any>
+        let t: Dictionary<String,Any> = temp.value(forKey: "current_rule") as! Dictionary<String,Any>
         print(t)
+        
+        titleTextField.isEnabled = false
+        contentTextField.layer.borderWidth = 2
         
         titleTextField.text = t["title"] as? String
         contentTextField.text = t["content"] as? String

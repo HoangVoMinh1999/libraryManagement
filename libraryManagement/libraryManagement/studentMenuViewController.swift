@@ -66,18 +66,17 @@ extension UIViewController{
     
     func loadRuleData(temp:UserDefaults) {
         let db = Firestore.firestore()
-        db.collection("Rules").getDocuments() { (querySnapshot, err) in
-            if let err = err {
-                print("Error getting documents: \(err)")
-            } else {
-                var data_rules: Array<Dictionary<String,Any>> = []
-                var ID_rules: Array<String> = []
-                for document in querySnapshot!.documents {
-                    data_rules.append(document.data())
-                    ID_rules.append(document.documentID)
-                }
-                temp.set(ID_rules, forKey: "ID_rules")
+        db.collection("Rules")
+        .addSnapshotListener { querySnapshot, error in
+            if let error = error {
+                print("Error retreiving collection: \(error)")
             }
+            var ID_rules: Array<String> = []
+            let documents = querySnapshot!.documents
+            for document in documents {
+                ID_rules.append(document.data()["title"] as! String)
+            }
+            temp.set(ID_rules, forKey: "ID_rules")
         }
     }
     
@@ -87,10 +86,8 @@ extension UIViewController{
             if let err = err {
                 print("Error getting documents: \(err)")
             } else {
-                var data_rules: Array<Dictionary<String,Any>> = []
                 var ID_rules: Array<String> = []
                 for document in querySnapshot!.documents {
-                    data_rules.append(document.data())
                     ID_rules.append(document.documentID)
                 }
                 temp.set(ID_rules, forKey: "ID_books")
