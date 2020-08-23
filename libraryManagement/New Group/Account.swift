@@ -66,7 +66,6 @@ class Account{
             "birthday":"\(self.birthday)",
             "gender":"\(self.gender)",
             "email":"\(self.email)",
-            "password":"\(self.password)",
             "avatar":"\(self.avatar)",
             "status":"\(self.status)"
         ], merge: true)

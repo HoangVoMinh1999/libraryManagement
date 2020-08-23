@@ -2373,9 +2373,11 @@
                         <outlet property="genderTextField" destination="Vye-yt-4lL" id="2P0-tc-Jgc"/>
                         <outlet property="password_1TextField" destination="KFv-d1-ULq" id="2bO-Be-Oby"/>
                         <outlet property="password_2TextField" destination="2Pc-l8-hSb" id="Wt7-ZL-NWJ"/>
+                        <segue destination="d3t-ie-31O" kind="unwind" identifier="unwindToAccountViewWithSegue" unwindAction="unwindToAccountViewWithSegue:" id="loz-Lp-SIg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VP3-rz-0bn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="d3t-ie-31O" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="6550.7246376811599" y="1572.9910714285713"/>
         </scene>
