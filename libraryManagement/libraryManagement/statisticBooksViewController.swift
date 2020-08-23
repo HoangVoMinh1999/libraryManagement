@@ -30,9 +30,9 @@ class statisticBooksViewController: UIViewController {
                 var check = 0
                 for document in querySnapshot!.documents {
                     let quantity = Int(document.data()["quantity"] as! String)
-                    let t = Int(document.data()["check"] as! String)
+                    let t = document.data()["check"] as! Int
                     total += quantity!
-                    check += t!
+                    check += t
                 }
                 self.totalBookLabel.text = "\(total)"
                 self.totalBorrowingLabel.text = "\(check)"

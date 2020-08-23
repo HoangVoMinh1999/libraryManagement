@@ -41,6 +41,7 @@
 		5C3E692A2490F52300202CEF /* listBorrowingCardsStudentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3E69292490F52300202CEF /* listBorrowingCardsStudentTableViewCell.swift */; };
 		5C3E693024AEDC4800202CEF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5C3E692F24AEDC4800202CEF /* GoogleService-Info.plist */; };
 		5C477E2924D4C5870046F3BF /* BorrowCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C477E2824D4C5870046F3BF /* BorrowCard.swift */; };
+		5C53DBA224EDD7E0009F24DE /* editBorrowCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C53DBA124EDD7DF009F24DE /* editBorrowCardViewController.swift */; };
 		5CF10B4424B4D49600D01663 /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF10B4324B4D49600D01663 /* Student.swift */; };
 		5CF10B4624B4D4BB00D01663 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF10B4524B4D4BB00D01663 /* Book.swift */; };
 		FFBF45C10977D3C77A8DACE7 /* Pods_libraryManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FF1FE8A742619AA755155A1 /* Pods_libraryManagement.framework */; };
@@ -84,6 +85,7 @@
 		5C3E69292490F52300202CEF /* listBorrowingCardsStudentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = listBorrowingCardsStudentTableViewCell.swift; sourceTree = "<group>"; };
 		5C3E692F24AEDC4800202CEF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5C477E2824D4C5870046F3BF /* BorrowCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorrowCard.swift; sourceTree = "<group>"; };
+		5C53DBA124EDD7DF009F24DE /* editBorrowCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = editBorrowCardViewController.swift; sourceTree = "<group>"; };
 		5CF10B4324B4D49600D01663 /* Student.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
 		5CF10B4524B4D4BB00D01663 /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		8FF1FE8A742619AA755155A1 /* Pods_libraryManagement.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_libraryManagement.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -140,6 +142,7 @@
 				5C3E69232490E2DF00202CEF /* listBorrowingCardStudentViewController.swift */,
 				5C3E69292490F52300202CEF /* listBorrowingCardsStudentTableViewCell.swift */,
 				5C38F3BA24C03B6000AE3D1D /* addNewBorrowingCardViewController.swift */,
+				5C53DBA124EDD7DF009F24DE /* editBorrowCardViewController.swift */,
 				5C3E6908248FC7FB00202CEF /* Assets.xcassets */,
 				5C3E690A248FC7FB00202CEF /* LaunchScreen.storyboard */,
 				5C3E690D248FC7FB00202CEF /* Info.plist */,
@@ -311,6 +314,7 @@
 				2C88293024D2DEED00B74446 /* accountViewController.swift in Sources */,
 				5C3E692A2490F52300202CEF /* listBorrowingCardsStudentTableViewCell.swift in Sources */,
 				5C3E6904248FC7D900202CEF /* ViewController.swift in Sources */,
+				5C53DBA224EDD7E0009F24DE /* editBorrowCardViewController.swift in Sources */,
 				5C38F3BB24C03B6000AE3D1D /* addNewBorrowingCardViewController.swift in Sources */,
 				5C3E6900248FC7D900202CEF /* AppDelegate.swift in Sources */,
 				5C3E69202490BF3D00202CEF /* listStudentsTableViewCell.swift in Sources */,

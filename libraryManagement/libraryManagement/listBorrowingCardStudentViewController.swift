@@ -27,6 +27,7 @@ class listBorrowingCardStudentViewController: UIViewController,UITableViewDataSo
                 print("Error retreiving collection: \(error)")
             }
             let documents = querySnapshot!.documents
+            var ID_bc:Array<String> = []
             for document in documents {
                 if (document.data()["ID_student"] as! String == t["ID"] as! String){
                     cell.bookNameLabel.text = document.data()["bookName"] as! String
@@ -37,18 +38,31 @@ class listBorrowingCardStudentViewController: UIViewController,UITableViewDataSo
                     } else {
                         cell.statusLabel.text = "Done"
                     }
+                    ID_bc.append(document.documentID)
+                    self.temp.set(document.data(), forKey: "\(document.documentID)")
                 }
             }
+            self.temp.set(ID_bc, forKey: "listBC")
         }
         return cell
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let ID_bc:Array<String> = temp.array(forKey: "listBC") as! Array<String>
+        print(ID_bc[indexPath.row])
+        self.temp.set(ID_bc[indexPath.row], forKey: "ID_current_bc")
     }
     
     //---Outlet
     @IBOutlet weak var listBorrowingCardTableView: UITableView!
     @IBOutlet weak var studentNameLabel: UILabel!
+    @IBOutlet weak var addButton: UIButton!
     //---Variable
     var temp = UserDefaults()
     //---Action
+    
+    @IBAction func unwindToBorrowCard(segue:UIStoryboardSegue){
+    }
+    
     @IBAction func addButton(_ sender: Any) {
     }
     @IBAction func unwindToManageCard(segue:UIStoryboardSegue){
@@ -66,6 +80,9 @@ class listBorrowingCardStudentViewController: UIViewController,UITableViewDataSo
         
         let t:Dictionary<String,Any> = temp.value(forKey: "\(temp.value(forKey: "ID_current_student")!)") as! Dictionary<String, Any>
         studentNameLabel.text = t["name"] as? String
+        if (t["status"] as! String == "0"){
+            addButton.isHidden = true
+        }
     }
     
 

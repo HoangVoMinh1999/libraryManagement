@@ -122,6 +122,15 @@
                                     <action selector="resetPasswordButton:" destination="VZM-wO-auX" eventType="touchUpInside" id="nKs-Zv-Qyy"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C1z-vR-9ju">
+                                <rect key="frame" x="172" y="791" width="77" height="42"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                <state key="normal" title="LOGIN"/>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="show" id="BUs-C2-PaK"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="GkF-tm-ADa"/>
@@ -1315,6 +1324,7 @@
                                 </state>
                                 <connections>
                                     <action selector="cancelButton:" destination="kEV-Jl-eE4" eventType="touchUpInside" id="cCA-ip-STo"/>
+                                    <action selector="cancelButton:" destination="TE0-22-Uw4" eventType="touchUpInside" id="hpU-PB-QcB"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0EO-vb-guh">
@@ -1378,6 +1388,7 @@
                         <outlet property="noticeLabel" destination="GR2-XU-5Ph" id="3dR-Gy-LLh"/>
                         <outlet property="startedDayTextField" destination="6XN-yl-SZ6" id="4v8-5d-e0C"/>
                         <segue destination="1Yt-EI-CTI" kind="unwind" identifier="unwindToManageCard" unwindAction="unwindToManageCardWithSegue:" id="osN-gK-N9N"/>
+                        <segue destination="1Yt-EI-CTI" kind="unwind" identifier="unwindToBorrowCardWithSegue" unwindAction="unwindToBorrowCardWithSegue:" id="kpZ-na-02H"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rM4-OE-b0h" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1466,6 +1477,7 @@
                                             <outlet property="endedDayLabel" destination="jaT-sM-AmP" id="RQL-qP-gg9"/>
                                             <outlet property="startedDayLabel" destination="9hh-8H-yTF" id="CSs-we-NGg"/>
                                             <outlet property="statusLabel" destination="1V1-io-eJ4" id="BVy-xt-TSM"/>
+                                            <segue destination="BEe-TQ-gco" kind="show" id="Bcu-i0-SuX"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -1500,6 +1512,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="6n2-PO-bvH"/>
                     <connections>
+                        <outlet property="addButton" destination="oMy-t3-wSj" id="bRZ-qA-T9z"/>
                         <outlet property="listBorrowingCardTableView" destination="YPU-ME-Jjw" id="f1i-6H-ogi"/>
                         <outlet property="studentNameLabel" destination="gDc-sf-oGa" id="FRB-wO-CkP"/>
                     </connections>
@@ -1507,6 +1520,163 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w1m-up-7oG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1297.1014492753625" y="3673.6607142857142"/>
+        </scene>
+        <!--Edit Borrow Card View Controller-->
+        <scene sceneID="XAm-oO-eNT">
+            <objects>
+                <viewController id="BEe-TQ-gco" customClass="editBorrowCardViewController" customModule="libraryManagement" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="nh1-76-zZe">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Full name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vca-FY-yiT">
+                                <rect key="frame" x="20" y="214" width="94" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ha Cao Duy" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="47G-MQ-jTw">
+                                <rect key="frame" x="20" y="246" width="374" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="NEW BORROWING CARD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="son-1J-N6L">
+                                <rect key="frame" x="61" y="122" width="293" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Student's ID:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bzG-zb-EUV">
+                                <rect key="frame" x="20" y="301" width="118" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="1712016" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FMe-s8-nM2">
+                                <rect key="frame" x="20" y="333" width="374" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ie9-Uk-hT5">
+                                <rect key="frame" x="264" y="738" width="78" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="CANCEL">
+                                    <color key="titleColor" red="1" green="0.26218101519999998" blue="0.2196629933" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="cancelButton:" destination="TE0-22-Uw4" eventType="touchUpInside" id="doO-7t-nge"/>
+                                    <action selector="cancelButton:" destination="kEV-Jl-eE4" eventType="touchUpInside" id="y1H-Y8-ruF"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z6s-ys-d5P">
+                                <rect key="frame" x="73" y="738" width="89" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="CONFIRM"/>
+                                <connections>
+                                    <action selector="confirmAction:" destination="TE0-22-Uw4" eventType="touchUpInside" id="L3Y-Uh-GpR"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Started Day:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fSO-zy-4CR">
+                                <rect key="frame" x="20" y="478" width="115" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="07/07/2020" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jDE-QY-rid">
+                                <rect key="frame" x="20" y="510" width="374" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="dateTextField:" destination="TE0-22-Uw4" eventType="editingDidBegin" id="RNY-Pj-gzC"/>
+                                </connections>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Book's ID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iOt-DU-Do9">
+                                <rect key="frame" x="20" y="389" width="86" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="1712016" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CdV-pt-s2n">
+                                <rect key="frame" x="20" y="421" width="374" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="bookAction:" destination="TE0-22-Uw4" eventType="editingDidBegin" id="m1l-Pt-1B4"/>
+                                    <action selector="bookIDAction:" destination="TE0-22-Uw4" eventType="editingDidEnd" id="qs2-QQ-4zF"/>
+                                </connections>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Ended Day:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QCo-9c-sfJ">
+                                <rect key="frame" x="20" y="563" width="105" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="07/07/2020" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dbl-e0-niV">
+                                <rect key="frame" x="20" y="595" width="374" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="dateTextField:" destination="TE0-22-Uw4" eventType="editingDidBegin" id="mbH-j8-4EB"/>
+                                </connections>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Fine:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vxs-CT-hVl">
+                                <rect key="frame" x="20" y="649" width="45" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BlE-yu-kRT">
+                                <rect key="frame" x="20" y="681" width="296" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="dateTextField:" destination="TE0-22-Uw4" eventType="editingDidBegin" id="O6h-lb-axe"/>
+                                </connections>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Status:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="428-gy-5nj">
+                                <rect key="frame" x="328" y="649" width="66" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="S65-a4-W2f">
+                                <rect key="frame" x="338" y="684" width="49" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </switch>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="OVG-3o-XQE"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="GsK-vq-Sqs"/>
+                    <connections>
+                        <outlet property="bookIDTextField" destination="CdV-pt-s2n" id="IHu-Nx-BHs"/>
+                        <outlet property="endedDayTextField" destination="dbl-e0-niV" id="ETV-es-ZvA"/>
+                        <outlet property="fineTextField" destination="BlE-yu-kRT" id="OcS-Fc-Inp"/>
+                        <outlet property="startedDayTextField" destination="jDE-QY-rid" id="ezh-76-822"/>
+                        <outlet property="statusSwitch" destination="S65-a4-W2f" id="SFu-8p-vXv"/>
+                        <outlet property="studentIDTextField" destination="FMe-s8-nM2" id="BGi-Ll-cZe"/>
+                        <outlet property="studentNameTextField" destination="47G-MQ-jTw" id="032-Et-LBp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nS7-Ky-Se3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-468.11594202898556" y="3673.6607142857142"/>
         </scene>
         <!--Edit Info Student View Controller-->
         <scene sceneID="OCh-KI-VbB">

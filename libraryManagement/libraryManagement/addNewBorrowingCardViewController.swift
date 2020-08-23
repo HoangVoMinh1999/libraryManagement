@@ -114,10 +114,16 @@ class addNewBorrowingCardViewController: UIViewController,UIPickerViewDelegate,U
         let okButton:UIAlertAction = UIAlertAction(title: "OK", style: .default) { (UIAlertAction) in
             // Update one field, creating the document if it does not exist.
             db.collection("Books").document(self.id).setData([ "check": (self.temp.value(forKey: "check") as! Int + 1) ], merge: true)
+            self.performSegue(withIdentifier: "unwindToBorrowCardWithSegue", sender: self)
         }
         alert.addAction(okButton)
         self.present(alert,animated: true,completion: nil)
     }
+    
+    @IBAction func cancelButton(_ sender: Any) {
+        self.performSegue(withIdentifier: "unwindToBorrowCardWithSegue", sender: self)
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
