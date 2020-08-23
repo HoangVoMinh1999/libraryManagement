@@ -1382,6 +1382,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="pY5-ph-IwH"/>
                     <connections>
+                        <outlet property="confirmButton" destination="0EO-vb-guh" id="bEh-oy-gEF"/>
                         <outlet property="idBookTextField" destination="DEq-EG-9UL" id="IBI-6k-fHC"/>
                         <outlet property="idStudentTextField" destination="M8B-cO-US9" id="cVu-LB-xF4"/>
                         <outlet property="nameTextField" destination="r8j-St-VB3" id="g5m-Rw-3A1"/>
@@ -1542,8 +1543,8 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="NEW BORROWING CARD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="son-1J-N6L">
-                                <rect key="frame" x="61" y="122" width="293" height="30"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="EDIT BORROWING CARD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="son-1J-N6L">
+                                <rect key="frame" x="61" y="122" width="290" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                 <nil key="textColor"/>
@@ -1570,6 +1571,7 @@
                                     <color key="titleColor" red="1" green="0.26218101519999998" blue="0.2196629933" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
+                                    <action selector="cancelButton:" destination="BEe-TQ-gco" eventType="touchUpInside" id="FRc-Qf-MBn"/>
                                     <action selector="cancelButton:" destination="TE0-22-Uw4" eventType="touchUpInside" id="doO-7t-nge"/>
                                     <action selector="cancelButton:" destination="kEV-Jl-eE4" eventType="touchUpInside" id="y1H-Y8-ruF"/>
                                 </connections>
@@ -1581,6 +1583,7 @@
                                 <state key="normal" title="CONFIRM"/>
                                 <connections>
                                     <action selector="confirmAction:" destination="TE0-22-Uw4" eventType="touchUpInside" id="L3Y-Uh-GpR"/>
+                                    <action selector="confirmButton:" destination="BEe-TQ-gco" eventType="touchUpInside" id="bIg-7A-1OQ"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Started Day:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fSO-zy-4CR">
@@ -1658,6 +1661,9 @@
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="S65-a4-W2f">
                                 <rect key="frame" x="338" y="684" width="49" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="statusAction:" destination="BEe-TQ-gco" eventType="valueChanged" id="0l6-Nv-zPP"/>
+                                </connections>
                             </switch>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -1672,9 +1678,11 @@
                         <outlet property="statusSwitch" destination="S65-a4-W2f" id="SFu-8p-vXv"/>
                         <outlet property="studentIDTextField" destination="FMe-s8-nM2" id="BGi-Ll-cZe"/>
                         <outlet property="studentNameTextField" destination="47G-MQ-jTw" id="032-Et-LBp"/>
+                        <segue destination="Ga7-Jd-xvd" kind="unwind" identifier="unwindToBorrowCardWithSegue" unwindAction="unwindToBorrowCardWithSegue:" id="HAO-an-RKn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nS7-Ky-Se3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="Ga7-Jd-xvd" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-468.11594202898556" y="3673.6607142857142"/>
         </scene>

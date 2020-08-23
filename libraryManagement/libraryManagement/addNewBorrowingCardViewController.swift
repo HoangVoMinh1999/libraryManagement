@@ -34,6 +34,7 @@ class addNewBorrowingCardViewController: UIViewController,UIPickerViewDelegate,U
     @IBOutlet weak var noticeLabel: UILabel!
     @IBOutlet weak var idBookTextField: UITextField!
     @IBOutlet weak var startedDayTextField: UITextField!
+    @IBOutlet weak var confirmButton: UIButton!
     //---Variable
     var temp:UserDefaults = UserDefaults()
     var id = ""
@@ -92,10 +93,12 @@ class addNewBorrowingCardViewController: UIViewController,UIPickerViewDelegate,U
                           self.noticeLabel.textColor = UIColor(cgColor: CGColor(srgbRed: 0.1, green: 1, blue: 0.5, alpha: 1))
                           self.noticeLabel.text = "* This book is available to borrow"
                         self.temp.set(document.data()!["check"] as! Int, forKey: "check")
+                        self.confirmButton.isEnabled = true
                       } else {
                           self.noticeLabel.isHidden = false
                           self.noticeLabel.textColor = UIColor(cgColor: CGColor(srgbRed: 1, green: 0.1, blue: 0.5, alpha: 1))
                           self.noticeLabel.text = "* No available book in library"
+                        self.confirmButton.isEnabled = false
                       }
               } else {
                   print("Document does not exist")

@@ -151,13 +151,19 @@ class editInfoStudentViewController: UIViewController,UIPickerViewDelegate,UIPic
             }
             let documents = querySnapshot!.documents
             var count = 0
+            var data:Array<Dictionary<String,Any>> = []
+            var ID:Array<String> = []
             for document in documents {
                 if (document.data()["ID_student"] as! String == self.idTextField.text!){
                     count += 1
+                    data.append(document.data())
+                    ID.append(document.documentID)
                 }
             }
             print(count)
             self.temp.set(count, forKey: "count")
+            self.temp.set(data, forKey: "data")
+            self.temp.set(ID, forKey: "listID")
         }
     }
     

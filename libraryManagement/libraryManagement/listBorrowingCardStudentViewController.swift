@@ -17,39 +17,26 @@ class listBorrowingCardStudentViewController: UIViewController,UITableViewDataSo
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
  
-        let t:Dictionary<String,Any> = temp.value(forKey: "\(temp.value(forKey: "ID_current_student")!)") as! Dictionary<String, Any>
-        
         let cell:listBorrowingCardsStudentTableViewCell = listBorrowingCardTableView.dequeueReusableCell(withIdentifier: "listBorrowingCardsStudentTableViewCell") as! listBorrowingCardsStudentTableViewCell
-        let db = Firestore.firestore()
-        db.collection("BorrowCard")
-        .addSnapshotListener { querySnapshot, error in
-            if let error = error {
-                print("Error retreiving collection: \(error)")
-            }
-            let documents = querySnapshot!.documents
-            var ID_bc:Array<String> = []
-            for document in documents {
-                if (document.data()["ID_student"] as! String == t["ID"] as! String){
-                    cell.bookNameLabel.text = document.data()["bookName"] as! String
-                    cell.endedDayLabel.text = document.data()["endedDay"] as! String
-                    cell.startedDayLabel.text = document.data()["startedDay"] as! String
-                    if (document.data()["status"] as! String == "1"){
-                        cell.statusLabel.text = ""
-                    } else {
-                        cell.statusLabel.text = "Done"
-                    }
-                    ID_bc.append(document.documentID)
-                    self.temp.set(document.data(), forKey: "\(document.documentID)")
-                }
-            }
-            self.temp.set(ID_bc, forKey: "listBC")
+        let data:Array<Dictionary<String,Any>> = self.temp.value(forKey: "data") as! Array<Dictionary<String, Any>>
+        let listID:Array<String> = self.temp.value(forKey: "listID") as! Array<String>
+        
+        cell.bookNameLabel.text = data[indexPath.row]["bookName"] as! String
+        cell.startedDayLabel.text = data[indexPath.row]["startedDay"] as! String
+        cell.endedDayLabel.text = data[indexPath.row]["endedDay"] as! String
+        if (data[indexPath.row]["status"] as! String == "0"){
+            cell.statusLabel.text = "Done"
+        } else {
+            cell.statusLabel.text = ""
+            self.addButton.isHidden = true
         }
+        
+        
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let ID_bc:Array<String> = temp.array(forKey: "listBC") as! Array<String>
-        print(ID_bc[indexPath.row])
-        self.temp.set(ID_bc[indexPath.row], forKey: "ID_current_bc")
+        let listID:Array<String> = self.temp.value(forKey: "listID") as! Array<String>
+        self.temp.set(listID[indexPath.row], forKey: "ID_current_bc")
     }
     
     //---Outlet
