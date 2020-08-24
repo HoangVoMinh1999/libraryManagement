@@ -79,34 +79,33 @@ class addNewBorrowingCardViewController: UIViewController,UIPickerViewDelegate,U
     
     
     @IBAction func bookIDAction(_ sender: Any) {
-        let data = idBookTextField.text?.components(separatedBy: "-")
-        id = data![0]
-        name = data![1]
-        print (id)
-        
-        let docRef = db.collection("Books").document("\(self.id)")
+        if (idBookTextField.text! != ""){
+            let data = idBookTextField.text?.components(separatedBy: "-")
+            id = data![0]
+            name = data![1]
+            print (id)
+            
+            let docRef = db.collection("Books").document("\(self.id)")
 
-          docRef.getDocument { (document, error) in
-              if let document = document, document.exists {
-                if (Int(document.data()!["quantity"] as! String)! > document.data()!["check"] as! Int){
-                          self.noticeLabel.isHidden = false
-                          self.noticeLabel.textColor = UIColor(cgColor: CGColor(srgbRed: 0.1, green: 1, blue: 0.5, alpha: 1))
-                          self.noticeLabel.text = "* This book is available to borrow"
-                        self.temp.set(document.data()!["check"] as! Int, forKey: "check")
-                        self.confirmButton.isEnabled = true
-                      } else {
-                          self.noticeLabel.isHidden = false
-                          self.noticeLabel.textColor = UIColor(cgColor: CGColor(srgbRed: 1, green: 0.1, blue: 0.5, alpha: 1))
-                          self.noticeLabel.text = "* No available book in library"
-                        self.confirmButton.isEnabled = false
-                      }
-              } else {
-                  print("Document does not exist")
+              docRef.getDocument { (document, error) in
+                  if let document = document, document.exists {
+                    if (Int(document.data()!["quantity"] as! String)! > document.data()!["check"] as! Int){
+                              self.noticeLabel.isHidden = false
+                              self.noticeLabel.textColor = UIColor(cgColor: CGColor(srgbRed: 0.1, green: 1, blue: 0.5, alpha: 1))
+                              self.noticeLabel.text = "* This book is available to borrow"
+                            self.temp.set(document.data()!["check"] as! Int, forKey: "check")
+                            self.confirmButton.isEnabled = true
+                          } else {
+                              self.noticeLabel.isHidden = false
+                              self.noticeLabel.textColor = UIColor(cgColor: CGColor(srgbRed: 1, green: 0.1, blue: 0.5, alpha: 1))
+                              self.noticeLabel.text = "* No available book in library"
+                            self.confirmButton.isEnabled = false
+                          }
+                  } else {
+                      print("Document does not exist")
+                  }
               }
-          }
-
-
-
+        }
     }
     
     @IBAction func confirmAction(_ sender: Any) {
