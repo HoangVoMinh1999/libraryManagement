@@ -57,8 +57,10 @@ class editBorrowCardViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let student:Dictionary<String,Any> = temp.value(forKey: "\(temp.value(forKey: "ID_current_student") as! String)") as! Dictionary<String, Any>
+ 
+                print(temp.value(forKey: "ID_current_bc") as! String)
         
-        let bc:Dictionary<String,Any> = temp.value(forKey: "\(temp.value(forKey: "ID_current_bc") as! String)") as! Dictionary<String, Any>
+        let bc:Dictionary<String,Any> = temp.value(forKey: temp.value(forKey: "ID_current_bc") as! String) as! Dictionary<String, Any>
         
         studentNameTextField.text = student["name"] as! String
         studentIDTextField.text = bc["ID_student"] as! String
@@ -72,14 +74,6 @@ class editBorrowCardViewController: UIViewController {
         } else {
             statusSwitch.isOn = false
         }
-            
-        // Do any additional setup after loading the view.
-        studentIDTextField.isEnabled = false
-        studentNameTextField.isEnabled = false
-        bookIDTextField.isEnabled = false
-        startedDayTextField.isEnabled = false
-        endedDayTextField.isEnabled = false
-        fineTextField.isEnabled = false
         
         let docRef = db.collection("Books").document("\(bookIDTextField.text!)")
 

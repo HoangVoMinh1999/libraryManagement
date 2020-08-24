@@ -29,12 +29,12 @@ class editAccountViewController: UIViewController {
             let okButton:UIAlertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
             alert.addAction(okButton)
             self.present(alert,animated: true,completion: nil)
-        } else if (password_1TextField.text! != password_2TextField.text! ){
+        } else if (password_1TextField.text! != password_2TextField.text!){
             let alert:UIAlertController = UIAlertController(title: "Notice", message: "Please fill all data", preferredStyle: .alert)
             let okButton:UIAlertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
             alert.addAction(okButton)
             self.present(alert,animated: true,completion: nil)
-        } else {
+        } else if (password_1TextField.text! == password_2TextField.text! && password_1TextField.text! != "") {
             Auth.auth().currentUser?.updatePassword(to: password_1TextField.text!) { (error) in
               // ...
             }
@@ -43,7 +43,19 @@ class editAccountViewController: UIViewController {
             "gender":genderTextField.text!,
             "email":emailTextField.text!
              ], merge: true)
-            let alert:UIAlertController = UIAlertController(title: "Notice", message: "Please fill all data", preferredStyle: .alert)
+            let alert:UIAlertController = UIAlertController(title: "Notice", message: "Update info and password", preferredStyle: .alert)
+            let okButton:UIAlertAction = UIAlertAction(title: "OK", style: .default) { (UIAlertAction) in
+                self.performSegue(withIdentifier: "unwindToAccountViewWithSegue", sender: self)
+            }
+            alert.addAction(okButton)
+            self.present(alert,animated: true,completion: nil)
+        } else {
+            db.collection("Accounts").document(emailTextField.text!).setData(["name":fullnameTextField.text!,
+            "birthday":birthdayTextField.text!,
+            "gender":genderTextField.text!,
+            "email":emailTextField.text!
+             ], merge: true)
+            let alert:UIAlertController = UIAlertController(title: "Notice", message: "Update info", preferredStyle: .alert)
             let okButton:UIAlertAction = UIAlertAction(title: "OK", style: .default) { (UIAlertAction) in
                 self.performSegue(withIdentifier: "unwindToAccountViewWithSegue", sender: self)
             }

@@ -26,11 +26,12 @@ class listBorrowingCardStudentViewController: UIViewController,UITableViewDataSo
         cell.endedDayLabel.text = data[indexPath.row]["endedDay"] as! String
         if (data[indexPath.row]["status"] as! String == "0"){
             cell.statusLabel.text = "Done"
+            self.addButton.isHidden = false
         } else {
             cell.statusLabel.text = ""
             self.addButton.isHidden = true
         }
-        
+        temp.set(data[indexPath.row], forKey: listID[indexPath.row])
         
         return cell
     }
